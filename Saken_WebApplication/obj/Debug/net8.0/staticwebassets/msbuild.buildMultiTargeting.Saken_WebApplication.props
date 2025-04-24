@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Saken_WebApplication.props" />
+</Project>

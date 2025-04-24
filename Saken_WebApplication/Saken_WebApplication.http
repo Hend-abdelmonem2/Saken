@@ -1,0 +1,6 @@
+@Saken_WebApplication_HostAddress = http://localhost:5134
+
+GET {{Saken_WebApplication_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
