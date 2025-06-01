@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\housingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\housingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\housing\\housingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\housing\\housingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,107 +11,210 @@
       "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\housing\\housingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\likes\\likescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\likes\\likescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\like\\likeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\like\\likeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\like\\ilikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\like\\ilikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\housing\\ihousingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\housing\\ihousingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\reservation\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\reservation\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\implement\\housingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\implement\\housingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\ihousingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\ihousingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\userpreference\\userpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\userpreference\\userpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\recommand\\recommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\recommand\\recommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\userpreferences\\iuserpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\userpreferences\\iuserpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\reservation\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\reservation\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\getreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\getreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\housing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\housing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\housingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\housingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\housing\\ihousingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\housing\\ihousingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D1B761F-0640-421B-A96A-C2ED1A56F239}|Saken_WebApplication.Core\\Saken_WebApplication.Core.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.core\\mapping\\housingmapper\\housingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D1B761F-0640-421B-A96A-C2ED1A56F239}|Saken_WebApplication.Core\\Saken_WebApplication.Core.csproj|solutionrelative:saken_webapplication.core\\mapping\\housingmapper\\housingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\ihousingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\ihousingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\reservation\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\reservation\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\ihouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\ihouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\implement\\housing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\implement\\housing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\migrations\\20250527191937_update-house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\migrations\\20250527191937_update-house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\implement\\likerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\implement\\likerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\like\\likeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\like\\likeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\likes\\likescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\likes\\likescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\like\\ilikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\like\\ilikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\ilikerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\ilikerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\housinglikedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\housinglikedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D1B761F-0640-421B-A96A-C2ED1A56F239}|Saken_WebApplication.Core\\Saken_WebApplication.Core.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.core\\mapping\\housingmapper\\reservationprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D1B761F-0640-421B-A96A-C2ED1A56F239}|Saken_WebApplication.Core\\Saken_WebApplication.Core.csproj|solutionrelative:saken_webapplication.core\\mapping\\housingmapper\\reservationprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\saken_webapplication.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\saken_webapplication.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\saken_webapplication.infrasturcture.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\saken_webapplication.infrasturcture.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\recommand\\recommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\recommand\\recommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\recommend\\irecommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\recommend\\irecommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\registermodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\registermodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\preferences\\iuserpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\preferences\\iuserpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\getreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\getreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\reservationcontractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\reservationcontractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\housingdto\\housingrecommendationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\housingdto\\housingrecommendationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\userpreferences\\userpreferencesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\userpreferences\\userpreferencesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\message\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\message\\messagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\message\\messagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\reservation\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\reservation\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.reservations.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\implement\\userpreference\\userpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\implement\\userpreference\\userpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication\\controllers\\preference\\preferencecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{47C5241C-F701-4869-8072-486E3FB35A6D}|Saken_WebApplication\\Saken_WebApplication.csproj|solutionrelative:saken_webapplication\\controllers\\preference\\preferencecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\implement\\preferences\\userpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\implement\\preferences\\userpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\interfaces\\preferences\\iuserpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\interfaces\\preferences\\iuserpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.service\\services\\interfaces\\userpreferences\\iuserpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F62DE37F-655C-456A-A67F-726185F72E08}|Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj|solutionrelative:saken_webapplication.service\\services\\interfaces\\userpreferences\\iuserpreferencesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.data\\dto\\userpreferences\\userpreferencesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A6E4BDF-584E-4641-A97F-0F8BD703B25D}|Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj|solutionrelative:saken_webapplication.data\\dto\\userpreferences\\userpreferencesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\repositories\\implement\\preferences\\userpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|solutionrelative:saken_webapplication.infrasturcture\\repositories\\implement\\preferences\\userpreferencesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31DB689C-11B5-4E5D-8C76-C5F7CFBC4F3F}|Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj|c:\\users\\lenovo\\desktop\\saken_webapplication\\saken_webapplication.infrasturcture\\migrations\\20250503172903_updatereservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -137,7 +236,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -145,332 +244,244 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Saken_WebApplication\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "IHousingService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:49:42.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAABcAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:19:04.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HousingService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAiwD0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T16:23:58.734Z",
+              "WhenOpened": "2025-05-04T11:24:04.028Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "HousingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowDsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:01:25.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "HousingController.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Housing\\HousingController.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Housing\\HousingController.cs",
               "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Housing\\HousingController.cs",
               "RelativeToolTip": "Saken_WebApplication\\Controllers\\Housing\\HousingController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAwCgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAgwGQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T09:04:38.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Enums.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Enums.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Enums.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Enums.cs",
-              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Enums.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAUwDEAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T18:25:49.267Z",
+              "WhenOpened": "2025-05-04T10:49:42.18Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "LikesController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
-              "RelativeToolTip": "Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T19:45:06.46Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "HousingDto.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingDto.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingDto.cs",
               "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingDto.cs",
               "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingDto.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAwwBsAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAqwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T16:56:44.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ILikeService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T19:41:10.133Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LikeService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T19:41:23.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "RecommendationService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:56:33.271Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "dbo.houses.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-05-04T11:05:32.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IHousingService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\housing\\IHousingService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T11:24:04.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "20250504111159_updateResrvationmod.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T11:11:59.767Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T19:15:37.026Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "GetReservationDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
-              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAADwvwkAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T18:35:36.706Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ReservationDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
-              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T18:34:39.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 3,
               "Title": "Housing.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Housing.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Housing.cs",
               "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Housing.cs",
               "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Housing.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBQAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAYwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:35:18.789Z"
+              "WhenOpened": "2025-05-03T17:35:18.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HousingService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\housing\\HousingService.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAiwJQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T16:23:58.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAEgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T19:53:38.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Authcontroller.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Authcontroller.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Authcontroller.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Authcontroller.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Controllers\\Authcontroller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:07:24.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Program.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Program.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Program.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Program.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T09:24:22.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\User.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\User.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAA1wDIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T11:04:51.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T09:21:08.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\AuthService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\AuthService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\AuthService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:09:39.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\UserDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\UserDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\UserDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T09:24:37.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UpdateUserDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\UpdateUserDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\UpdateUserDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\UpdateUserDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\UpdateUserDto.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAB4AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T19:54:20.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Enums.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Enums.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Enums.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Enums.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAUwEsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T18:25:49.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HousingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Core\\Mapping\\HousingMapper\\HousingProfile.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Core\\Mapping\\HousingMapper\\HousingProfile.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Core\\Mapping\\HousingMapper\\HousingProfile.cs",
+              "RelativeToolTip": "Saken_WebApplication.Core\\Mapping\\HousingMapper\\HousingProfile.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwB4AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:44:41.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\Reservation\\IReservationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T19:15:37.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "IHousingRepository.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHousingRepository.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHousingRepository.cs",
               "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHousingRepository.cs",
               "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHousingRepository.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA1wBYAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T17:32:07.471Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "20250503172903_updatereservation.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:29:05.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ApplicationDBContext.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAADwv2oAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:28:02.497Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Reservation.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Reservation.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Reservation.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Reservation.cs",
-              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Reservation.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:15:39.613Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "HousingRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\HousingRepository.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAiwFYAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:01:25.553Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "20250503110132_addsetting.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:01:32.628Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "HousingRecommendationDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
-              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:31:15.014Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "PreferenceController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
-              "RelativeToolTip": "Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:02:48.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IUserPreferencesService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T09:01:13.607Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UserPreferencesService.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
-              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAQwBQAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T07:41:26.801Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 19,
               "Title": "IGenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\IGenericRepository.cs",
@@ -482,7 +493,421 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IHouses.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHouses.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHouses.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHouses.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\IHouses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T16:23:35.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Housing.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Housing.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Housing.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Housing.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Housing.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwBAAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T16:22:37.206Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "20250527191937_update-house.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250527191937_update-house.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250527191937_update-house.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250527191937_update-house.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250527191937_update-house.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T19:19:37.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ILikeService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\Like\\ILikeService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T19:41:10.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "LikeService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Like\\LikeService.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwDIAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T19:41:23.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LikeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\LikeRepository.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\LikeRepository.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\LikeRepository.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\LikeRepository.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA1wCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T12:18:01.876Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 27,
+              "Title": "ILikeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\ILikeRepository.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\ILikeRepository.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\ILikeRepository.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\ILikeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T12:17:42.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "LikesController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Controllers\\Likes\\LikesController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T19:45:06.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "HousingLikeDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingLikeDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingLikeDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingLikeDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingLikeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T19:26:42.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "RegisterModelDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\RegisterModelDTO.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\RegisterModelDTO.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\RegisterModelDTO.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\RegisterModelDTO.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T11:04:19.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Reservation.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:15:39.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Saken_WebApplication.Infrasturcture.csproj",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-21T11:43:15.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ReservationProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Core\\Mapping\\HousingMapper\\ReservationProfile.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Core\\Mapping\\HousingMapper\\ReservationProfile.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Core\\Mapping\\HousingMapper\\ReservationProfile.cs",
+              "RelativeToolTip": "Saken_WebApplication.Core\\Mapping\\HousingMapper\\ReservationProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T11:27:18.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Saken_WebApplication.Service.csproj",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-21T11:43:47.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ReservationDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T18:34:39.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IRecommendationService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\recommend\\IRecommendationService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\recommend\\IRecommendationService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\recommend\\IRecommendationService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\recommend\\IRecommendationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T09:08:34.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "RecommendationService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Recommand\\RecommendationService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAIBQwDYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T10:56:33.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IUserPreferencesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAIBJwA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T13:24:22.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\UserService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T09:25:16.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "GetReservationDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\GetReservationDto.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADwvwsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T18:35:36.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ReservationContractDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationContractDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationContractDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationContractDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\ReservationContractDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwBUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T16:19:46.434Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "HousingRecommendationDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\HousingDTO\\HousingRecommendationDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwA0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T09:31:15.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\message\\MessageService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\message\\MessageService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\message\\MessageService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\message\\MessageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T22:54:17.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Message.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Message.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\Models\\Message.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Models\\Message.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\Models\\Message.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T19:45:09.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "MessageDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\message\\MessageDto.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\message\\MessageDto.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\message\\MessageDto.cs",
+              "RelativeToolTip": "Saken_WebApplication.Data\\DTO\\message\\MessageDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T19:41:39.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\Reservation\\ReservationService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T10:19:04.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "dbo.reservations.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.reservations.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.reservations.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-05-15T17:12:31.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "UserPreferencesService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Implement\\UserPreference\\UserPreferencesService.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAwEAAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T07:41:26.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "PreferenceController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
+              "RelativeToolTip": "Saken_WebApplication\\Controllers\\Preference\\PreferenceController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwB4AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T09:02:48.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "dbo.houses.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/HENDFCI2/saken_webApp/True/SqlTable/dbo.houses.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-05-04T11:05:32.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "20250504111159_updateResrvationmod.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250504111159_updateResrvationmod.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T11:11:59.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "20250503172903_updatereservation.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503172903_updatereservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:29:05.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Data\\ApplicationDBContext.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAADwv2oAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:28:02.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "20250503110132_addsetting.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
+              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Migrations\\20250503110132_addsetting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T11:01:32.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "IUserPreferencesService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
+              "RelativeDocumentMoniker": "Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
+              "RelativeToolTip": "Saken_WebApplication.Service\\Services\\Interfaces\\UserPreferences\\IUserPreferencesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T09:01:13.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
               "Title": "UserPreferencesRepository.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Preferences\\UserPreferencesRepository.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Implement\\Preferences\\UserPreferencesRepository.cs",
@@ -494,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 52,
               "Title": "UserPreferencesDto.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\DTO\\UserPreferences\\UserPreferencesDto.cs",
               "RelativeDocumentMoniker": "Saken_WebApplication.Data\\DTO\\UserPreferences\\UserPreferencesDto.cs",
@@ -503,30 +928,6 @@
               "ViewState": "AgIAAAQAAAAAAAAAAAAqwBIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T13:33:08.79Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "IUserPreferencesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
-              "RelativeToolTip": "Saken_WebApplication.Infrasturcture\\Repositories\\Interfaces\\Preferences\\IUserPreferencesRepository.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:24:22.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Program.cs",
-              "RelativeDocumentMoniker": "Saken_WebApplication\\Program.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication\\Program.cs",
-              "RelativeToolTip": "Saken_WebApplication\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T09:24:22.945Z"
             }
           ]
         }

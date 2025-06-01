@@ -1,4 +1,6 @@
-﻿using Saken_WebApplication.Data.DTO.HousingDTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using Saken_WebApplication.Data.DTO;
+using Saken_WebApplication.Data.DTO.HousingDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,11 @@ namespace Saken_WebApplication.Service.Services.Interfaces.housing
 
         Task<bool> DeleteHousingAsync(int houseId);
         Task<IEnumerable<HousingDto>> GetHousingsForLandlordIdAsync(string landlordId);
+        Task<HousingDto?> GetHousingByIdAsync(int id);
+
+
+        Task<(bool success, string message, bool isFrozen)> ToggleFreezeAsync(int id);
+
     }
 }
 

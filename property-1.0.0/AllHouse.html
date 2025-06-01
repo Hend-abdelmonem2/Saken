@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ar">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="shortcut icon" href="favicon.png" />
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <title>
+    Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+  </title>
+  <style>
+    i {
+      font-size: 40px;
+      color: gray;
+      cursor: pointer;
+    }
+
+    i.liked {
+      color: red;
+    }
+
+    .hero-slide .img {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+ <nav class="site-nav" dir="rtl">
+    <div class="container">
+      <div class="menu-bg-wrap">
+        <div class="site-navigation">
+          <a href="index.html" class="logo m-0 float-start">Property</a>
+
+          <ul
+            class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+          >
+            <li class="active"><a href="AllHouse.html">الرئيسيه</a></li>
+            <li class="has-children">
+              <a href="Favorite.html">التفضيلات</a></li>
+            <li><a href="Requests.html">الطلبات</a></li>
+            <li><a href="recommendation.html">الترشيحات</a></li>
+            <li><a href="message.html">الرسائل</a></li>
+          </ul>
+
+          <a
+            href="#"
+            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+            data-toggle="collapse"
+            data-target="#main-navbar"
+          >
+            <span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-slide">
+      <div class="img overlay" style="background-image: url('images/hero_bg_3.jpg')"></div>
+      <div class="img overlay" style="background-image: url('images/hero_bg_2.jpg')"></div>
+      <div class="img overlay" style="background-image: url('images/hero_bg_1.jpg')"></div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-9 text-center">
+          <h1 class="heading" data-aos="fade-up">
+            Easiest way to find your dream home
+          </h1>
+          <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
+            data-aos-delay="200">
+            <input type="text" class="form-control px-4" placeholder="Your ZIP code or City. e.g. New York" />
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5" dir="rtl">
+    <h2 class="mb-4">السكن المتاح</h2>
+    <div class="row" id="houses-list">
+      <!-- سيتم عرض العقارات هنا -->
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.getElementById("houses-list");
+  const message = document.getElementById("message");
+
+  function parseJwt(token) {
+    try {
+      const base64Payload = token.split(".")[1];
+      const payload = atob(base64Payload.replace(/-/g, "+").replace(/_/g, "/"));
+      return JSON.parse(payload);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const token = localStorage.getItem("token");
+  const decoded = parseJwt(token);
+  const userId = decoded?.uid || decoded?.sub || decoded?.nameid || null;
+
+  try {
+    // 1. هات كل السكنات
+    const res = await fetch("https://localhost:44327/api/Housing/AllHouses");
+    const resultText = await res.text();
+    let data = JSON.parse(resultText);
+
+    // 2. هات المفضلات
+    let favoriteIds = [];
+    if (token && userId) {
+      const favRes = await fetch("https://localhost:44327/api/Likes/LikedHouses", {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      const favData = await favRes.json();
+      favoriteIds = favData.map(h => h.id); // نحتفظ فقط بالـ IDs
+    }
+
+    // 3. اعرض السكنات بالقلب المناسب
+    if (!Array.isArray(data) || data.length === 0) {
+      container.innerHTML = `<div class="alert alert-info">لا توجد وحدات سكنية متاحة حاليًا.</div>`;
+      return;
+    }
+
+    container.innerHTML = data.map(house => {
+      const isFavorite = favoriteIds.includes(house.id);
+      const heartClass = isFavorite ? "fa-solid liked" : "fa-regular";
+      return `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 position-relative">
+            <img src="${house.photoUrl || 'default.jpg'}" class="card-img-top" alt="Housing Photo" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title d-flex justify-content-between align-items-center">
+                ${house.address}
+                <i class="fa-heart like-btn ${heartClass}" data-id="${house.id}" data-type="Housing"></i>
+              </h5>
+              <p class="card-text">
+                <strong>النوع:</strong> ${house.type}<br>
+                <strong>السعر:</strong> ${house.price} جنيه
+              </p>
+              <button class="btn btn-primary btn-details" data-id="${house.landlordId}">تفاصيل</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // 4. تعامل مع الضغط على القلب
+    document.querySelectorAll(".like-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        btn.classList.toggle("fa-regular");
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("liked");
+
+        const entityId = btn.getAttribute("data-id");
+        const entityType = btn.getAttribute("data-type");
+
+        if (!token) {
+          alert("يجب تسجيل الدخول أولاً.");
+          return;
+        }
+
+        if (!userId) {
+          alert("لم يتم استخراج المعرف من التوكن.");
+          return;
+        }
+
+        try {
+          const res = await fetch("https://localhost:44327/api/Likes/ToggleLike", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              userId,
+              entityId: parseInt(entityId),
+              entityType
+            })
+          });
+
+          const result = await res.text();
+          console.log(result);
+        } catch (error) {
+          console.error("فشل في إرسال طلب الإعجاب", error);
+        }
+      });
+    });
+
+  } catch (error) {
+    console.error("Error loading houses:", error);
+    message.innerHTML = `<div class="alert alert-danger">حدث خطأ أثناء تحميل الوحدات.</div>`;
+  }
+});
+
+  </script>
+
+ 
+
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>

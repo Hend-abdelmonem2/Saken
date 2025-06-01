@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Saken_WebApplication.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Saken_WebApplication.Data.DTO.HousingDTO;
 
 namespace Saken_WebApplication.Service.Services.Implement.Like
 {
@@ -45,6 +47,10 @@ namespace Saken_WebApplication.Service.Services.Implement.Like
                 await _likeRepository.SaveChangesAsync();
                 return "Like added";
             }
+        }
+        public async Task<List<HousingLikeDto>> GetLikedHousesAsync(string userId)
+        {
+            return await _likeRepository.GetLikedHousesAsync(userId);
         }
     }
 }

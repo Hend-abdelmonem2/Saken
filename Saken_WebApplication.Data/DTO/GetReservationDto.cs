@@ -9,6 +9,7 @@ namespace Saken_WebApplication.Data.DTO
 {
     public  class GetReservationDto
     {
+        public int Id { get; set; }
         public int HousingId { get; set; }
         public decimal AmountPaid { get; set; }
         public DateTime ReservationDate { get; set; }

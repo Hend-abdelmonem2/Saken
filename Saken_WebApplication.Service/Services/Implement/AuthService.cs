@@ -235,30 +235,50 @@ namespace Saken_WebApplication.Service.Services.Implement
                 Id = user.Id,
                 FullName= user.UserName,
                 Email = user.Email,
-                // ضيفي باقي الخصائص اللي موجودة في UserDto من الـ user
+                profilePicture = user.profilePicture,
+                PhoneNumber = user.PhoneNumber,
+                Role = user.Role,
             }).ToList();
 
             return usersDto;
         }
-        public async Task UpdateUserAsync(string Id, UpdateUserDto model)
+        public async Task<(bool IsSuccess, string Message)> UpdateProfileAsync(string userId, UpdateUserDto model)
         {
-            var user = await _userManager.FindByIdAsync(Id)
-                ?? throw new Exception("User not found");
-
-            if (user.FullName == model.FullName && user.PhoneNumber == model.PhoneNumber
-                && user.Email == model.Email)
-                throw new Exception("No changes detected. The data is already up to date.");
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return (false, "المستخدم غير موجود");
 
             user.FullName = model.FullName;
-            user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Email;
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            user.PhoneNumber = model.PhoneNumber;
+            if (model.photo != null)
             {
-                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-                throw new Exception($"Failed to update user: {errors}");
+                var uploadResult = await _cloudinaryService.UploadImageAsync(model.photo);
+
+                if (uploadResult.Error != null)
+                    return (false, uploadResult.Error.Message);
+
+                user.profilePicture = uploadResult.SecureUrl.ToString();
             }
+
+            // ✅ تعديل الباسورد (لو تم إرسال باسورد جديد)
+            if (!string.IsNullOrWhiteSpace(model.NewPassword))
+            {
+                var removeResult = await _userManager.RemovePasswordAsync(user);
+                if (!removeResult.Succeeded)
+                    return (false, "فشل في إزالة كلمة المرور القديمة");
+
+                var addResult = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                if (!addResult.Succeeded)
+                    return (false, "كلمة المرور الجديدة غير صالحة");
+            }
+
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+                return (false, "فشل في تحديث البيانات");
+
+            return (true, "تم تحديث الملف الشخصي بنجاح");
+        
         }
         public async Task UpdateRoleAsync(UpdateRoleDto model)
         {
@@ -311,6 +331,8 @@ namespace Saken_WebApplication.Service.Services.Implement
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 FullName = user.FullName,
+                profilePicture=user.profilePicture
+
                 // ضيفي أي خصائص إضافية موجودة في UserDto هنا
             };
 

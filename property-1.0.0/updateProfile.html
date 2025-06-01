@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تعديل الملف الشخصي</title>
+  <style>
+    body { font-family: Arial; direction: rtl; margin: 30px; text-align: center; }
+    form { max-width: 400px; margin: auto; text-align: right; }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 15px; padding: 10px; background: #28a745; color: white; border: none; cursor: pointer; }
+    .profile-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      display: none;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>تعديل الملف الشخصي</h2>
+
+  <!-- أيقونة الصورة -->
+  <img id="profilePreview" class="profile-icon" src="#" alt="الصورة الشخصية" />
+
+  <form id="editForm" enctype="multipart/form-data">
+    <label for="fullName">الاسم الكامل:</label>
+    <input type="text" name="FullName" id="fullName" required>
+
+    <label for="email">البريد الإلكتروني:</label>
+    <input type="email" name="Email" id="email" required>
+
+    <label for="PhoneNumber">رقم الهاتف:</label>
+    <input type="text" name="PhoneNumber" id="phone" required>
+
+    <label for="NewPassword">كلمة مرور جديدة (اختياري):</label>
+    <input type="password" name="NewPassword" id="newPassword">
+
+    <label for="Photo">الصورة الشخصية:</label>
+    <input type="file" name="Photo" id="photo">
+
+    <button type="submit">تحديث البيانات</button>
+  </form>
+
+  <script>
+    const apiBase = "https://localhost:44327/api";
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("يرجى تسجيل الدخول");
+    }
+
+    async function loadUserData() {
+      try {
+        const res = await fetch("https://localhost:44327/api/Auth/UserById", {
+          method: "GET",
+          headers: {
+            "Authorization": "Bearer " + token
+          }
+        });
+
+        if (!res.ok) throw new Error("فشل في تحميل البيانات");
+
+        const data = await res.json();
+
+        document.getElementById("fullName").value = data.fullName;
+        document.getElementById("email").value = data.email;
+        document.getElementById("phone").value = data.phoneNumber;
+
+        if (data.profilePicture) {
+          const img = document.getElementById("profilePreview");
+          img.src = data.profilePicture;
+          img.style.display = "block";
+        }
+      } catch (err) {
+        alert("حدث خطأ أثناء تحميل البيانات");
+        console.error(err);
+      }
+    }
+
+    document.getElementById("editForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      try {
+        const res = await fetch("https://localhost:44327/api/Auth/UpdateProfile", {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + token
+          },
+          body: formData
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          alert("تم التحديث بنجاح");
+          loadUserData();
+        } else {
+          alert("خطأ: " + result.message);
+        }
+
+      } catch (err) {
+        alert("فشل في الاتصال بالسيرفر");
+        console.error(err);
+      }
+    });
+
+    loadUserData();
+    // معاينة فورية للصورة المختارة
+document.getElementById("photo").addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const img = document.getElementById("profilePreview");
+      img.src = e.target.result;
+      img.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+  </script>
+
+</body>
+</html>

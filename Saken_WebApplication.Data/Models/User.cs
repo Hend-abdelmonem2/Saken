@@ -48,6 +48,7 @@ namespace Saken_WebApplication.Data.Models
 
     public bool IsNotificationsEnabled { get; set; } = true;
     public string ThemeMode { get; set; } = "Light";
+     public bool IsActive { get; set; } = true;
 
         //public bool favorite { get; set; }
 

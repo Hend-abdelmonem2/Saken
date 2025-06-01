@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landlords Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="mb-4 text-center">لوحة تحكم المستاجرين</h2>
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>الاسم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="TenantsTable">
+                <!-- يتم ملء الجدول ديناميكيًا -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- مودال التعديل -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="editForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title">تعديل بيانات المؤجر</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editUserId">
+                        <div class="mb-3">
+                            <label class="form-label">الاسم الكامل</label>
+                            <input type="text" class="form-control" id="editFullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="editEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">رقم الهاتف</label>
+                            <input type="text" class="form-control" id="editPhoneNumber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">كلمة مرور جديدة (اختياري)</label>
+                            <input type="password" class="form-control" id="editPassword">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">حفظ</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiBase = "https://localhost:5001/api/Admin"; // عدلي حسب رابط API عندك
+
+        // عرض المؤجرين (اللي Role = Landlord)
+        async function loadLandlords() {
+            const response = await fetch("https://localhost:44327/api/Admin/UsersByRole/Tenant");
+            const data = await response.json();
+
+            const table = document.getElementById("TenantsTable");
+            table.innerHTML = "";
+
+            data.forEach(user => {
+                console.log(user);
+                table.innerHTML += `
+                    <tr>
+                        <td>${user.fullName}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phoneNumber ?? '-'}</td>
+                        <td>${user.IsActive ? "نشط" : "مجمد"}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="openEditModal('${user.id}')">تعديل</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}')">حذف</button>
+                            <button class="btn btn-sm btn-secondary" onclick="toggleFreeze('${user.id}', ${user.IsActive})">
+                                ${user.IsActive? "تجميد" : "تفعيل"}
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // فتح نافذة التعديل
+        async function openEditModal(userId) {
+            const res = await fetch(`https://localhost:44327/api/Admin/User/${userId}`);
+            const user = await res.json();
+
+            document.getElementById("editUserId").value = user.id;
+            document.getElementById("editFullName").value = user.fullName;
+            document.getElementById("editEmail").value = user.email;
+            document.getElementById("editPhoneNumber").value = user.phoneNumber;
+            document.getElementById("editPassword").value = "";
+
+            new bootstrap.Modal(document.getElementById("editModal")).show();
+        }
+
+        // إرسال التعديلات
+        document.getElementById("editForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const userId = document.getElementById("editUserId").value;
+            const body = {
+                fullName: document.getElementById("editFullName").value,
+                email: document.getElementById("editEmail").value,
+                phoneNumber: document.getElementById("editPhoneNumber").value,
+                newPassword: document.getElementById("editPassword").value
+            };
+
+          
+           const res = await fetch(`https://localhost:44327/api/Admin/UpdateUser/${userId}`, {
+           method: "PUT",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(body)
+});
+
+            alert(await res.text());
+            loadLandlords();
+            bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
+        });
+
+        // حذف مؤجر
+        async function deleteUser(userId) {
+            if (confirm("هل أنت متأكد من حذف هذا المستخدم؟")) {
+                const res = await fetch(`https://localhost:44327/api/Admin/DeleteUser/${userId}`, { method: "DELETE" });
+                alert(await res.text());
+                loadLandlords();
+            }
+        }
+
+        // تجميد/تفعيل الحساب
+        async function toggleFreeze(userId, isActive) {
+            const action = isActive ? "freeze" : "unfreeze";
+            const res = await fetch(`https://localhost:44327/api/Admin/${action}/${userId}`, { method: "POST" });
+            alert(await res.text());
+            loadLandlords();
+        }
+
+        // تحميل المؤجرين أول ما تفتح الصفحة
+        loadLandlords();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -166,6 +166,9 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                     b.Property<DateTime?>("InspectionDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsFrozen")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LandlordId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -400,6 +403,9 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsNotificationsEnabled")
                         .HasColumnType("bit");

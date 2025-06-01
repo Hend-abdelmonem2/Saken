@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  </head>
+
+<body>
+
+    <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_3.jpg')">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-9 text-center mt-5">
+          <h1 class="heading" data-aos="fade-up">Easiest way to find your dream home</h1>
+
+          <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+            <ol class="breadcrumb text-center justify-content-center">
+              <li class="breadcrumb-item"><a href="Login.html">Register</a></li>
+              <li class="breadcrumb-item active text-white-50" aria-current="page">
+                /Register
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="login-section">
+    <div class="container">
+      <div class="login-box">
+      
+
+<form id="registerForm" class="p-4 rounded shadow-sm bg-light" enctype="multipart/form-data">
+  <h4 class="mb-4">تسجيل حساب جديد</h4>
+
+  <div class="mb-3">
+    <label for="fullName" class="form-label">الاسم الكامل</label>
+    <input type="text" class="form-control" id="fullName" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">البريد الإلكتروني</label>
+    <input type="email" class="form-control" id="email" required>
+  </div>
+
+ <div class="mb-3 position-relative">
+  <label for="password" class="form-label">كلمة المرور</label>
+  <div class="input-group">
+    <input type="password" class="form-control" id="password" placeholder="*******" required>
+    <button type="button" class="btn btn-outline-secondary" id="togglePassword" tabindex="-1">
+      <i class="bi bi-eye-slash" id="toggleIcon"></i>
+    </button>
+  </div>
+</div>
+  <div class="mb-3 position-relative">
+  <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+  <div class="input-group">
+    <input type="password" class="form-control" id="confirmPassword" placeholder="*******" required>
+    <button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword" tabindex="-1">
+      <i class="bi bi-eye-slash" id="toggleConfirmIcon"></i>
+    </button>
+  </div>
+</div>
+
+
+  <div class="mb-3">
+    <label for="phoneNumber" class="form-label">رقم الهاتف</label>
+    <input type="text" class="form-control" id="phoneNumber">
+  </div>
+
+  <div class="mb-3">
+    <label for="address" class="form-label">العنوان</label>
+    <input type="text" class="form-control" id="address">
+  </div>
+
+  <div class="mb-3">
+    <label for="role" class="form-label">الدور</label>
+    <select class="form-select" id="role" required>
+      <option value="">اختر الدور</option>
+      <option value="User">User</option>
+     <option value="Tenant">Tenant</option>
+    <option value="Owner">Owner</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="photo" class="form-label">الصورة الشخصية (اختياري)</label>
+    <input type="file" class="form-control" id="photo" accept="image/*">
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">تسجيل</button>
+
+  <div id="message" class="mt-3 text-center"></div>
+</form>
+        <div class="text-center mt-3">
+          <p>هل لديك حساب بالفعل؟ <a href="Login.html">تسجيل الدخول</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+   document.getElementById("togglePassword").addEventListener("click", function () {
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.getElementById("toggleIcon");
+
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    toggleIcon.classList.toggle("bi-eye");
+    toggleIcon.classList.toggle("bi-eye-slash");
+  });
+  document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+    const confirmInput = document.getElementById("confirmPassword");
+    const toggleIcon = document.getElementById("toggleConfirmIcon");
+
+    const isPassword = confirmInput.type === "password";
+    confirmInput.type = isPassword ? "text" : "password";
+    toggleIcon.classList.toggle("bi-eye");
+    toggleIcon.classList.toggle("bi-eye-slash");
+  });
+
+document.getElementById("registerForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (password !== confirmPassword) {
+    document.getElementById("message").innerHTML = `<div class="alert alert-warning">كلمة المرور وتأكيدها غير متطابقين!</div>`;
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("FullName", document.getElementById("fullName").value);
+  formData.append("Email", document.getElementById("email").value);
+  formData.append("Password", password);
+  formData.append("ConfirmPassword", confirmPassword);
+  formData.append("PhoneNumber", document.getElementById("phoneNumber").value);
+  formData.append("Address", document.getElementById("address").value);
+  formData.append("Role", document.getElementById("role").value);
+
+  const photo = document.getElementById("photo").files[0];
+  if (photo) {
+    formData.append("Photo", photo);
+  }
+
+  try {
+    const res = await fetch("https://localhost:44327/api/Auth/register", {
+      method: "POST",
+      body: formData
+    });
+
+    const messageDiv = document.getElementById("message");
+
+    const resultText = await res.text();
+    let result;
+
+    try {
+      result = JSON.parse(resultText);
+    } catch {
+      result = resultText;
+    }
+
+    if (res.ok) {
+      if (typeof result === "object" && result.isAuthenticated) {
+        messageDiv.innerHTML = `<div class="alert alert-success">تم التسجيل بنجاح ✅</div>`;
+      } else {
+        messageDiv.innerHTML = `<div class="alert alert-danger">فشل في التسجيل.</div>`;
+      }
+    } else {
+      if (typeof result === "string") {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${result}</div>`;
+      } 
+      // ✅ هذا هو الجزء المهم لإظهار أخطاء الموديل
+      else if (result.errors && typeof result.errors === 'object') {
+        const errorMessages = Object.values(result.errors)
+          .flat()
+          .map(err => `<li>${err}</li>`).join('');
+        messageDiv.innerHTML = `<div class="alert alert-danger"><ul>${errorMessages}</ul></div>`;
+      } 
+      else if (result.message) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
+      } else {
+        messageDiv.innerHTML = `<div class="alert alert-danger">حدث خطأ غير متوقع</div>`;
+      }
+    }
+
+  } catch (error) {
+    document.getElementById("message").innerHTML = `<div class="alert alert-danger">فشل الاتصال بالخادم!</div>`;
+    console.error("Registration error:", error);
+  }
+});
+
+  
+
+  </script>
+
+   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>
+
+  <!-- Footer (إن وُجد في القالب) -->

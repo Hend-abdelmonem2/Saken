@@ -21,7 +21,7 @@ namespace Saken_WebApplication.Service.Services.Interfaces
         Task<string> Resend2FACodeAsync(string email);
         Task<string> Verify2FACodeAsync(Verify2FACodeDto model);
 
-        Task UpdateUserAsync(string Id, UpdateUserDto model);
+        Task<(bool IsSuccess, string Message)> UpdateProfileAsync(string userId, UpdateUserDto model);
         Task<IEnumerable<UserDto>> GetUsersAsync();
         Task UpdateRoleAsync(UpdateRoleDto model);
 

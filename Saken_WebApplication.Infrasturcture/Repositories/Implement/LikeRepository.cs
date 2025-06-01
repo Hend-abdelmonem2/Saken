@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Saken_WebApplication.Data.DTO.HousingDTO;
 using Saken_WebApplication.Data.Models;
 using Saken_WebApplication.Infrasturcture.Data;
 using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
@@ -22,6 +23,25 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
         {
             return await _context.Likes.FirstOrDefaultAsync(l =>
                 l.UserId == userId && l.EntityId == entityId && l.EntityType == entityType);
+        }
+        public async Task<List<HousingLikeDto>> GetLikedHousesAsync(string userId)
+        {
+            var likedHouseIds = await _context.Likes
+                .Where(l => l.UserId == userId && l.EntityType == "Housing")
+                .Select(l => l.EntityId)
+                .ToListAsync();
+
+            var houses = await _context.houses
+                .Where(h => likedHouseIds.Contains(h.h_Id))
+                .Select(h => new HousingLikeDto
+                {
+                    Id = h.h_Id,
+                    Address = h.address,
+                    Price = h.price,
+                    PhotoUrl = h.Photo
+                }).ToListAsync();
+
+            return houses;
         }
 
         public async Task AddLikeAsync(Like like)

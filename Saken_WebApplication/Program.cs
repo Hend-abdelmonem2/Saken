@@ -28,6 +28,8 @@ using Saken_WebApplication.Service.Services.Interfaces.recommend;
 using Saken_WebApplication.Service.Services.Implement.Recommand;
 using Saken_WebApplication.Service.Services.Interfaces.Reservation;
 using Saken_WebApplication.Service.Services.Implement.Reservation;
+using AutoMapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +81,9 @@ builder.Services.AddScoped<IUserPreferencesService, UserPreferencesService>();
 builder.Services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository>();
 builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 

@@ -1,4 +1,5 @@
-﻿using Saken_WebApplication.Data.DTO.HousingDTO;
+﻿using AutoMapper;
+using Saken_WebApplication.Data.DTO.HousingDTO;
 using Saken_WebApplication.Data.Models;
 using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
 using Saken_WebApplication.Service.Services.Interfaces;
@@ -16,11 +17,13 @@ namespace Saken_WebApplication.Service.Services.Implement.housing
     {
         private readonly IHousingRepository _housingRepository;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly IMapper _mapper;
 
-        public HousingService(IHousingRepository housingRepository , ICloudinaryService cloudinaryService)
+        public HousingService(IHousingRepository housingRepository , ICloudinaryService cloudinaryService, IMapper mapper)
         {
             _housingRepository = housingRepository;
             _cloudinaryService = cloudinaryService;
+            _mapper = mapper;
         }
 
         public async Task AddHousingAsync(HousingDto dto, string landlordId)
@@ -59,6 +62,7 @@ namespace Saken_WebApplication.Service.Services.Implement.housing
             }
 
             await _housingRepository.AddHousingAsync(housing);
+
         }
         public async Task AddReservationAsync(ReservationDto dto, string userId)
         {
@@ -84,7 +88,9 @@ namespace Saken_WebApplication.Service.Services.Implement.housing
             var houses = await _housingRepository.GetAllHousesAsync();
 
             return houses.Select(h => new HousingDto
+
             {
+                Id=h.h_Id,
                 Type = h.type.ToString(),
                 Price = h.price,
                 Address = h.address,
@@ -182,7 +188,7 @@ namespace Saken_WebApplication.Service.Services.Implement.housing
             var houses = await _housingRepository.GetHousingsForLandlordIdAsync(landlordId);
 
             return houses.Select(h => new HousingDto
-            {
+            {  Id=h.h_Id,
                 Type = h.type.ToString(),
                 Price = h.price,
                 Address = h.address,
@@ -200,6 +206,47 @@ namespace Saken_WebApplication.Service.Services.Implement.housing
                 InspectionDate = h.InspectionDate,
                 // ممكن تضيفي معلومات إضافية لو حابة
             }).ToList();
+        }
+        public async Task<(bool success, string message, bool isFrozen)> ToggleFreezeAsync(int id)
+        {
+            var house = await _housingRepository.GetByIdAsync(id);
+            if (house == null)
+                return (false, "السكن غير موجود.", false);
+
+            house.IsFrozen = !house.IsFrozen;
+            await _housingRepository.SaveChangesAsync();
+
+            string message = house.IsFrozen ? "تم تجميد السكن." : "تم إلغاء التجميد.";
+            return (true, message, house.IsFrozen);
+        }
+
+        public async Task<HousingDto?> GetHousingByIdAsync(int id)
+        {
+            var house = await _housingRepository.GetByIdAsync(id);
+            if (house == null)
+                return null;
+
+            return new HousingDto
+            {
+                Id = house.h_Id,
+                Type = house.type.ToString(),
+                Price = house.price,
+                Address = house.address,
+                Status = house.status.ToString(),
+                FurnishingStatus = house.furnishingStatus.ToString(),
+                TargetCustomers = house.targetCustomers.ToString(),
+                RentalPeriod = house.rentalPeriod.ToString(),
+                Deposit = house.deposit,
+                Rent = house.rent,
+                Insurance = house.insurance,
+                Commission = house.commission,
+                ParticipationLink = house.participationLink,
+                RentalType = house.RentalType.ToString(),
+                PhotoUrl = house.Photo,
+                InspectionDate = house.InspectionDate,
+                LandlordId = house.LandlordId,
+                LandlordName = house.Landlord?.FullName // أو UserName حسب الموجود
+            };
         }
 
 

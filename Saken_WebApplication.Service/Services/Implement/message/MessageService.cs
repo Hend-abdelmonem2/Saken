@@ -38,7 +38,9 @@ namespace Saken_WebApplication.Service.Services.Implement.message
             {
                 SenderId = m.SenderId,
                 ReceiverId = m.ReceiverId,
-                Content = m.Content
+                Content = m.Content,
+                SentAt=m.SentAt
+
             }).ToList();
         }
     }

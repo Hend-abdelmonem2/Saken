@@ -23,5 +23,7 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Interfaces
         Task<IEnumerable<Housing>> GetHousingsForLandlordIdAsync(string landlordId);
 
         Task<IEnumerable<Reservation>> GetReservationsByLandlordIdAsync(string landlordId);
+        Task<Reservation> GetReservationByIdAsync(int reservationId);
+        Task SaveChangesAsync();
     }
 }

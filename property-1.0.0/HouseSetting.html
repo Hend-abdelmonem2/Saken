@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <title>لوحة التحكم - إدارة السكن</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h2 class="mb-4">لوحة التحكم - إدارة السكن</h2>
+    <div class="d-flex justify-content-end mb-3">
+      <a href="add-housing.html" class="btn btn-primary">+ إضافة سكن جديد</a>
+    </div>
+
+    <div id="dashboard-message"></div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered text-center" id="housing-table">
+        <thead class="table-dark">
+          <tr>
+            <th>العنوان</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+            <th>تجميد</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- نافذة التعديل -->
+  <div id="editModal"
+    style="display:none; position:fixed; top:5%; left:50%; transform:translateX(-50%);
+         background:#fff; padding:20px; border-radius:10px; width:80%; max-width:700px; box-shadow:0 0 20px rgba(0,0,0,0.3); z-index:1000;">
+    <h3>تعديل بيانات السكن</h3>
+    <form id="editHouseForm" enctype="multipart/form-data">
+      <input type="hidden" id="editHouseId" />
+      <div><label>الصورة:</label><input type="file" id="editHousePhoto" accept="image/*" /></div>
+      <div><label>نوع العقار:</label><select id="editHouseType" required>
+          <option value="">اختر...</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Studio">Studio</option>
+          <option value="Room">Room</option>
+          <option value="Bed">Bed</option>
+        </select></div>
+      <div><label>السعر:</label><input type="number" id="editHousePrice" required /></div>
+      <div><label>العنوان:</label><input type="text" id="editHouseAddress" required /></div>
+      <div><label>الحالة:</label><select id="editHouseStatus" required>
+          <option value="">اختر...</option>
+          <option value="Available">Available</option>
+          <option value="Reserved">Reserved</option>
+          <option value="Rented">Rented</option>
+        </select></div>
+      <div><label>التأثيث:</label><select id="editFurnishingStatus" required>
+          <option value="">اختر...</option>
+          <option value="Furnished">Furnished</option>
+          <option value="Empty">Empty</option>
+        </select></div>
+      <div><label>الفئة المستهدفة:</label><select id="editTargetCustomers" required>
+          <option value="">اختر...</option>
+          <option value="Families">Families</option>
+          <option value="Students">Students</option>
+          <option value="Employees">Employees</option>
+          <option value="Any">Any</option>
+        </select></div>
+      <div><label>مدة الإيجار:</label><select id="editRentalPeriod" required>
+          <option value="">اختر...</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Yearly">Yearly</option>
+        </select></div>
+      <div><label>مبلغ التأمين:</label><input type="number" id="editDeposit" /></div>
+      <div><label>الإيجار:</label><input type="number" id="editRent" /></div>
+      <div><label>التأمين:</label><input type="number" id="editInsurance" /></div>
+      <div><label>العمولة:</label><input type="number" id="editCommission" /></div>
+      <div><label>رابط المشاركة:</label><input type="url" id="editParticipationLink" /></div>
+      <div><label>نوع الإيجار:</label><select id="editRentalType" required>
+          <option value="">اختر...</option>
+          <option value="New">New</option>
+          <option value="Old">Old</option>
+        </select></div>
+      <div><label>تاريخ المعاينة:</label><input type="date" id="editInspectionDate" /></div>
+      <br />
+      <button type="submit" class="btn btn-primary">💾 حفظ التعديلات</button>
+      <button type="button" id="closeEditModal" class="btn btn-secondary">❌ إغلاق</button>
+    </form>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("token");
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const tableBody = document.querySelector("#housing-table tbody");
+      const message = document.getElementById("dashboard-message");
+
+      try {
+        const res = await fetch("https://localhost:44327/api/Housing/my-houses", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          message.innerHTML = `<div class="alert alert-danger">${data.message || 'فشل في تحميل السكنات.'}</div>`;
+          return;
+        }
+
+        tableBody.innerHTML = data.map(house => `
+                    <tr>
+                        <td>${house.address}</td>
+                        <td>${house.price} جنيه</td>
+                        <td>${house.status}</td>
+                        <td><button class="btn btn-warning freeze-btn" data-id="${house.id}">${house.isFrozen ? 'إلغاء التجميد' : 'تجميد'}</button></td>
+                        <td><button class="btn btn-success edit-btn" data-id="${house.id}">تعديل</button></td>
+                        <td><button class="btn btn-danger delete-btn" data-id="${house.id}">حذف</button></td>
+                    </tr>`).join("");
+
+      } catch (err) {
+        message.innerHTML = `<div class="alert alert-danger">خطأ في تحميل البيانات.</div>`;
+      }
+    });
+
+    function fillEditForm(house) {
+      document.getElementById("editHouseId").value = house.id;
+      document.getElementById("editHouseType").value = house.type;
+      document.getElementById("editHousePrice").value = house.price;
+      document.getElementById("editHouseAddress").value = house.address;
+      document.getElementById("editHouseStatus").value = house.status;
+      document.getElementById("editFurnishingStatus").value = house.furnishingStatus;
+      document.getElementById("editTargetCustomers").value = house.targetCustomers;
+      document.getElementById("editRentalPeriod").value = house.rentalPeriod;
+      document.getElementById("editDeposit").value = house.deposit;
+      document.getElementById("editRent").value = house.rent;
+      document.getElementById("editInsurance").value = house.insurance;
+      document.getElementById("editCommission").value = house.commission;
+      document.getElementById("editParticipationLink").value = house.participationLink;
+      document.getElementById("editRentalType").value = house.rentalType;
+      document.getElementById("editInspectionDate").value = house.inspectionDate?.split("T")[0] || "";
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("edit-btn")) {
+        const houseId = e.target.dataset.id;
+        fetch(`https://localhost:44327/api/Housing/GetHouseById/${houseId}`)
+          .then(res => res.json())
+          .then(house => {
+            fillEditForm(house);
+            document.getElementById("editModal").style.display = "block";
+          })
+          .catch(() => alert("حدث خطأ أثناء جلب بيانات السكن."));
+      }
+    });
+
+    document.getElementById("closeEditModal").onclick = () => {
+      document.getElementById("editModal").style.display = "none";
+    };
+
+    document.getElementById("editHouseForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const houseId = document.getElementById("editHouseId").value;
+      const formData = {
+        Id: houseId,
+        Type: document.getElementById("editHouseType").value,
+        Price: parseFloat(document.getElementById("editHousePrice").value),
+        Address: document.getElementById("editHouseAddress").value,
+        Status: document.getElementById("editHouseStatus").value,
+        FurnishingStatus: document.getElementById("editFurnishingStatus").value,
+        TargetCustomers: document.getElementById("editTargetCustomers").value,
+        RentalPeriod: document.getElementById("editRentalPeriod").value,
+        Deposit: parseFloat(document.getElementById("editDeposit").value),
+        Rent: parseFloat(document.getElementById("editRent").value),
+        Insurance: parseFloat(document.getElementById("editInsurance").value),
+        Commission: parseFloat(document.getElementById("editCommission").value),
+        ParticipationLink: document.getElementById("editParticipationLink").value,
+        RentalType: document.getElementById("editRentalType").value,
+        InspectionDate: document.getElementById("editInspectionDate").value
+        
+      };
+      console.log(formData);
+
+      try {
+        const res = await fetch(`https://localhost:44327/api/Housing/updateHouse/${houseId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (!res.ok) throw new Error("فشل التعديل");
+
+        alert("تم حفظ التعديلات بنجاح");
+        document.getElementById("editModal").style.display = "none";
+        location.reload();
+      } catch (err) {
+        alert("حدث خطأ أثناء حفظ التعديلات");
+      }
+    });
+  </script>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>

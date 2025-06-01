@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Properties</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome.min.css" />
+
+
+
+  
+ <!--<style>
+    body { background: #f8f9fa; font-family: 'Cairo', sans-serif; padding: 2rem; }
+    .card { border-radius: 15px; border: 1px solid #ddd; }
+    .card-img-top { height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px; }
+    .badge { font-size: 0.8rem; }
+  </style>-->
+</head>
+<body>
+
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <nav class="site-nav">
+    <div class="container">
+      <div class="menu-bg-wrap">
+        <div class="site-navigation">
+          <a href="index.html" class="logo m-0 float-start">Property</a>
+
+          <ul
+            class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+          >
+            <li class="active"><a href="index.html">Home</a></li>
+            <li class="has-children">
+              <a href="properties.html">Properties</a>
+              <ul class="dropdown">
+                <li><a href="#">Buy Property</a></li>
+                <li><a href="#">Sell Property</a></li>
+                <li class="has-children">
+                  <a href="#">Dropdown</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Sub Menu One</a></li>
+                    <li><a href="#">Sub Menu Two</a></li>
+                    <li><a href="#">Sub Menu Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+
+          <a
+            href="#"
+            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+            data-toggle="collapse"
+            data-target="#main-navbar"
+          >
+            <span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_3.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">MyProperties</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                MyProperties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="container">
+    <h2 class="text-center mb-4"> MyProperties</h2>
+    <div id="house-list" class="row"></div>
+  </div>
+
+  <script>
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQxOGZiMmUxLWY0OTktNDZiZS05Y2NjLTBhOGVhZjdhYjA4MyIsInN1YiI6ImhlbmQ2MDc0IiwianRpIjoiOWQ4OGE1ZjYtOTk1NS00ZjY3LWJiNjYtM2E3YmE3ZmQ4ZTM5IiwiZW1haWwiOiJoZW5kQGguY29tIiwidWlkIjoiZDE4ZmIyZTEtZjQ5OS00NmJlLTljY2MtMGE4ZWFmN2FiMDgzIiwiZXhwIjoxNzQ5MDY5MjgyLCJpc3MiOiJTZWN1cmVBcGkiLCJhdWQiOiJTZWN1cmVBcGlVc2VyIn0.RYlFICCJgMFuEEpt9XN5FgQd35ApBEx6JK875RvTOvY"; // ← استبدلي التوكن بتاعك هنا أو حمليه من localStorage
+
+    fetch("https://localhost:44327/api/Housing/my-houses", {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("house-list");
+        data.forEach(house => {
+          const card = `
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm">
+                <img src="${house.photoUrl || 'https://via.placeholder.com/400x200?text=No+Image'}" class="card-img-top" alt="صورة الوحدة">
+                <div class="card-body">
+                  <h5 class="card-title">${house.type} - ${house.address}</h5>
+                  <p><strong>السعر:</strong> ${house.price} جنيه / ${house.rentalPeriod}</p>
+                  <p><strong>التأثيث:</strong> ${house.furnishingStatus} | <strong>الفئة المستهدفة:</strong> ${house.targetCustomers}</p>
+                  <p><strong>الوديعة:</strong> ${house.deposit} | <strong>الإيجار:</strong> ${house.rent}</p>
+                  <p><strong>تاريخ المعاينة:</strong> ${new Date(house.inspectionDate).toLocaleDateString("ar-EG")}</p>
+                  <span class="badge bg-${house.status === 'Available' ? 'success' : 'danger'}">${house.status}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          container.innerHTML += card;
+        });
+      })
+      .catch(err => {
+        document.getElementById("house-list").innerHTML = `<p class="text-danger">تعذر تحميل البيانات</p>`;
+        console.error(err);
+      });
+  </script>
+ <script src="js/bootstrap.bundle.min.js"></script>
+ <script src="js/tiny-slider.js"></script>
+ <script src="js/aos.js"></script>
+ <script src="js/navbar.js"></script>
+ <script src="js/counter.js"></script>
+ <script src="js/custom.js"></script>
+
+
+ =
+</body>
+</html>

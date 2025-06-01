@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تفاصيل الحجز</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome.min.css" />
+  <style>
+    body { background: #f8f9fa; padding: 2rem; font-family: 'Cairo', sans-serif; }
+    .details-box { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    
+  #contractContent {
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    color: #000;
+    line-height: 1.8;
+  }
+
+  #contractContent p {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  @media print {
+    #contractContent {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+
+  
+</head>
+<body>
+    <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <nav class="site-nav">
+    <div class="container">
+      <div class="menu-bg-wrap">
+        <div class="site-navigation">
+          <a href="index.html" class="logo m-0 float-start">Request-Details</a>
+
+          <ul
+            class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+          >
+            <li class="active"><a href="index.html">Home</a></li>
+            <li class="has-children">
+              <a href="Requests.html">Booking requests</a>
+              <ul class="dropdown">
+                <li><a href="#">Buy Property</a></li>
+                <li><a href="#">Sell Property</a></li>
+                <li class="has-children">
+                  <a href="#">Dropdown</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Sub Menu One</a></li>
+                    <li><a href="#">Sub Menu Two</a></li>
+                    <li><a href="#">Sub Menu Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+
+          <a
+            href="#"
+            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+            data-toggle="collapse"
+            data-target="#main-navbar"
+          >
+            <span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_3.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Request-Details</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                Reservation Details
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+<div class="container">
+  <h2 class="text-center mb-4">تفاصيل الحجز</h2>
+  <div id="reservationDetails" class="details-box mb-4"></div>
+
+  <div class="text-center">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contractModal">عرض العقد</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contractModalLabel">عقد الحجز</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      <div class="modal-body" id="contractContent">
+        <p>جارٍ تحميل بيانات العقد...</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" onclick="downloadContractAsPDF()">تنزيل العقد </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="contractPrintClone" style="display: none;"></div>
+
+<script>
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQxOGZiMmUxLWY0OTktNDZiZS05Y2NjLTBhOGVhZjdhYjA4MyIsInN1YiI6ImhlbmQ2MDc0IiwianRpIjoiOWQ4OGE1ZjYtOTk1NS00ZjY3LWJiNjYtM2E3YmE3ZmQ4ZTM5IiwiZW1haWwiOiJoZW5kQGguY29tIiwidWlkIjoiZDE4ZmIyZTEtZjQ5OS00NmJlLTljY2MtMGE4ZWFmN2FiMDgzIiwiZXhwIjoxNzQ5MDY5MjgyLCJpc3MiOiJTZWN1cmVBcGkiLCJhdWQiOiJTZWN1cmVBcGlVc2VyIn0.RYlFICCJgMFuEEpt9XN5FgQd35ApBEx6JK875RvTOvY";
+  const urlParams = new URLSearchParams(window.location.search);
+  const reservationId = urlParams.get('id');
+
+  // تحميل تفاصيل الحجز
+  fetch(`https://localhost:44327/api/Housing/reservation/${reservationId}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    
+    const date = new Date(data.reservationDate).toLocaleDateString("ar-EG");
+    const html = `
+      <p><strong>اسم المستأجر:</strong> ${data.tenantName}</p>
+      <p><strong>العقار:</strong> ${data.housingAddress}</p>
+      <p><strong>تاريخ الحجز:</strong> ${date}</p>
+      <p><strong>المبلغ المدفوع:</strong> ${data.amountPaid} جنيه</p>
+      <p><strong>الحالة:</strong> ${data.status === 0 ? "جاري المراجعة" : "مؤكد"}</p>
+    `;
+    document.getElementById("reservationDetails").innerHTML = html;
+  });
+  const contractModal = document.getElementById("contractModal");
+  contractModal.addEventListener('show.bs.modal', function () {
+    fetch(`https://localhost:44327/api/Housing/contract/${reservationId}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(contract => {
+  const date = new Date(contract.reservationDate).toLocaleDateString("ar-EG");
+  const html = `
+    <div style="font-size: 15px; line-height: 1.8;">
+      <h3 style="text-align:center; margin-bottom: 20px;">عقد حجز السكن </h3>
+      <hr />
+      <p><strong>اسم المؤجر:</strong> ${contract.landlordName}</p>
+      <p><strong>هاتف المؤجر:</strong> ${contract.landlordPhone}</p>
+      <p><strong>اسم المستأجر:</strong> ${contract.tenantName}</p>
+      <p><strong>هاتف المستأجر:</strong> ${contract.tenantPhone}</p>
+      <p><strong>عنوان السكن:</strong> ${contract.housingAddress}</p>
+      <p><strong>تاريخ الحجز:</strong> ${date}</p>
+      <p><strong>المبلغ المتفق عليه:</strong> ${contract.amountPaid} جنيه</p>
+      <hr />
+      <h5>الشروط والأحكام:</h5>
+      <ul style="padding-right: 20px;">
+        <li>يتم الحجز بشكل مبدئي لمدة 7 أيام من تاريخ التوقيع.</li>
+        <li>يُمنع إلغاء الحجز بعد مرور 3 أيام إلا بموافقة الطرفين.</li>
+        <li>المبلغ المدفوع لا يُسترد في حالة عدم الالتزام بالحجز.</li>
+        <li>يلتزم المؤجر بتسليم العقار في التاريخ المحدد والمتفق عليه.</li>
+        <li>أي خلاف بين الطرفين يتم حله وديًا أو عبر الجهات المختصة.</li>
+      </ul>
+      <hr />
+      <p><strong>توقيع المؤجر:</strong> _______________</p>
+      <p><strong>توقيع المستأجر:</strong> _______________</p>
+    </div>
+  `;
+  document.getElementById("contractContent").innerHTML = html;
+});
+  });
+
+  // تحميل تفاصيل الحجز
+  fetch(`https://localhost:44327/api/Housing/reservation/${reservationId}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    
+    const date = new Date(data.reservationDate).toLocaleDateString("ar-EG");
+    const html = `
+      <p><strong>اسم المستأجر:</strong> ${data.tenantName}</p>
+      <p><strong>العقار:</strong> ${data.housingAddress}</p>
+      <p><strong>تاريخ الحجز:</strong> ${date}</p>
+      <p><strong>المبلغ المدفوع:</strong> ${data.amountPaid} جنيه</p>
+      <p><strong>الحالة:</strong> ${data.status === 0 ? "جاري المراجعة" : "مؤكد"}</p>
+    `;
+    document.getElementById("reservationDetails").innerHTML = html;
+  });
+
+  
+  async function downloadContractAsPDF() {
+    const original = document.getElementById("contractContent");
+    const cloneContainer = document.getElementById("contractPrintClone");
+
+    if (!original || !original.innerHTML.trim()) {
+      alert("لا يوجد محتوى لتحويله إلى PDF!");
+      return;
+    }
+
+    // نسخ المحتوى إلى div خارج المودال
+    cloneContainer.innerHTML = original.innerHTML;
+    cloneContainer.style.display = "block";
+    cloneContainer.style.position = "static";
+    cloneContainer.style.background = "#fff";
+    cloneContainer.style.padding = "20px";
+    cloneContainer.style.width = "800px";
+    cloneContainer.style.direction = "rtl";
+
+    // إنشاء صورة للمحتوى
+    const canvas = await html2canvas(cloneContainer, { scale: 2 });
+    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    let position = 0;
+    let heightLeft = pdfHeight;
+
+    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
+    heightLeft -= pdf.internal.pageSize.getHeight();
+
+    while (heightLeft > 0) {
+      position = heightLeft - pdfHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pdf.internal.pageSize.getHeight();
+    }
+
+    pdf.save("عقد_الحجز.pdf");
+
+    // إخفاء العنصر المؤقت بعد التحميل
+    cloneContainer.style.display = "none";
+  }
+
+
+
+
+</script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+ <script src="js/tiny-slider.js"></script>
+   <script src="js/aos.js"></script>
+   <script src="js/navbar.js"></script>
+   <script src="js/counter.js"></script>
+   <script src="js/custom.js"></script>
+</body>
+</html>

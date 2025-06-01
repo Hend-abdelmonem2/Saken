@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Saken_WebApplication.Data.DTO.HousingDTO;
+using Saken_WebApplication.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +11,6 @@ namespace Saken_WebApplication.Service.Services.Interfaces.Like
     public  interface ILikeService
     {
         Task<string> ToggleLikeAsync(string userId, int entityId, string entityType);
+        Task<List<HousingLikeDto>> GetLikedHousesAsync(string userId);
     }
 }

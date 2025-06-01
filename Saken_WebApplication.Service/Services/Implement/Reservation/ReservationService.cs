@@ -23,6 +23,7 @@ namespace Saken_WebApplication.Service.Services.Implement.Reservation
 
             return reservations.Select(r => new GetReservationDto
             {
+                Id = r.res_Id,
                 HousingId = r.HousingId,
                 AmountPaid = r.AmountPaid,
                 ReservationDate = r.ReservationDate,
@@ -30,6 +31,46 @@ namespace Saken_WebApplication.Service.Services.Implement.Reservation
                 TenantName = r.Tenant?.FullName,       // اسم المستأجر لو حابه ترجعيه
                 HousingAddress = r.Housing?.address    // عنوان السكن مثلاً
             }).ToList();
+        }
+        public async Task<ReservationContractDto> GetReservationContractAsync(int  reservationId)
+        {
+            var reservation = await _housingRepository.GetReservationByIdAsync(reservationId);
+
+            if (reservation == null)
+                return null;
+
+            return new ReservationContractDto
+            {
+                LandlordName = reservation.Housing?.Landlord?.FullName,
+                LandlordPhone = reservation.Housing?.Landlord?.PhoneNumber,
+
+                TenantName = reservation.Tenant?.FullName,
+                TenantPhone = reservation.Tenant?.PhoneNumber,
+
+                HousingAddress = reservation.Housing?.address,
+                ReservationDate = reservation.ReservationDate,
+                AmountPaid = reservation.AmountPaid,
+                Status = reservation.Status.ToString(),
+
+            };
+        }
+        public async Task<GetReservationDto> GetReservationById(int id)
+        {
+            var reservation = await _housingRepository.GetReservationByIdAsync(id);
+
+            if (reservation == null)
+                return null;
+
+            return new GetReservationDto
+            {
+                Id = reservation.res_Id,
+                HousingId = reservation.HousingId,
+                AmountPaid = reservation.AmountPaid,
+                ReservationDate = reservation.ReservationDate,
+                Status = reservation.Status,
+                TenantName = reservation.Tenant?.FullName,
+                HousingAddress = reservation.Housing?.address
+            };
         }
     }
 }

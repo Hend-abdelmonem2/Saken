@@ -10,6 +10,7 @@ namespace Saken_WebApplication.Data.DTO.HousingDTO
 {
    public  class HousingDto
     {
+        public int Id { get; set; }
         public string Type { get; set; }
         public decimal Price { get; set; }
         public string Address { get; set; }
@@ -24,9 +25,9 @@ namespace Saken_WebApplication.Data.DTO.HousingDTO
         public decimal Commission { get; set; }
         public string ParticipationLink { get; set; }
         public string RentalType { get; set; }
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
         public DateTime? InspectionDate { get; set; }
-        public string LandlordId { get; set; }
-        public string LandlordName { get; set; }
+        public string? LandlordId { get; set; }
+        public string ?LandlordName { get; set; }
     }
 }

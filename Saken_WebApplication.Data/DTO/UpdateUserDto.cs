@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Saken_WebApplication.Data.DTO
 {
@@ -25,6 +26,9 @@ namespace Saken_WebApplication.Data.DTO
         [Phone(ErrorMessage = "Invalid phone number format.")]
         [MaxLength(15, ErrorMessage = "Phone Number cannot exceed 15 characters.")]
         [DefaultValue("+201234567891")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string ? NewPassword { get; set; }
+        public IFormFile ?photo { get; set; }
+
     }
 }

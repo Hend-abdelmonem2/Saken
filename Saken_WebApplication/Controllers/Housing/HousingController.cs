@@ -20,7 +20,7 @@ namespace Saken_WebApplication.Controllers.Housing
         private readonly IRecommendationService _recommendationService;
         private readonly IReservationService _reservationService;
 
-        public HousingController(IHousingFilterService housingFilterService , IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService)
+        public HousingController(IHousingFilterService housingFilterService, IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService)
         {
             _housingFilterService = housingFilterService;
             _housingService = housingService;
@@ -28,7 +28,7 @@ namespace Saken_WebApplication.Controllers.Housing
             _reservationService = reservationService;
         }
 
-   
+
 
         [HttpPost("add")]
         public async Task<IActionResult> AddHousing([FromForm] HousingDto dto)
@@ -37,7 +37,15 @@ namespace Saken_WebApplication.Controllers.Housing
             if (userId == null)
                 return Unauthorized("User ID not found in token.");
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                var errors = ModelState.Values
+                   .SelectMany(v => v.Errors)
+                   .Select(e => e.ErrorMessage)
+                   .ToList();
+
+
+                return BadRequest(new { message = "Model validation failed", errors });
+            }
 
             await _housingService.AddHousingAsync(dto, userId);
             return Ok(new { message = "Housing added successfully" });
@@ -70,6 +78,18 @@ namespace Saken_WebApplication.Controllers.Housing
             var reservations = await _reservationService.GetReservationsForLandlordAsync(landlordId);
             return Ok(reservations);
         }
+        [HttpGet("reservation/{id}")]
+        public async Task<IActionResult> GetReservationById(int id)
+        {
+            var reservation = await _reservationService.GetReservationById(id);
+
+            if (reservation == null)
+                return NotFound("Reservation not found.");
+
+            return Ok(reservation);
+        }
+
+
 
 
         [HttpGet("AllHouses")]
@@ -137,6 +157,41 @@ namespace Saken_WebApplication.Controllers.Housing
 
             var housings = await _housingService.GetHousingsForLandlordIdAsync(landlordId);
             return Ok(housings);
+        }
+
+        [HttpGet("contract/{id}")]
+        public async Task<IActionResult> GetReservationContract(int id)
+        {
+            var contract = await _reservationService.GetReservationContractAsync(id);
+            if (contract == null)
+                return NotFound("Reservation not found.");
+
+            return Ok(contract);
+        }
+        [HttpPost("ToggleFreeze/{id}")]
+        public async Task<IActionResult> ToggleFreeze(int id)
+        {
+            var result = await _housingService.ToggleFreezeAsync(id);
+
+            if (!result.success)
+                return NotFound(new { message = result.message });
+
+            return Ok(new
+            {
+                message = result.message,
+                isFrozen = result.isFrozen
+            });
+        }
+        
+
+    [HttpGet("GetHouseById/{id}")]
+        public async Task<IActionResult> GetHouseById(int id)
+        {
+            var house = await _housingService.GetHousingByIdAsync(id);
+            if (house == null)
+                return NotFound("السكن غير موجود");
+
+            return Ok(house);
         }
     }
 }

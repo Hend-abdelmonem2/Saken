@@ -38,10 +38,13 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
             await _context.SaveChangesAsync();
         }
         public async Task<IEnumerable<Saken_WebApplication.Data.Models.Housing>> GetAllHousesAsync()
-        {
-            return await _context.houses
-                .Include(h => h.Landlord)         // لو حابة تجيبي بيانات صاحب السكن كمان
-                .ToListAsync();
+        {         
+            var houses = await _context.houses
+             .Where(h => !h.IsFrozen)
+              .Include(h => h.Landlord)
+              .ToListAsync();
+            return houses;
+
         }
         public async Task<Saken_WebApplication.Data.Models.Housing> GetHouseWithLandlordAsync(int housingId)
         {
@@ -51,7 +54,9 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
         }
         public async Task<Saken_WebApplication.Data.Models.Housing?> GetByIdAsync(int id)
         {
-            return await _context.houses.FindAsync(id);
+            return await _context.houses
+         .Include(h => h.Landlord) // نجيب بيانات المؤجر كمان
+         .FirstOrDefaultAsync(h => h.h_Id == id);
         }
 
         public async Task<IEnumerable<Saken_WebApplication.Data.Models.Housing>> SearchHousesAsync(string searchKey)
@@ -88,7 +93,20 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
         {
             return await _context.houses
                 .Where(h => h.LandlordId == landlordId)
+           
                 .ToListAsync();
+        }
+        public async Task<Saken_WebApplication.Data.Models.Reservation> GetReservationByIdAsync(int reservationId)
+        {
+            return await _context.reservations
+                .Include(r => r.Housing)
+                .ThenInclude(h => h.Landlord)
+                .Include(r => r.Tenant)
+                .FirstOrDefaultAsync(r => r.res_Id == reservationId);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

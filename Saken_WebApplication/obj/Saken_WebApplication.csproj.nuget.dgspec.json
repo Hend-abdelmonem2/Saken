@@ -62,7 +62,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[10.1.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -288,7 +288,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[10.1.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -406,7 +406,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[10.1.1, )"
             },
             "CloudinaryDotNet": {
               "target": "Package",
@@ -523,9 +523,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[11.0.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",

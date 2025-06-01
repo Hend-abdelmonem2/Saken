@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Saken_WebApplication.Data.DTO.Favorite;
 using Saken_WebApplication.Service.Services.Interfaces.Like;
@@ -34,5 +35,18 @@ namespace Saken_WebApplication.Controllers.Likes
             return Ok(new { Message = result });
 
         }
+        [HttpGet("LikedHouses")]
+        [Authorize]
+        public async Task<IActionResult> GetLikedHouses()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(new { Message = "User not found" });
+
+            var houses = await _likeService.GetLikedHousesAsync(userId);
+            return Ok(houses);
+        }
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Saken_WebApplication.Data.DTO;
+using Saken_WebApplication.Service.Services.Implement;
 using Saken_WebApplication.Service.Services.Interfaces;
+using System.Security.Claims;
 
 namespace Saken_WebApplication.Controllers
 {
@@ -21,7 +23,7 @@ namespace Saken_WebApplication.Controllers
             var result = await _authService.RegisterAsync(model);
             if (!result.IsAuthenticated)
             {
-                return BadRequest(result.Message);
+                return BadRequest(new { message = result.Message });
             }
 
 
@@ -177,22 +179,18 @@ namespace Saken_WebApplication.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("UpdateUser/{Id}")]
-        public async Task<IActionResult> UpdateUser(string Id, [FromBody] UpdateUserDto model)
+        
+        [HttpPost("UpdateProfile")]
+        public async Task<IActionResult> UpdateProfile([FromForm] UpdateUserDto model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                await _authService.UpdateUserAsync(Id, model);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // أو حسب الطريقة اللي بتجيبي بيها ID المستخدم
+
+            var result = await _authService.UpdateProfileAsync(userId, model);
+
+            if (!result.IsSuccess)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
         }
 
         [HttpPut("UpdateRole")]
@@ -249,14 +247,15 @@ namespace Saken_WebApplication.Controllers
             }
         }
 
-        [HttpGet("UserById/{Id}")]
+        [HttpGet("UserById")]
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client, NoStore = false)]
-        public async Task<IActionResult> GetUserById(string Id)
+        public async Task<IActionResult> GetUserById()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var Id = User.FindFirstValue(ClaimTypes.NameIdentifier); // أو حسب الطريقة اللي بتجيبي بيها ID المستخدم
             try
             {
                 var user = await _authService.GetUserByIdAsync(Id);

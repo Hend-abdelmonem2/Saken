@@ -60,6 +60,7 @@ namespace Saken_WebApplication.Data.Models
         public string participationLink { get; set; }
 
         public RentalType RentalType { get; set; }
+        public bool IsFrozen { get; set; } = false;
 
         [ForeignKey("Landlord")]
         public string LandlordId { get; set; }

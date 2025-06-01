@@ -1,5 +1,116 @@
 [
   {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Admin/AllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/Admin/DeleteUser/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "FreezeUser",
+    "RelativePath": "api/Admin/freeze/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "UnfreezeUser",
+    "RelativePath": "api/Admin/unfreeze/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/Admin/UpdateUser/{userId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "Saken_WebApplication.Data.DTO.UpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetUserById",
+    "RelativePath": "api/Admin/User/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetUsersByRole",
+    "RelativePath": "api/Admin/UsersByRole/{roleName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "GetUsers",
     "RelativePath": "api/Auth/AllUsers",
@@ -184,6 +295,42 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Auth/UpdateProfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "UpdateRole",
     "RelativePath": "api/Auth/UpdateRole",
     "HttpMethod": "PUT",
@@ -200,39 +347,12 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
-    "Method": "UpdateUser",
-    "RelativePath": "api/Auth/UpdateUser/{Id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "model",
-        "Type": "Saken_WebApplication.Data.DTO.UpdateUserDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "GetUserById",
-    "RelativePath": "api/Auth/UserById/{Id}",
+    "RelativePath": "api/Auth/UserById",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -279,6 +399,11 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
         "Name": "Type",
         "Type": "System.String",
@@ -384,9 +509,41 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "GetReservationContract",
+    "RelativePath": "api/Housing/contract/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
     "Method": "DeleteHouse",
     "RelativePath": "api/Housing/DeleteHouse/{id}",
     "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "GetHouseById",
+    "RelativePath": "api/Housing/GetHouseById/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -482,6 +639,22 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "GetReservationById",
+    "RelativePath": "api/Housing/reservation/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
     "Method": "SearchHouses",
     "RelativePath": "api/Housing/searchHouse",
     "HttpMethod": "GET",
@@ -498,6 +671,22 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "ToggleFreeze",
+    "RelativePath": "api/Housing/ToggleFreeze/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
     "Method": "UpdateHouse",
     "RelativePath": "api/Housing/updateHouse/{id}",
     "HttpMethod": "PUT",
@@ -508,6 +697,11 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
       },
       {
         "Name": "Type",
@@ -600,6 +794,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Likes.LikesController",
+    "Method": "GetLikedHouses",
+    "RelativePath": "api/Likes/LikedHouses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -771,26 +975,5 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Saken_WebApplication.WeatherForecast, Saken_WebApplication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
   }
 ]
