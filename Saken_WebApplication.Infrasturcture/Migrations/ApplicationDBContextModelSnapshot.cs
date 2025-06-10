@@ -242,8 +242,9 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EntityId")
-                        .HasColumnType("int");
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EntityType")
                         .IsRequired()
@@ -396,7 +397,7 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FailedTwoFactorAttempts")
+                    b.Property<int?>("FailedTwoFactorAttempts")
                         .HasColumnType("int");
 
                     b.Property<string>("FullName")
@@ -451,7 +452,7 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TwoFactorAttempts")
+                    b.Property<int?>("TwoFactorAttempts")
                         .HasColumnType("int");
 
                     b.Property<string>("TwoFactorCode")
@@ -474,13 +475,13 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("profilePicture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("rate")
+                    b.Property<double?>("rate")
                         .HasColumnType("float");
 
                     b.HasKey("Id");

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Saken_WebApplication.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Saken_WebApplication.Data.DTO.HousingDTO;
+using Saken_WebApplication.Data.DTO.Favorite;
 
 namespace Saken_WebApplication.Service.Services.Implement.Like
 {
@@ -21,7 +22,7 @@ namespace Saken_WebApplication.Service.Services.Implement.Like
         {
             _likeRepository = likeRepository;
         }
-        public async Task<string> ToggleLikeAsync(string userId, int entityId, string entityType)
+        public async Task<string> ToggleLikeAsync(string userId, string entityId, string entityType)
         {
             if (!_validEntityTypes.Contains(entityType))
                 return "Invalid entity type";
@@ -51,6 +52,10 @@ namespace Saken_WebApplication.Service.Services.Implement.Like
         public async Task<List<HousingLikeDto>> GetLikedHousesAsync(string userId)
         {
             return await _likeRepository.GetLikedHousesAsync(userId);
+        }
+        public async Task<List<UserLikeDto>> GetLikedUsersAsync(string userId)
+        {
+            return await _likeRepository.GetLikedUsersAsync(userId);
         }
     }
 }

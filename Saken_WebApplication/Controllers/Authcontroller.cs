@@ -12,10 +12,12 @@ namespace Saken_WebApplication.Controllers
     public class Authcontroller : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IGoogleService _googleService;
 
-        public Authcontroller(IAuthService authService)
+        public Authcontroller(IAuthService authService, IGoogleService googleService)
         {
             _authService = authService;
+            _googleService = googleService;
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegisterModelDTO model)
@@ -30,6 +32,7 @@ namespace Saken_WebApplication.Controllers
             return Ok(result);
 
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] RequestLoginDto loginRegister)
         {
@@ -265,6 +268,12 @@ namespace Saken_WebApplication.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin(string idToken)
+        {
+            var result = await _googleService.GoogleSignInAsync(idToken);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
     }

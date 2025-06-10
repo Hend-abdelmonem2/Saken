@@ -46,7 +46,8 @@ namespace Saken_WebApplication.Data.DTO
         public string address { get; set; }
 
         public IFormFile? Photo { get; set; }
+        public string? PhotoUrl { get; set; }
 
-          public string Role { get; set; }
+        public string Role { get; set; }
     }
 }

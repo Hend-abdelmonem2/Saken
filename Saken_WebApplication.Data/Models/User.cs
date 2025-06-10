@@ -42,9 +42,9 @@ namespace Saken_WebApplication.Data.Models
     public string? address { get; set; }
     public string? profilePicture { get; set; }
 
-    public DateTime createdAt { get; set; }
+    public DateTime ?createdAt { get; set; }
 
-    public double rate { get; set; }
+    public double ?rate { get; set; }
 
     public bool IsNotificationsEnabled { get; set; } = true;
     public string ThemeMode { get; set; } = "Light";
@@ -62,11 +62,11 @@ namespace Saken_WebApplication.Data.Models
     public DateTime? TwoFactorCodeExpiration { get; set; }
     public DateTime? TwoFactorSentAt { get; set; } //  وقت إرسال الكود الأخير
 
-    public int TwoFactorAttempts { get; set; } = 0; // عدد المحاولات خلال الساعة
+    public int? TwoFactorAttempts { get; set; } = 0; // عدد المحاولات خلال الساعة
     public DateTime? LastTwoFactorAttempt { get; set; } // آخر وقت للمحاولة
 
     // 🔹 جديد: محاولات الفشل وقفل الحساب
-    public int FailedTwoFactorAttempts { get; set; } = 0;
+    public int? FailedTwoFactorAttempts { get; set; } = 0;
     public DateTime? LockoutEnd { get; set; } // متى ينتهي القفل؟
 
     public List<RefreshToken>? RefreshTokens { get; set; }

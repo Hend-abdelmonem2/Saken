@@ -16,7 +16,7 @@ namespace Saken_WebApplication.Data.Models
         public string UserId { get; set; }
 
         [Required]
-        public int EntityId { get; set; } // ID للعنصر سواء كان Doctor أو Housing
+        public string EntityId { get; set; } 
 
         [Required]
         public string EntityType { get; set; } // مثلاً: "Doctor", "Housing"

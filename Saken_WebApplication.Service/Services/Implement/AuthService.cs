@@ -74,7 +74,7 @@ namespace Saken_WebApplication.Service.Services.Implement
                 RefreshTokens = new List<RefreshToken>()
             };
 
-            // ✅ رفع الصورة إلى Cloudinary (إن وجدت)
+          
             if (model.Photo != null)
             {
                 var uploadResult = await _cloudinaryService.UploadImageAsync(model.Photo);
@@ -82,6 +82,10 @@ namespace Saken_WebApplication.Service.Services.Implement
                     return new AuthModel { Message = uploadResult.Error.Message };
 
                 user.profilePicture = uploadResult.SecureUrl.ToString();
+            }
+            else if (!string.IsNullOrEmpty(model.PhotoUrl))
+            {
+                user.profilePicture = model.PhotoUrl;
             }
 
             // ✅ إنشاء المستخدم في Identity
@@ -314,6 +318,8 @@ namespace Saken_WebApplication.Service.Services.Implement
                     FullName = u.UserName,
                     Email = u.Email,
                     Role = u.Role,
+                    PhoneNumber=u.PhoneNumber,
+                    profilePicture=u.profilePicture
                 })
                 .ToListAsync();
 

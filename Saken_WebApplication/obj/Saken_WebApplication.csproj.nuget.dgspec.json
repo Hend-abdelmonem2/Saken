@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[8.0.14, )"
@@ -174,6 +178,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[8.1.1, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -289,6 +297,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -412,6 +424,10 @@
               "target": "Package",
               "version": "[1.27.5, )"
             },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[8.0.14, )"
@@ -526,6 +542,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",

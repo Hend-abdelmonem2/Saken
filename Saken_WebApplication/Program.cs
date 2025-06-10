@@ -67,6 +67,11 @@ builder.Services.AddScoped<ILikeRepository, LikeRepository>();
 builder.Services.AddScoped<ILikeService, LikeService>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IDummyDataService, Saken_WebApplication.Service.Services.Implement.DummyDataService>();
+builder.Services.AddScoped<IDummyUserService, DummyUserService>();
+
+
+
 builder.Services.AddHttpContextAccessor();
 
 
@@ -82,6 +87,7 @@ builder.Services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository
 builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IGoogleService, GoogleService>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -127,16 +133,21 @@ builder.Services.AddAuthentication(options =>
                         }
                     };
 
+                }).AddGoogle("Google", options =>
+                {
+                    options.ClientId = "820232595279-8a81v7jjevbvu7emrs33kkf8eeh1bm42.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
+                    options.CallbackPath = "/signin-google";
                 })
 
-  .AddCookie()
-  .AddGoogle(options =>
+  .AddCookie();
+  /*.AddGoogle(options =>
   {
       IConfigurationSection googleAuthSection = builder.Configuration.GetSection("Authentication:Google");
 
       options.ClientId = googleAuthSection["ClientId"];
       options.ClientSecret = googleAuthSection["ClientSecret"];
-  });
+  });*/
 
 builder.Services.AddSwaggerGen(swagger => {
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Saken_WebApplication.Data.DTO.Favorite;
 using Saken_WebApplication.Data.DTO.HousingDTO;
 using Saken_WebApplication.Data.Models;
 using Saken_WebApplication.Infrasturcture.Data;
@@ -19,7 +20,7 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
         {
             _context = context;
         }
-        public async Task<Like> GetLikeAsync(string userId, int entityId, string entityType)
+        public async Task<Like> GetLikeAsync(string userId, string entityId, string entityType)
         {
             return await _context.Likes.FirstOrDefaultAsync(l =>
                 l.UserId == userId && l.EntityId == entityId && l.EntityType == entityType);
@@ -30,9 +31,13 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
                 .Where(l => l.UserId == userId && l.EntityType == "Housing")
                 .Select(l => l.EntityId)
                 .ToListAsync();
+            var likedHouseIdsInt = likedHouseIds
+            .Where(id => int.TryParse(id, out _)) 
+             .Select(id => int.Parse(id))
+             .ToList();
 
             var houses = await _context.houses
-                .Where(h => likedHouseIds.Contains(h.h_Id))
+                .Where(h => likedHouseIdsInt.Contains(h.h_Id))
                 .Select(h => new HousingLikeDto
                 {
                     Id = h.h_Id,
@@ -42,6 +47,26 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
                 }).ToListAsync();
 
             return houses;
+        }
+        public async Task<List<UserLikeDto>> GetLikedUsersAsync(string userId)
+        {
+            var likedUserIds = await _context.Likes
+                .Where(l => l.UserId == userId && l.EntityType == "User")
+                .Select(l => l.EntityId)
+                .ToListAsync();
+
+            var users = await _context.Users
+                .Where(u => likedUserIds.Contains(u.Id))
+                .Select(u => new UserLikeDto
+                {
+                    Id = u.Id,
+                    Name = u.FullName,
+                    Email = u.Email,
+                    ProfilePicture = u.profilePicture,
+                    UserType=u.Role
+                }).ToListAsync();
+
+            return users;
         }
 
         public async Task AddLikeAsync(Like like)

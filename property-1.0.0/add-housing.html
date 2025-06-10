@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body dir="rtl">
+  <div id="navbar-placeholder"></div>
   <div class="container mt-5">
     <h3 class="mb-4">إضافة سكن جديد</h3>
 
@@ -188,5 +189,12 @@
   <script src="js/navbar.js"></script>
   <script src="js/counter.js"></script>
   <script src="js/custom.js"></script>
+  <script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
 </body>
 </html>

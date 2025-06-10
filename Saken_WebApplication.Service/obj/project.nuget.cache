@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3FJzyvUS0rU=",
+  "dgSpecHash": "8ZRQODZQGGw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\cloudinarydotnet\\1.27.5\\cloudinarydotnet.1.27.5.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\google.apis\\1.69.0\\google.apis.1.69.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\google.apis.auth\\1.69.0\\google.apis.auth.1.69.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\google.apis.core\\1.69.0\\google.apis.core.1.69.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -150,7 +153,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
@@ -177,6 +180,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.net.http\\4.3.4\\system.net.http.4.3.4.nupkg.sha512",
@@ -218,12 +222,5 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  "logs": []
 }

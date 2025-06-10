@@ -23,7 +23,7 @@
   </head>
 
 <body>
-
+<div id="navbar-placeholder"></div>
     <div class="container mt-4">
   <h3 class="mb-3">الترشيحات المقترحة لك</h3>
   <div id="recommendations" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -93,6 +93,13 @@
   <script src="js/navbar.js"></script>
   <script src="js/counter.js"></script>
   <script src="js/custom.js"></script>
+  <script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
 
 </body>
 

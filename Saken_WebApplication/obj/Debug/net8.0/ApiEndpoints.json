@@ -154,6 +154,22 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/Auth/google-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "Login",
     "RelativePath": "api/Auth/Login",
     "HttpMethod": "POST",
@@ -219,6 +235,11 @@
       {
         "Name": "Photo",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhotoUrl",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -369,6 +390,46 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "InsertUsers",
+    "RelativePath": "api/DummyData/insert-users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "ResetDummyData",
+    "RelativePath": "api/DummyData/reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "ResetUsers",
+    "RelativePath": "api/DummyData/reset-users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "SetDummyData",
+    "RelativePath": "api/DummyData/set",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -794,6 +855,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Likes.LikesController",
+    "Method": "GetLikedUsers",
+    "RelativePath": "api/Likes/liked-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

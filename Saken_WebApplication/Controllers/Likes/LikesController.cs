@@ -47,6 +47,18 @@ namespace Saken_WebApplication.Controllers.Likes
             var houses = await _likeService.GetLikedHousesAsync(userId);
             return Ok(houses);
         }
+        [HttpGet("liked-users")]
+        public async Task<IActionResult> GetLikedUsers()
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(currentUserId))
+                return Unauthorized();
+
+            var likedUsers = await _likeService.GetLikedUsersAsync(currentUserId);
+            return Ok(likedUsers);
+
+        }
 
     }
 }

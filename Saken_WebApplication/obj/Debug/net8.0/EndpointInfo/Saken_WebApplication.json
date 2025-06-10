@@ -223,6 +223,9 @@
                     "type": "string",
                     "format": "binary"
                   },
+                  "PhotoUrl": {
+                    "type": "string"
+                  },
                   "Role": {
                     "type": "string"
                   }
@@ -248,6 +251,9 @@
                   "style": "form"
                 },
                 "Photo": {
+                  "style": "form"
+                },
+                "PhotoUrl": {
                   "style": "form"
                 },
                 "Role": {
@@ -604,6 +610,75 @@
       "get": {
         "tags": [
           "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/google-login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "name": "idToken",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DummyData/set": {
+      "post": {
+        "tags": [
+          "DummyData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DummyData/reset": {
+      "post": {
+        "tags": [
+          "DummyData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DummyData/insert-users": {
+      "post": {
+        "tags": [
+          "DummyData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DummyData/reset-users": {
+      "post": {
+        "tags": [
+          "DummyData"
         ],
         "responses": {
           "200": {
@@ -1262,6 +1337,18 @@
         }
       }
     },
+    "/api/Likes/liked-users": {
+      "get": {
+        "tags": [
+          "Likes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Message/sendMessage": {
       "post": {
         "tags": [
@@ -1499,8 +1586,8 @@
         "type": "object",
         "properties": {
           "entityId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "entityType": {
             "type": "string",

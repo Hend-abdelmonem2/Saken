@@ -34,129 +34,83 @@
 </head>
 <body>
 
-     <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close">
-        <span class="icofont-close js-menu-toggle"></span>
-      </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-  </div>
-
-  <nav class="site-nav">
-    <div class="container">
-      <div class="menu-bg-wrap">
-        <div class="site-navigation">
-          <a href="index.html" class="logo m-0 float-start">Property</a>
-
-          <ul
-            class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-          >
-            <li class="active"><a href="AllHouse.html">الرئيسيه</a></li>
-            <li class="has-children">
-              <a href="Favorite.html">التفضيلات</a></li>
-            <li><a href="Requests.html">الطلبات</a></li>
-            <li><a href="recommendation.html">الترشيحات</a></li>
-            <li><a href="message.html">الرسائل</a></li>
-          </ul>
-
-          <a
-            href="#"
-            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-            data-toggle="collapse"
-            data-target="#main-navbar"
-          >
-            <span></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <div
-      class="hero page-inner overlay"
-      style="background-image: url('images/hero_bg_3.jpg')"
-    >
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">Favorite property</h1>
-
-            <nav
-              aria-label="breadcrumb"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li
-                  class="breadcrumb-item active text-white-50"
-                  aria-current="page"
-                >
-                MyFavorite
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="navbar-placeholder"></div>
   
 
-  <div class="container my-5">
-    <h2 class="mb-4 text-center">الوحدات المفضلة</h2>
-    <div class="row" id="liked-houses"></div>
-    <div id="like-message" class="mt-3"></div>
+ <div class="container my-5" dir="rtl">
+  <h2 class="mb-4 text-center">المفضلات</h2>
+
+  <div class="mb-4 text-center">
+    <button id="btn-liked-houses" class="btn btn-outline-primary mx-2">الوحدات</button>
+    <button id="btn-liked-landlords" class="btn btn-outline-primary mx-2">المؤجرين</button>
+    <button id="btn-liked-tenants" class="btn btn-outline-primary mx-2">المستأجرين</button>
   </div>
 
-  <script>
-    function parseJwt(token) {
-      try {
-        const base64Payload = token.split(".")[1];
-        const payload = atob(base64Payload.replace(/-/g, "+").replace(/_/g, "/"));
-        return JSON.parse(payload);
-      } catch (e) {
-        return null;
-      }
+  <div class="row" id="favorites-container"></div>
+  <div id="like-message" class="mt-3"></div>
+</div>
+
+<script>
+  function parseJwt(token) {
+    try {
+      const base64Payload = token.split(".")[1];
+      const payload = atob(base64Payload.replace(/-/g, "+").replace(/_/g, "/"));
+      return JSON.parse(payload);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const token = localStorage.getItem("token");
+  const decoded = parseJwt(token);
+  const userId = decoded?.uid || decoded?.sub || null;
+
+  async function loadFavorites(type) {
+    const message = document.getElementById("like-message");
+    const container = document.getElementById("favorites-container");
+    container.innerHTML = "";
+    message.innerHTML = "";
+
+    if (!token || !userId) {
+      message.innerHTML = `<div class="alert alert-warning text-center">يرجى تسجيل الدخول لعرض المفضلات.</div>`;
+      return;
     }
 
-    const token = localStorage.getItem("token");
-    const decoded = parseJwt(token);
-    const userId = decoded?.uid || decoded?.sub || null;
-    console.log("User ID:", userId);
+    let url = "";
+    let label = "";
 
-    async function loadLikedHouses() {
-      const message = document.getElementById("like-message");
-      const container = document.getElementById("liked-houses");
+    switch (type) {
+      case "houses":
+        url = "https://localhost:44327/api/Likes/LikedHouses";
+        label = "الوحدات المفضلة";
+        break;
+      case "Owner":
+        url = "https://localhost:44327/api/Likes/liked-users";
+        label = "المؤجرين المفضلين";
+        break;
+      case "Tenant":
+        url = "https://localhost:44327/api/Likes/liked-users";
+        label = "المستأجرين المفضلين";
+        break;
+    }
 
-      if (!token || !userId) {
-        message.innerHTML = `<div class="alert alert-warning text-center">يرجى تسجيل الدخول لعرض الوحدات المفضلة.</div>`;
+    try {
+      const res = await fetch(url, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+
+      const data = await res.json();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = `<div class="alert alert-info text-center">لا توجد ${label} حالياً.</div>`;
         return;
       }
 
-      try {
-        const res = await fetch("https://localhost:44327/api/Likes/LikedHouses", {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
-        });
-
-        const data = await res.json();
-
-        if (!res.ok || !Array.isArray(data)) {
-          message.innerHTML = `<div class="alert alert-danger text-center">فشل في تحميل البيانات.</div>`;
-          return;
-        }
-
-        if (data.length === 0) {
-          container.innerHTML = `<div class="alert alert-info text-center">لا توجد وحدات مفضلة حالياً.</div>`;
-          return;
-        }
-
+      if (type === "houses") {
         container.innerHTML = data.map(house => `
           <div class="col-md-4 mb-4">
             <div class="card h-100 position-relative">
-              <i class="fas fa-heart like-btn"></i>
+              <i class="fas fa-heart text-danger position-absolute top-0 end-0 m-2"></i>
               <img src="${house.photoUrl || 'default.jpg'}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="صورة الوحدة">
               <div class="card-body">
                 <h5 class="card-title">${house.address}</h5>
@@ -165,13 +119,53 @@
             </div>
           </div>
         `).join('');
-      } catch (error) {
-        console.error("خطأ أثناء جلب الوحدات:", error);
-        message.innerHTML = `<div class="alert alert-danger text-center">حدث خطأ أثناء تحميل البيانات.</div>`;
-      }
-    }
+      } else 
 
-    document.addEventListener("DOMContentLoaded", loadLikedHouses);
+
+    {  console.log("البيانات الراجعة من API:", data);
+     const filteredUsers = data.filter(user => {
+     if (type === "Owner") return user.userType === "Owner"; // تأكدي من اسم الحقل الصحيح هنا
+      if (type === "Tenant") return user.userType === "Tenant";
+  return true;
+});
+
+if (filteredUsers.length === 0) {
+  container.innerHTML = `<div class="alert alert-info text-center">لا توجد ${label} حالياً.</div>`;
+  return;
+}
+
+container.innerHTML = filteredUsers.map(user => `
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 text-center p-3">
+      <i class="fas fa-heart text-danger position-absolute top-0 end-0 m-2"></i>
+      <img src="${user.profilePicture || 'images/default-user.png'}" alt="User Image" class="rounded-circle mx-auto mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+      <div class="card-body">
+        <h5 class="card-title">${user.name || user.userName}</h5>
+        <p class="card-text">
+          <strong>البريد:</strong> ${user.email}<br>
+          <strong>الهاتف:</strong> ${user.phoneNumber || "غير متوفر"}
+        </p>
+      </div>
+    </div>
+  </div>
+`).join('');
+}
+
+    } catch (error) {
+      console.error("حدث خطأ أثناء تحميل البيانات:", error);
+      message.innerHTML = `<div class="alert alert-danger text-center">حدث خطأ أثناء تحميل البيانات.</div>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadFavorites("houses");
+
+    document.getElementById("btn-liked-houses").addEventListener("click", () => loadFavorites("houses"));
+    document.getElementById("btn-liked-landlords").addEventListener("click", () => loadFavorites("Owner"));
+    document.getElementById("btn-liked-tenants").addEventListener("click", () => loadFavorites("Tenant"));
+  });
+</script>
+
   </script>
   <script src="js/bootstrap.bundle.min.js"></script>
  <script src="js/tiny-slider.js"></script>
@@ -179,6 +173,13 @@
  <script src="js/navbar.js"></script>
  <script src="js/counter.js"></script>
  <script src="js/custom.js"></script>
+ <script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
 
 </body>
 </html>

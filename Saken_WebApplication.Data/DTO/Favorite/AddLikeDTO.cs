@@ -8,7 +8,7 @@ namespace Saken_WebApplication.Data.DTO.Favorite
 {
     public  class AddLikeDTO
     {
-        public int EntityId { get; set; }
+        public string EntityId { get; set; }
         public string EntityType { get; set; }
     }
 }

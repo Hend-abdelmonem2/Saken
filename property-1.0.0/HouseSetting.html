@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <div id="navbar-placeholder"></div>
   <div class="container my-5">
     <h2 class="mb-4">لوحة التحكم - إدارة السكن</h2>
     <div class="d-flex justify-content-end mb-3">
@@ -41,63 +42,7 @@
     </div>
   </div>
 
-  <!-- نافذة التعديل -->
-  <div id="editModal"
-    style="display:none; position:fixed; top:5%; left:50%; transform:translateX(-50%);
-         background:#fff; padding:20px; border-radius:10px; width:80%; max-width:700px; box-shadow:0 0 20px rgba(0,0,0,0.3); z-index:1000;">
-    <h3>تعديل بيانات السكن</h3>
-    <form id="editHouseForm" enctype="multipart/form-data">
-      <input type="hidden" id="editHouseId" />
-      <div><label>الصورة:</label><input type="file" id="editHousePhoto" accept="image/*" /></div>
-      <div><label>نوع العقار:</label><select id="editHouseType" required>
-          <option value="">اختر...</option>
-          <option value="Apartment">Apartment</option>
-          <option value="Studio">Studio</option>
-          <option value="Room">Room</option>
-          <option value="Bed">Bed</option>
-        </select></div>
-      <div><label>السعر:</label><input type="number" id="editHousePrice" required /></div>
-      <div><label>العنوان:</label><input type="text" id="editHouseAddress" required /></div>
-      <div><label>الحالة:</label><select id="editHouseStatus" required>
-          <option value="">اختر...</option>
-          <option value="Available">Available</option>
-          <option value="Reserved">Reserved</option>
-          <option value="Rented">Rented</option>
-        </select></div>
-      <div><label>التأثيث:</label><select id="editFurnishingStatus" required>
-          <option value="">اختر...</option>
-          <option value="Furnished">Furnished</option>
-          <option value="Empty">Empty</option>
-        </select></div>
-      <div><label>الفئة المستهدفة:</label><select id="editTargetCustomers" required>
-          <option value="">اختر...</option>
-          <option value="Families">Families</option>
-          <option value="Students">Students</option>
-          <option value="Employees">Employees</option>
-          <option value="Any">Any</option>
-        </select></div>
-      <div><label>مدة الإيجار:</label><select id="editRentalPeriod" required>
-          <option value="">اختر...</option>
-          <option value="Weekly">Weekly</option>
-          <option value="Monthly">Monthly</option>
-          <option value="Yearly">Yearly</option>
-        </select></div>
-      <div><label>مبلغ التأمين:</label><input type="number" id="editDeposit" /></div>
-      <div><label>الإيجار:</label><input type="number" id="editRent" /></div>
-      <div><label>التأمين:</label><input type="number" id="editInsurance" /></div>
-      <div><label>العمولة:</label><input type="number" id="editCommission" /></div>
-      <div><label>رابط المشاركة:</label><input type="url" id="editParticipationLink" /></div>
-      <div><label>نوع الإيجار:</label><select id="editRentalType" required>
-          <option value="">اختر...</option>
-          <option value="New">New</option>
-          <option value="Old">Old</option>
-        </select></div>
-      <div><label>تاريخ المعاينة:</label><input type="date" id="editInspectionDate" /></div>
-      <br />
-      <button type="submit" class="btn btn-primary">💾 حفظ التعديلات</button>
-      <button type="button" id="closeEditModal" class="btn btn-secondary">❌ إغلاق</button>
-    </form>
-  </div>
+ 
 
   <script>
     const token = localStorage.getItem("token");
@@ -123,7 +68,7 @@
                         <td>${house.price} جنيه</td>
                         <td>${house.status}</td>
                         <td><button class="btn btn-warning freeze-btn" data-id="${house.id}">${house.isFrozen ? 'إلغاء التجميد' : 'تجميد'}</button></td>
-                        <td><button class="btn btn-success edit-btn" data-id="${house.id}">تعديل</button></td>
+                       <td> <a href="edit-housing.html?id=${house.id}" class="btn btn-success">تعديل</a></td>
                         <td><button class="btn btn-danger delete-btn" data-id="${house.id}">حذف</button></td>
                     </tr>`).join("");
 
@@ -132,83 +77,70 @@
       }
     });
 
-    function fillEditForm(house) {
-      document.getElementById("editHouseId").value = house.id;
-      document.getElementById("editHouseType").value = house.type;
-      document.getElementById("editHousePrice").value = house.price;
-      document.getElementById("editHouseAddress").value = house.address;
-      document.getElementById("editHouseStatus").value = house.status;
-      document.getElementById("editFurnishingStatus").value = house.furnishingStatus;
-      document.getElementById("editTargetCustomers").value = house.targetCustomers;
-      document.getElementById("editRentalPeriod").value = house.rentalPeriod;
-      document.getElementById("editDeposit").value = house.deposit;
-      document.getElementById("editRent").value = house.rent;
-      document.getElementById("editInsurance").value = house.insurance;
-      document.getElementById("editCommission").value = house.commission;
-      document.getElementById("editParticipationLink").value = house.participationLink;
-      document.getElementById("editRentalType").value = house.rentalType;
-      document.getElementById("editInspectionDate").value = house.inspectionDate?.split("T")[0] || "";
-    }
+    
 
     document.addEventListener("click", function (e) {
-      if (e.target.classList.contains("edit-btn")) {
-        const houseId = e.target.dataset.id;
-        fetch(`https://localhost:44327/api/Housing/GetHouseById/${houseId}`)
-          .then(res => res.json())
-          .then(house => {
-            fillEditForm(house);
-            document.getElementById("editModal").style.display = "block";
-          })
-          .catch(() => alert("حدث خطأ أثناء جلب بيانات السكن."));
+  if (e.target.classList.contains("delete-btn")) {
+    const houseId = e.target.dataset.id;
+    if (!confirm("هل أنت متأكد من حذف هذا السكن؟")) return;
+
+    const token = localStorage.getItem("token");
+
+    fetch(`https://localhost:44327/api/Housing/DeleteHouse/${houseId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
       }
-    });
-
-    document.getElementById("closeEditModal").onclick = () => {
-      document.getElementById("editModal").style.display = "none";
-    };
-
-    document.getElementById("editHouseForm").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const houseId = document.getElementById("editHouseId").value;
-      const formData = {
-        Id: houseId,
-        Type: document.getElementById("editHouseType").value,
-        Price: parseFloat(document.getElementById("editHousePrice").value),
-        Address: document.getElementById("editHouseAddress").value,
-        Status: document.getElementById("editHouseStatus").value,
-        FurnishingStatus: document.getElementById("editFurnishingStatus").value,
-        TargetCustomers: document.getElementById("editTargetCustomers").value,
-        RentalPeriod: document.getElementById("editRentalPeriod").value,
-        Deposit: parseFloat(document.getElementById("editDeposit").value),
-        Rent: parseFloat(document.getElementById("editRent").value),
-        Insurance: parseFloat(document.getElementById("editInsurance").value),
-        Commission: parseFloat(document.getElementById("editCommission").value),
-        ParticipationLink: document.getElementById("editParticipationLink").value,
-        RentalType: document.getElementById("editRentalType").value,
-        InspectionDate: document.getElementById("editInspectionDate").value
-        
-      };
-      console.log(formData);
-
-      try {
-        const res = await fetch(`https://localhost:44327/api/Housing/updateHouse/${houseId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!res.ok) throw new Error("فشل التعديل");
-
-        alert("تم حفظ التعديلات بنجاح");
-        document.getElementById("editModal").style.display = "none";
+    })
+      .then(response => {
+        if (!response.ok) throw new Error("فشل في الحذف");
+        return response.text();
+      })
+      .then(message => {
+        alert("تم حذف السكن بنجاح ✅");
+        // تحديث الجدول بعد الحذف
         location.reload();
-      } catch (err) {
-        alert("حدث خطأ أثناء حفظ التعديلات");
-      }
-    });
+      })
+      .catch(err => {
+        alert("حدث خطأ أثناء الحذف ❌");
+        console.error(err);
+      });
+  }
+});
+
+document.addEventListener("click", async function (e) {
+    if (e.target && e.target.classList.contains("freeze-btn")) {
+        const button = e.target;
+        const houseId = button.dataset.id;
+
+        try {
+            const response = await fetch(`https://localhost:44327/api/Housing/ToggleFreeze/${houseId}`, {
+                method: 'POST'
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert(errorData.message || "حدث خطأ أثناء التجميد.");
+                return;
+            }
+
+            const data = await response.json();
+            alert(data.message);
+
+            // تغيير نص الزرار بناءً على حالة التجميد الجديدة
+            button.textContent = data.isFrozen ? "إلغاء التجميد" : "تجميد";
+
+            // تغيير لون الزرار (اختياري)
+            button.classList.toggle("btn-warning", !data.isFrozen);
+            button.classList.toggle("btn-danger", data.isFrozen);
+
+        } catch (error) {
+            console.error("Freeze error:", error);
+            alert("حدث خطأ في الاتصال بالخادم.");
+        }
+    }
+});
+
   </script>
 
   <script src="js/bootstrap.bundle.min.js"></script>
@@ -217,6 +149,13 @@
   <script src="js/navbar.js"></script>
   <script src="js/counter.js"></script>
   <script src="js/custom.js"></script>
+  <script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
 </body>
 
 </html>

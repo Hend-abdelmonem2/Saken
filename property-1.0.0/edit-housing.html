@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>تعديل السكن</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="favicon.png" />
+
+</head>
+
+<body  dir="rtl">
+
+    <!-- Navbar -->
+<div id="navbar-placeholder"></div>
+    <div class="container">
+        <h2 class="mb-4">تعديل بيانات السكن</h2>
+
+        <form id="editHousingForm" enctype="multipart/form-data">
+
+            <!-- النوع -->
+            <div class="mb-3">
+                <label class="form-label">نوع السكن</label>
+                <select name="Type" class="form-select" required id="Type">
+                    <option value="Apartment">شقة</option>
+                    <option value="Studio">استوديو</option>
+                    <option value="Room">غرفة</option>
+                    <option value="Bed">سرير</option>
+                </select>
+            </div>
+
+            <!-- السعر -->
+            <div class="mb-3">
+                <label class="form-label">السعر</label>
+                <input type="number" name="Price" class="form-control" required id="Price" />
+            </div>
+
+            <!-- العنوان -->
+            <div class="mb-3">
+                <label class="form-label">العنوان</label>
+                <input type="text" name="Address" class="form-control" required id="Address" />
+            </div>
+
+            <!-- الصورة -->
+            <div class="mb-3">
+                <label class="form-label">الصورة</label>
+                <input type="file" name="Photo" class="form-control" />
+                <small class="text-muted">يمكنك رفع صورة جديدة أو تركها فارغة للحفاظ على الصورة الحالية</small>
+            </div>
+
+            <!-- الحالة -->
+            <div class="mb-3">
+                <label class="form-label">الحالة</label>
+                <select name="Status" class="form-select" required id="Status">
+                    <option value="Available">متاح</option>
+                    <option value="Reserved">محجوز</option>
+                    <option value="Rented">مؤجر</option>
+                </select>
+            </div>
+
+            <!-- الأثاث -->
+            <div class="mb-3">
+                <label class="form-label">الأثاث</label>
+                <select name="FurnishingStatus" class="form-select" required id="FurnishingStatus">
+                    <option value="Furnished">مفروش</option>
+                    <option value="Empty">فارغ</option>
+                </select>
+            </div>
+
+            <!-- الفئة المستهدفة -->
+            <div class="mb-3">
+                <label class="form-label">الفئة المستهدفة</label>
+                <select name="TargetCustomers" class="form-select" required id="TargetCustomers">
+                    <option value="Families">عائلات</option>
+                    <option value="Students">طلاب</option>
+                    <option value="Employees">موظفين</option>
+                    <option value="Any">أي شخص</option>
+                </select>
+            </div>
+
+            <!-- مدة الإيجار -->
+            <div class="mb-3">
+                <label class="form-label">مدة الإيجار</label>
+                <select name="RentalPeriod" class="form-select" required id="RentalPeriod">
+                    <option value="Weekly">أسبوعي</option>
+                    <option value="Monthly">شهري</option>
+                    <option value="Yearly">سنوي</option>
+                </select>
+            </div>
+
+            <!-- مبلغ التأمين -->
+            <div class="mb-3">
+                <label class="form-label">مبلغ التأمين</label>
+                <input type="number" name="Deposit" class="form-control" id="Deposit" />
+            </div>
+
+            <!-- الإيجار -->
+            <div class="mb-3">
+                <label class="form-label">الإيجار</label>
+                <input type="number" name="Rent" class="form-control" id="Rent" />
+            </div>
+
+            <!-- التأمين -->
+            <div class="mb-3">
+                <label class="form-label">التأمين</label>
+                <input type="number" name="Insurance" class="form-control" id="Insurance" />
+            </div>
+
+            <!-- العمولة -->
+            <div class="mb-3">
+                <label class="form-label">العمولة</label>
+                <input type="number" name="Commission" class="form-control" id="Commission" />
+            </div>
+
+            <!-- رابط المشاركة -->
+            <div class="mb-3">
+                <label class="form-label">رابط المشاركة</label>
+                <input type="text" name="ParticipationLink" class="form-control" id="ParticipationLink" />
+            </div>
+
+            <!-- نوع الإيجار -->
+            <div class="mb-3">
+                <label class="form-label">نوع الإيجار</label>
+                <select name="RentalType" class="form-select" id="RentalType">
+                    <option value="New">جديد</option>
+                    <option value="Old">قديم</option>
+                </select>
+            </div>
+
+            <!-- تاريخ المعاينة -->
+            <div class="mb-3">
+                <label class="form-label">تاريخ المعاينة</label>
+                <input type="date" name="InspectionDate" class="form-control" id="InspectionDate" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            <a href="HouseSetting.html" class="btn btn-secondary">رجوع</a>
+
+        </form>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const houseId = params.get("id");
+        console.log(houseId);
+
+        const token = localStorage.getItem("token");
+
+        // جلب بيانات السكن
+        async function loadHouseData() {
+            try {
+                const res = await fetch(`https://localhost:44327/api/Housing/GetHouseById/${houseId}`, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (!res.ok) throw new Error("فشل تحميل بيانات السكن");
+                const house = await res.json();
+
+                // تعبئة الحقول بالقيم
+                document.getElementById("Type").value = house.type || "";
+                document.getElementById("Price").value = house.price || "";
+                document.getElementById("Address").value = house.address || "";
+                document.getElementById("Status").value = house.status || "";
+                document.getElementById("FurnishingStatus").value = house.furnishingStatus || "";
+                document.getElementById("TargetCustomers").value = house.targetCustomers || "";
+                document.getElementById("RentalPeriod").value = house.rentalPeriod || "";
+                document.getElementById("Deposit").value = house.deposit || "";
+                document.getElementById("Rent").value = house.rent || "";
+                document.getElementById("Insurance").value = house.insurance || "";
+                document.getElementById("Commission").value = house.commission || "";
+                document.getElementById("ParticipationLink").value = house.participationLink || "";
+                document.getElementById("RentalType").value = house.rentalType || "";
+                document.getElementById("InspectionDate").value = house.inspectionDate?.split('T')[0] || ""; // لو فيه وقت لازم نقصه
+            } catch (error) {
+                alert("❌ حدث خطأ أثناء تحميل بيانات السكن");
+                console.error(error);
+            }
+        }
+
+        loadHouseData();
+
+        // تحديث السكن
+        document.getElementById("editHousingForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+            // formData.append("Id", houseId); // مهم نضيف الـ Id مع البيانات
+
+            try {
+                const res = await fetch(`https://localhost:44327/api/Housing/updateHouse/${houseId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                        // لا تضع Content-Type (سيتم تحديده تلقائياً مع FormData)
+                    },
+                    body: formData
+                });
+
+                if (res.ok) {
+                    alert("✅ تم تحديث بيانات السكن بنجاح");
+                    window.location.href = "HouseSetting.html";
+                } else {
+                    const data = await res.json();
+                    alert("❌ فشل التحديث: " + (data.message || "خطأ غير معروف"));
+                }
+            } catch (error) {
+                alert("❌ حدث خطأ أثناء إرسال البيانات");
+                console.error(error);
+            }
+        });
+    </script>
+     <script src="js/bootstrap.bundle.min.js"></script>
+ <script src="js/tiny-slider.js"></script>
+ <script src="js/aos.js"></script>
+ <script src="js/navbar.js"></script>
+ <script src="js/counter.js"></script>
+ <script src="js/custom.js"></script>
+ <script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
+
+
+</body>
+
+</html>
