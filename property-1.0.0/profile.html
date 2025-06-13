@@ -51,6 +51,7 @@
 
   <div class="btn-custom">
    <button class="btn btn-outline-primary w-100 mb-2" onclick="goToEdit()">✏️ تعديل الملف</button>
+    <button class="btn btn-outline-primary w-100 mb-2" onclick="additionalInformation()">✏️ بيانات اضافيه</button>
 
 <!-- أزرار المؤجر -->
 <div id="landlordOptions" style="display: none;">
@@ -60,7 +61,7 @@
 
 <!-- إعدادات عامة -->
 <button class="btn btn-outline-secondary w-100 mb-2" onclick="goToSettings()">⚙️ الإعدادات</button>
-    <button class="btn btn-outline-danger w-100">🚪 تسجيل الخروج</button>
+    <button class="btn btn-outline-danger w-100" onclick="logout()">🚪 تسجيل الخروج</button>
   </div>
 </div>
 
@@ -135,8 +136,18 @@ if (!token) {
   }
 
   function goToSettings() {
-    window.location.href = `/settings.html?userId=${userId}`;
+    window.location.href = `AppSettings.html`;
   }
+  function additionalInformation() {
+        window.location.href = `additional-information.html`;
+      }
+
+      // تسجيل الخروج
+
+  window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
 
 
 </script>
@@ -147,10 +158,31 @@ if (!token) {
  <script src="js/counter.js"></script>
  <script src="js/custom.js"></script>
  <script>
-  fetch('Navbar.html')
+ fetch('Navbar.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+
+      // هنا شغلي كود التسجيل بعد تحميل الـ Navbar فعليًا
+      const authLinks = document.getElementById("auth-links");
+      const token = localStorage.getItem("token");
+
+      if (authLinks) {
+        if (token) {
+          authLinks.innerHTML = `
+            <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+          `;
+        } else {
+          authLinks.innerHTML = `
+            <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+          `;
+        }
+      }
+
+      window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
     });
 </script>
 

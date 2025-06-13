@@ -19,7 +19,8 @@ namespace Saken_WebApplication.Infrasturcture.Data
         public DbSet<Reservation> reservations { get; set; }
         public DbSet<Review> reviews { get; set; }
         public DbSet<UserPreferences> UserPreferences { get; set; }
-        public DbSet<Like> Likes { get; set; } 
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<AppSettings> AppSettings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

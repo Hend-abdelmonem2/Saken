@@ -190,10 +190,31 @@
   <script src="js/counter.js"></script>
   <script src="js/custom.js"></script>
   <script>
-  fetch('navbar.html')
+ fetch('Navbar.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+
+      // هنا شغلي كود التسجيل بعد تحميل الـ Navbar فعليًا
+      const authLinks = document.getElementById("auth-links");
+      const token = localStorage.getItem("token");
+
+      if (authLinks) {
+        if (token) {
+          authLinks.innerHTML = `
+            <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+          `;
+        } else {
+          authLinks.innerHTML = `
+            <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+          `;
+        }
+      }
+
+      window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
     });
 </script>
 </body>

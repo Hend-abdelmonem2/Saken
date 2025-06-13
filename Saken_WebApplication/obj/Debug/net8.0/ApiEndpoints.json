@@ -111,6 +111,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Saken_WebApplication.Controllers.AppSettingsController",
+    "Method": "GetSettings",
+    "RelativePath": "api/AppSettings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AppSettingsController",
+    "Method": "UpdateSettings",
+    "RelativePath": "api/AppSettings",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Saken_WebApplication.Data.DTO.AppSettingsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "GetUsers",
     "RelativePath": "api/Auth/AllUsers",

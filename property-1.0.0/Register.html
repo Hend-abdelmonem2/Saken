@@ -180,6 +180,9 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     if (res.ok) {
       if (typeof result === "object" && result.isAuthenticated) {
         messageDiv.innerHTML = `<div class="alert alert-success">تم التسجيل بنجاح ✅</div>`;
+         setTimeout(() => {
+      window.location.href = "Login.html"; // ✅ عدل هذا حسب رابط صفحة تسجيل الدخول لديك
+    }, 2000);
       } else {
         messageDiv.innerHTML = `<div class="alert alert-danger">فشل في التسجيل.</div>`;
       }

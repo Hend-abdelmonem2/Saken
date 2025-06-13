@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تفاصيل السكن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .nav-tabs .nav-link.active {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .nav-tabs .nav-link {
+      border: 1px solid #dee2e6;
+    }
+    .tab-content > .tab-pane {
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+<div id="navbar-placeholder"></div>
+
+<div class="container mt-4" id="details-container">
+  <button onclick="history.back()" class="btn btn-secondary mb-3">الرجوع</button>
+  <div class="card">
+<img id="house-photo" class="card-img-top d-block mt-3 ms-auto" alt="صورة السكن" style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;">
+
+
+    <div class="card-body">
+      <h3 id="house-address" class="card-title"></h3>
+
+      <!-- تبويبات -->
+      <ul class="nav nav-tabs mb-3" id="houseTabs">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#details">تفاصيل</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#inspection">معاينة</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#booking">حجز</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#renting">تأجير</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sharing">مشاركة</button></li>
+      </ul>
+
+      <!-- محتوى التبويبات -->
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="details">
+          <p><strong>النوع:</strong> <span id="house-type"></span></p>
+          <p><strong>الحالة:</strong> <span id="house-status"></span></p>
+          <p><strong>السعر:</strong> <span id="house-price"></span> جنيه</p>
+          <p><strong>المفروش:</strong> <span id="house-furnishing"></span></p>
+          <p><strong>العملاء المستهدفون:</strong> <span id="house-customers"></span></p>
+        </div>
+
+        <div class="tab-pane fade" id="inspection">
+          <p><strong>تاريخ المعاينة:</strong> <span id="house-inspection"></span></p>
+        </div>
+
+        <div class="tab-pane fade" id="booking">
+          <p><strong>مبلغ الحجز:</strong> <span id="house-deposit"></span> جنيه</p>
+           <button class="btn btn-success mt-2" onclick="reserveHouse()">احجز الآن</button>
+        </div>
+
+        <div class="tab-pane fade" id="renting">
+          <p><strong>الإيجار:</strong> <span id="house-rent"></span> جنيه</p>
+          <p><strong>العمولة:</strong> <span id="house-commission"></span> جنيه</p>
+          <p><strong>التأمين:</strong> <span id="house-insurance"></span> جنيه</p>
+          <p><strong>مدة الإيجار:</strong> <span id="house-rental-period"></span></p>
+        </div>
+
+        <div class="tab-pane fade" id="sharing">
+          <input type="text" id="house-link" class="form-control mb-2" readonly>
+          <button class="btn btn-outline-primary" onclick="copyLink()">نسخ الرابط</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const houseId = params.get("id");
+
+  async function loadHousingDetails() {
+    try {
+      const res = await fetch(`https://localhost:44327/api/Housing/GetHouseById/${houseId}`);
+      if (!res.ok) throw new Error("السكن غير موجود");
+      const house = await res.json();
+
+      document.getElementById("house-photo").src = house.photoUrl || "default.jpg";
+      document.getElementById("house-address").textContent = house.address;
+      document.getElementById("house-type").textContent = house.type;
+      document.getElementById("house-status").textContent = house.status;
+      document.getElementById("house-price").textContent = house.price;
+      document.getElementById("house-furnishing").textContent = house.furnishingStatus;
+      document.getElementById("house-customers").textContent = house.targetCustomers;
+      document.getElementById("house-inspection").textContent = house.inspectionDate?.split("T")[0] || "لم يتم التحديد";
+      document.getElementById("house-deposit").textContent = house.price || "0";
+      document.getElementById("house-rent").textContent = house.price || "0";
+      document.getElementById("house-commission").textContent = house.commission || "0";
+      document.getElementById("house-insurance").textContent = house.insurance || "0";
+      document.getElementById("house-rental-period").textContent = house.rentalPeriod || "-";
+      document.getElementById("house-link").value = house.participationLink || window.location.href;
+
+    } catch (err) {
+      document.getElementById("details-container").innerHTML =
+        `<div class="alert alert-danger">حدث خطأ: ${err.message}</div>`;
+    }
+  }
+
+  function copyLink() {
+    const linkInput = document.getElementById("house-link");
+    linkInput.select();
+    document.execCommand("copy");
+    alert("تم نسخ الرابط");
+  }
+  async function reserveHouse() {
+  const houseId = new URLSearchParams(window.location.search).get("id");
+  const amountPaid = document.getElementById("house-deposit").textContent.trim();
+
+  const formData = new FormData();
+  formData.append("HousingId", houseId);
+  formData.append("AmountPaid", amountPaid);
+
+  try {
+    const res = await fetch("https://localhost:44327/api/Housing/Reservation", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: formData
+    });
+
+    if (!res.ok) {
+      const error = await res.text();
+      throw new Error(error);
+    }
+
+    alert("تم الحجز بنجاح!");
+  } catch (err) {
+    alert("فشل في الحجز: " + err.message);
+  }
+}
+
+  loadHousingDetails();
+</script>
+<script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+
+      // هنا شغلي كود التسجيل بعد تحميل الـ Navbar فعليًا
+      const authLinks = document.getElementById("auth-links");
+      const token = localStorage.getItem("token");
+
+      if (authLinks) {
+        if (token) {
+          authLinks.innerHTML = `
+            <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+          `;
+        } else {
+          authLinks.innerHTML = `
+            <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+          `;
+        }
+      }
+
+      window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
+    });
+</script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+</html>

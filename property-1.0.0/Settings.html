@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إعدادات المستخدم - Saken</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+     /* .container {
+        max-width: 400px;
+      }*/
+      label {
+        font-size: 0.9rem;
+      }
+      .card {
+        border-radius: 10px;
+      }*/
+    </style>
+  </head>
+  <body class="bg-light">
+    <div id="navbar-placeholder"></div>
+    <div class="container mt-4">
+      <h4 class="text-center mb-3">إعدادات المستخدم</h4>
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <form id="settingsForm">
+            <!-- Notification Toggle -->
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="notificationsEnabled"
+              />
+              <label class="form-check-label" for="notificationsEnabled"
+                >تفعيل الإشعارات</label
+              >
+            </div>
+
+            <!-- Theme Mode -->
+            <div class="mb-3">
+              <label for="themeMode" class="form-label">وضع السمة</label>
+              <select class="form-select form-select-sm" id="themeMode">
+                <option value="light">فاتح</option>
+                <option value="dark">داكن</option>
+              </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-sm w-100">
+              تحديث الإعدادات
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mt-3 text-center" id="statusMessage"></div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document
+        .getElementById("settingsForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const token = localStorage.getItem("authToken");
+          if (!token) {
+            alert("يرجى تسجيل الدخول أولاً.");
+            return;
+          }
+
+          const settingsData = {
+            isNotificationsEnabled: document.getElementById(
+              "notificationsEnabled"
+            ).checked,
+            themeMode: document.getElementById("themeMode").value,
+          };
+
+          fetch("http://localhost:44327/api/Users/settings", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(settingsData),
+          })
+            .then((response) => {
+              if (!response.ok) throw new Error("فشل في تحديث الإعدادات.");
+              return response.text();
+            })
+            .then((message) => {
+              document.getElementById(
+                "statusMessage"
+              ).innerHTML = `<div class="alert alert-success">${message}</div>`;
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById(
+                "statusMessage"
+              ).innerHTML = `<div class="alert alert-danger">حدث خطأ أثناء تحديث الإعدادات.</div>`;
+            });
+        });
+    </script>
+ <script>
+  fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+
+      // هنا شغلي كود التسجيل بعد تحميل الـ Navbar فعليًا
+      const authLinks = document.getElementById("auth-links");
+      const token = localStorage.getItem("token");
+
+      if (authLinks) {
+        if (token) {
+          authLinks.innerHTML = `
+            <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+          `;
+        } else {
+          authLinks.innerHTML = `
+            <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+          `;
+        }
+      }
+
+      window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
+    });
+</script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+  </body>
+</html>

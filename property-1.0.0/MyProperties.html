@@ -32,86 +32,7 @@
 </head>
 <body>
 
-  <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close">
-        <span class="icofont-close js-menu-toggle"></span>
-      </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-  </div>
-
-  <nav class="site-nav">
-    <div class="container">
-      <div class="menu-bg-wrap">
-        <div class="site-navigation">
-          <a href="index.html" class="logo m-0 float-start">Property</a>
-
-          <ul
-            class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-          >
-            <li class="active"><a href="index.html">Home</a></li>
-            <li class="has-children">
-              <a href="properties.html">Properties</a>
-              <ul class="dropdown">
-                <li><a href="#">Buy Property</a></li>
-                <li><a href="#">Sell Property</a></li>
-                <li class="has-children">
-                  <a href="#">Dropdown</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Sub Menu One</a></li>
-                    <li><a href="#">Sub Menu Two</a></li>
-                    <li><a href="#">Sub Menu Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-
-          <a
-            href="#"
-            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-            data-toggle="collapse"
-            data-target="#main-navbar"
-          >
-            <span></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <div
-      class="hero page-inner overlay"
-      style="background-image: url('images/hero_bg_3.jpg')"
-    >
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">MyProperties</h1>
-
-            <nav
-              aria-label="breadcrumb"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li
-                  class="breadcrumb-item active text-white-50"
-                  aria-current="page"
-                >
-                MyProperties
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
+ <div id="navbar-placeholder"></div>
   <div class="container">
     <h2 class="text-center mb-4"> MyProperties</h2>
     <div id="house-list" class="row"></div>
@@ -159,8 +80,35 @@
  <script src="js/navbar.js"></script>
  <script src="js/counter.js"></script>
  <script src="js/custom.js"></script>
+<script>
+fetch('Navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
 
+      // هنا شغلي كود التسجيل بعد تحميل الـ Navbar فعليًا
+      const authLinks = document.getElementById("auth-links");
+      const token = localStorage.getItem("token");
 
- =
+      if (authLinks) {
+        if (token) {
+          authLinks.innerHTML = `
+            <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+          `;
+        } else {
+          authLinks.innerHTML = `
+            <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+          `;
+        }
+      }
+
+      window.logout = function () {
+        localStorage.removeItem("token");
+        window.location.href = "AllHouse.html";
+      };
+    });
+</script>
+
+ 
 </body>
 </html>

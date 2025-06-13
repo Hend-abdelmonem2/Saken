@@ -68,9 +68,11 @@
           <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
             <li class="active"><a href="AllHouse.html">الرئيسية</a></li>
             <li><a href="Favorite.html">التفضيلات</a></li>
+            <li><a href="Requests.html">الطلبات</a></li>
             <li><a href="profile.html">الشخصي</a></li>
             <li><a href="recommendation.html">الترشيحات</a></li>
             <li><a href="message.html">الرسائل</a></li>
+
             <li id="auth-links" class="d-inline-block ms-3"></li>
           </ul>
           <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -81,7 +83,7 @@
     </div>
   </nav>
 
-  <!-- الهيدر -->
+
   <div class="hero">
     <div class="hero-slide">
       <div class="img overlay" style="background-image: url('images/hero_bg_3.jpg')"></div>
@@ -93,8 +95,7 @@
         <div class="col-lg-9 text-center">
           <h1 class="heading" data-aos="fade-up">Easiest way to find your dream home</h1>
           <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-            <input type="text" class="form-control px-4" placeholder="Your ZIP code or City. e.g. New York" />
-            <button type="submit" class="btn btn-primary">Search</button>
+          
           </form>
         </div>
       </div>
@@ -168,7 +169,12 @@
                       <strong>النوع:</strong> ${house.type}<br>
                       <strong>السعر:</strong> ${house.price} جنيه
                     </p>
-                    <button class="btn btn-primary btn-details" data-id="${house.landlordId}">تفاصيل</button>
+                   <button class="btn btn-primary btn-details" 
+        data-id="${house.landlordId}" 
+        onclick="window.location.href='houseDetails.html?id=${house.id}'">
+
+    تفاصيل
+</button>
                   </div>
                 </div>
               </div>`;
@@ -287,6 +293,7 @@
       document.getElementById("btn-houses").addEventListener("click", loadHouses);
       document.getElementById("btn-landlords").addEventListener("click", () => loadUsers("Owner"));
       document.getElementById("btn-tenants").addEventListener("click", () => loadUsers("Tenant"));
+
     });
      const authLinks = document.getElementById("auth-links");
   const token = localStorage.getItem("token");

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Saken_WebApplication.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64f9f253e830f762d4e09db50016913becf69f4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93792d7197a276ead2e6a42fac6fc4a18b42d786")]
 [assembly: System.Reflection.AssemblyProductAttribute("Saken_WebApplication.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Saken_WebApplication.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <link rel="stylesheet" href="css/tiny-slider.css" />
+  <link rel="stylesheet" href="css/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <title>لوحة التحكم - إدارة السكن</title>
+</head>
+
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <div class="container my-5">
+    <h2 class="mb-4">لوحة التحكم - إدارة السكن</h2>
+    <div class="d-flex justify-content-end mb-3">
+      <a href="add-housing.html" class="btn btn-primary">+ إضافة سكن جديد</a>
+    </div>
+
+    <div id="dashboard-message"></div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered text-center" id="housing-table">
+        <thead class="table-dark">
+          <tr>
+            <th>العنوان</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+            <th>تجميد</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const tableBody = document.querySelector("#housing-table tbody");
+      const message = document.getElementById("dashboard-message");
+
+      try {
+        const res = await fetch("https://localhost:44327/api/Housing/AllHouses");
+        const resultText = await res.text();
+        const data = JSON.parse(resultText);
+
+        if (!res.ok) {
+          tableBody.innerHTML = "";
+          message.innerHTML = `<div class="alert alert-danger">${data.message || 'فشل في تحميل السكنات.'}</div>`;
+          return;
+        }
+
+        tableBody.innerHTML = data.map(house => `
+          <tr>
+            <td>${house.address}</td>
+            <td>${house.price} جنيه</td>
+            <td>${house.status}</td>
+            <td>
+              <button class="btn ${house.isFrozen ? 'btn-danger' : 'btn-warning'} freeze-btn" data-id="${house.id}">
+                ${house.isFrozen ? 'إلغاء التجميد' : 'تجميد'}
+              </button>
+            </td>
+            <td><a href="edit-housing.html?id=${house.id}" class="btn btn-success">تعديل</a></td>
+            <td><button class="btn btn-danger delete-btn" data-id="${house.id}">حذف</button></td>
+          </tr>`).join("");
+
+      } catch (err) {
+        tableBody.innerHTML = "";
+        message.innerHTML = `<div class="alert alert-danger">خطأ في تحميل البيانات.</div>`;
+        console.error(err);
+      }
+    });
+
+    // حذف السكن
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("delete-btn")) {
+        const houseId = e.target.dataset.id;
+        if (!confirm("هل أنت متأكد من حذف هذا السكن؟")) return;
+
+        const token = localStorage.getItem("token");
+
+        fetch(`https://localhost:44327/api/Housing/DeleteHouse/${houseId}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        })
+          .then(response => {
+            if (!response.ok) throw new Error("فشل في الحذف");
+            return response.text();
+          })
+          .then(() => {
+            alert("تم حذف السكن بنجاح ✅");
+            location.reload();
+          })
+          .catch(err => {
+            alert("حدث خطأ أثناء الحذف ❌");
+            console.error(err);
+          });
+      }
+    });
+
+    // تجميد / إلغاء تجميد السكن
+    document.addEventListener("click", async function (e) {
+      if (e.target && e.target.classList.contains("freeze-btn")) {
+        const button = e.target;
+        const houseId = button.dataset.id;
+
+        try {
+          const response = await fetch(`https://localhost:44327/api/Housing/ToggleFreeze/${houseId}`, {
+            method: 'POST'
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            alert(errorData.message || "حدث خطأ أثناء التجميد.");
+            return;
+          }
+
+          const data = await response.json();
+          alert(data.message);
+
+          button.textContent = data.isFrozen ? "إلغاء التجميد" : "تجميد";
+          button.classList.toggle("btn-warning", !data.isFrozen);
+          button.classList.toggle("btn-danger", data.isFrozen);
+
+        } catch (error) {
+          console.error("Freeze error:", error);
+          alert("حدث خطأ في الاتصال بالخادم.");
+        }
+      }
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
+
+  <!-- تحميل شريط التنقل -->
+  <script>
+    fetch('Navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+
+        const authLinks = document.getElementById("auth-links");
+        const token = localStorage.getItem("token");
+
+        if (authLinks) {
+          if (token) {
+            authLinks.innerHTML = `
+              <a href="#" onclick="logout(); return false;" class="btn btn-outline-danger">تسجيل الخروج</a>
+            `;
+          } else {
+            authLinks.innerHTML = `
+              <a href="Register.html" class="btn btn-outline-primary">تسجيل</a>
+            `;
+          }
+        }
+
+        window.logout = function () {
+          localStorage.removeItem("token");
+          window.location.href = "AllHouse.html";
+        };
+      });
+  </script>
+</body>
+
+</html>
