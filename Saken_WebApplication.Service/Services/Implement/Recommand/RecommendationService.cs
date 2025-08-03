@@ -37,18 +37,17 @@ namespace Saken_WebApplication.Service.Services.Implement.Recommand
             var houses = await _housingRepo.GetAllHousesAsync();
             var recommendations = houses.Select(h => new HousingRecommendationDto
             {
-                Address = h.address,
-                Price = h.price,
-                Photo = h.Photo,
+                Address = h.Address,
+                Price = h.PricePerMeter,
+                Photo = h.PhotoUrl,
                 MatchScore =
-                  (h.address.Contains(pref.location, StringComparison.OrdinalIgnoreCase) ? 1 : 0) +
-                  (h.price >= pref.budgetMin && h.price <= pref.budgetMax ? 1 : 0) +
-                  (h.type == pref.PreferredPropertyType ? 1 : 0) +
-                  (h.furnishingStatus == pref.PreferredFurnishing ? 1 : 0) +
-                  (h.rentalPeriod == pref.PreferredDuration ? 1 : 0) +
-                  (h.targetCustomers == pref.PreferredTargetCustomer ? 1 : 0)
+                  (h.Address.Contains(pref.location, StringComparison.OrdinalIgnoreCase) ? 1 : 0) +
+                  (h.PricePerMeter >= pref.budgetMin && h.PricePerMeter <= pref.budgetMax ? 1 : 0) +
+                  (h.HousingType == pref.PreferredPropertyType ? 1 : 0) +
+                  (h.FurnishingStatus == pref.PreferredFurnishing ? 1 : 0) +
+                  (h.TargetTenantType == pref.PreferredTargetCustomer ? 1 : 0)
             })
-           .Where(r => r.MatchScore > 0) // ✅ شرط التصفية
+           .Where(r => r.MatchScore > 0)
            .OrderByDescending(r => r.MatchScore)
            .ToList();
             return recommendations;

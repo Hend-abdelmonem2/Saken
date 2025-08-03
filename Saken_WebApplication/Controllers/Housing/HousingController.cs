@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Saken_WebApplication.Core.Features.Houses.Command.Models;
 using Saken_WebApplication.Data.DTO.HousingDTO;
 using Saken_WebApplication.Service.Services.Interfaces;
 using Saken_WebApplication.Service.Services.Interfaces.housing;
@@ -19,37 +22,62 @@ namespace Saken_WebApplication.Controllers.Housing
         private readonly IHousingService _housingService;
         private readonly IRecommendationService _recommendationService;
         private readonly IReservationService _reservationService;
+        private readonly IMediator _mediator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HousingController(IHousingFilterService housingFilterService, IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService)
+        public HousingController(IHousingFilterService housingFilterService, IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService, IMediator mediator,  IHttpContextAccessor httpContextAccessor)
         {
             _housingFilterService = housingFilterService;
             _housingService = housingService;
             _recommendationService = recommendationService;
             _reservationService = reservationService;
+            _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor;
+
+
         }
 
 
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddHousing([FromForm] HousingDto dto)
+        /*  [HttpPost("add")]
+          public async Task<IActionResult> AddHousing([FromForm] HousingDto dto)
+          {
+              var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+              if (userId == null)
+                  return Unauthorized("User ID not found in token.");
+              if (!ModelState.IsValid)
+              {
+                  var errors = ModelState.Values
+                     .SelectMany(v => v.Errors)
+                     .Select(e => e.ErrorMessage)
+                     .ToList();
+
+
+                  return BadRequest(new { message = "Model validation failed", errors });
+              }
+
+              await _housingService.AddHousingAsync(dto, userId);
+              return Ok(new { message = "Housing added successfully" });
+          }*/
+
+        private string GetUserId()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-                return Unauthorized("User ID not found in token.");
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values
-                   .SelectMany(v => v.Errors)
-                   .Select(e => e.ErrorMessage)
-                   .ToList();
-
-
-                return BadRequest(new { message = "Model validation failed", errors });
-            }
-
-            await _housingService.AddHousingAsync(dto, userId);
-            return Ok(new { message = "Housing added successfully" });
+            return _httpContextAccessor.HttpContext.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddHouse([FromForm] HousingDto dto)
+        {
+            var landlordId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(landlordId))
+                return Unauthorized();
+
+            await _mediator.Send(new AddHousingCommand(dto, landlordId));
+
+            return Ok("Housing added successfully");
+        }
+
         [Authorize]
         [HttpPost("Reservation")]
         public async Task<IActionResult> AddReservation([FromForm] ReservationDto dto)
@@ -111,6 +139,14 @@ namespace Saken_WebApplication.Controllers.Housing
 
         }
 
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateHousing(int id, [FromForm] HousingDto dto)
+        {
+            await _mediator.Send(new UpdateHousingCommand(id, dto));
+            return Ok("Housing updated successfully");
+        }
+
         [HttpGet("searchHouse")]
         public async Task<IActionResult> SearchHouses(string key)
         {
@@ -146,17 +182,12 @@ namespace Saken_WebApplication.Controllers.Housing
             var result = await _recommendationService.GetRecommendedHousesAsync();
             return Ok(result);
         }
-        [HttpGet("my-houses")]
-        [Authorize]
-        public async Task<IActionResult> GetMyHousings()
+        [HttpGet("owner/grouped-housings")]
+        public async Task<ActionResult<OwnerHousingGroupedDto>> GetHousingsForOwner()
         {
-            var landlordId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (landlordId == null)
-                return Unauthorized();
-
-            var housings = await _housingService.GetHousingsForLandlordIdAsync(landlordId);
-            return Ok(housings);
+            var ownerId = GetUserId();
+            var result = await _housingService.GetGroupedHousingsForLandlordAsync(ownerId);
+            return Ok(result);
         }
 
         [HttpGet("contract/{id}")]

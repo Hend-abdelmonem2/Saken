@@ -21,6 +21,10 @@ namespace Saken_WebApplication.Infrasturcture.Data
         public DbSet<UserPreferences> UserPreferences { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<AppSettings> AppSettings { get; set; }
+        public DbSet<SavedHousing> SavedHousing { get; set; }
+        public DbSet<HousingPhoto> housingPhotos { get; set; }
+        public DbSet<InspectionSlot> InspectionSlots { get; set; }
+        public DbSet<InspectionRequest> inspectionRequests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -70,19 +74,16 @@ namespace Saken_WebApplication.Infrasturcture.Data
 
             modelBuilder.Entity<Housing>(entity =>
             {
-                entity.Property(h => h.type)
+                entity.Property(h => h.HousingType)
                       .HasConversion<string>();
 
-                entity.Property(h => h.status)
+                entity.Property(h => h.FurnishingStatus)
                       .HasConversion<string>();
 
-                entity.Property(h => h.furnishingStatus)
+                entity.Property(h => h.TargetTenantType)
                       .HasConversion<string>();
 
-                entity.Property(h => h.targetCustomers)
-                      .HasConversion<string>();
-
-                entity.Property(h => h.rentalPeriod)
+                entity.Property(h => h.RentdurationUnit)
                       .HasConversion<string>();
 
                 entity.Property(h => h.RentalType)
@@ -112,7 +113,11 @@ namespace Saken_WebApplication.Infrasturcture.Data
             .HasForeignKey(r => r.LandlordId)
             .OnDelete(DeleteBehavior.Restrict);
 
-
+            modelBuilder.Entity<SavedHousing>()
+    .HasOne(s => s.Housing)
+    .WithMany(h => h.SavedByUsers)
+    .HasForeignKey(s => s.HousingId)
+    .OnDelete(DeleteBehavior.Restrict);
 
         }
     

@@ -185,81 +185,229 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.Housing", b =>
                 {
-                    b.Property<int>("h_Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("h_Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("InspectionDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AreaInMeters")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("CommissionAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DepositAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FurnishingStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasBathroom")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasBed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasChair")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasElectricity")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasFan")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasFridge")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasGas")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasInternet")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasKitchen")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasLivingRoom")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasStove")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasTV")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasWardrobe")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasWasher")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasWater")
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("HousingRatingAverage")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("HousingRatingCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HousingType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HousingUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("InsuranceAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsFrozen")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LandlordId")
+                    b.Property<DateTime?>("LastRentedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NumberOfRooms")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Photo")
-                        .IsRequired()
+                    b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PricePerMeter")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RentDurationValue")
+                        .HasColumnType("int");
 
                     b.Property<string>("RentalType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("address")
+                    b.Property<string>("RentdurationUnit")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("commission")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("deposit")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("furnishingStatus")
+                    b.Property<string>("TargetTenantDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("insurance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("participationLink")
+                    b.Property<string>("TargetTenantType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<double>("rating")
-                        .HasColumnType("float");
-
-                    b.Property<decimal>("rent")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("rentalPeriod")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<string>("targetCustomers")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("h_Id");
-
-                    b.HasIndex("LandlordId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("houses");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.HousingPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HousingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HousingId");
+
+                    b.ToTable("housingPhotos");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.InspectionRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InspectionSlotId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InspectionSlotId");
+
+                    b.ToTable("inspectionRequests");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.InspectionSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HousingId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsBooked")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HousingId");
+
+                    b.ToTable("InspectionSlots");
                 });
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.Like", b =>
@@ -404,6 +552,33 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                     b.HasIndex("ReviewerId");
 
                     b.ToTable("reviews");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.SavedHousing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HousingId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SavedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HousingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SavedHousing");
                 });
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.User", b =>
@@ -630,13 +805,46 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.Housing", b =>
                 {
-                    b.HasOne("Saken_WebApplication.Data.Models.User", "Landlord")
+                    b.HasOne("Saken_WebApplication.Data.Models.User", "Owner")
                         .WithMany("Properties")
-                        .HasForeignKey("LandlordId")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Landlord");
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.HousingPhoto", b =>
+                {
+                    b.HasOne("Saken_WebApplication.Data.Models.Housing", "Housing")
+                        .WithMany("Photos")
+                        .HasForeignKey("HousingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Housing");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.InspectionRequest", b =>
+                {
+                    b.HasOne("Saken_WebApplication.Data.Models.InspectionSlot", "InspectionSlot")
+                        .WithMany()
+                        .HasForeignKey("InspectionSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InspectionSlot");
+                });
+
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.InspectionSlot", b =>
+                {
+                    b.HasOne("Saken_WebApplication.Data.Models.Housing", "Housing")
+                        .WithMany("InspectionSlots")
+                        .HasForeignKey("HousingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Housing");
                 });
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.Like", b =>
@@ -724,6 +932,25 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
                     b.Navigation("Reviewer");
                 });
 
+            modelBuilder.Entity("Saken_WebApplication.Data.Models.SavedHousing", b =>
+                {
+                    b.HasOne("Saken_WebApplication.Data.Models.Housing", "Housing")
+                        .WithMany("SavedByUsers")
+                        .HasForeignKey("HousingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Saken_WebApplication.Data.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Housing");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Saken_WebApplication.Data.Models.User", b =>
                 {
                     b.OwnsMany("Saken_WebApplication.Data.Models.RefreshToken", "RefreshTokens", b1 =>
@@ -774,9 +1001,15 @@ namespace Saken_WebApplication.Infrasturcture.Migrations
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.Housing", b =>
                 {
+                    b.Navigation("InspectionSlots");
+
+                    b.Navigation("Photos");
+
                     b.Navigation("Reservations");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("SavedByUsers");
                 });
 
             modelBuilder.Entity("Saken_WebApplication.Data.Models.User", b =>

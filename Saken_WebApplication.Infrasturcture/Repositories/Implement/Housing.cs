@@ -23,41 +23,40 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
             _context = context;
 
         }
-        public async Task<UserPreferences> GetUserPreferencesAsync(string userId )
+        public async Task<UserPreferences> GetUserPreferencesAsync(string userId)
         {
             return await _context.UserPreferences
                 .FirstOrDefaultAsync(p => p.userId == userId);
         }
-        public async Task<List<Saken_WebApplication.Data.Models.Housing>>GetRecommendedHousingsAsync(UserPreferences preferences , string? location = null)
+        public async Task<List<Saken_WebApplication.Data.Models.Housing>> GetRecommendedHousingsAsync(UserPreferences preferences, string? location)
         {
             var query = _context.houses
-                .Include(h => h.Landlord)
+                .Include(h => h.Owner)
                 .AsQueryable();
             if (!string.IsNullOrEmpty(location))
             {
-                query = query.Where(h => h.address.Contains(location));
-                if (!await query.AnyAsync())
-                    return await query.ToListAsync(); 
+                query = query.Where(h => h.Address.Contains(location));
+
             }
 
             if (preferences.PreferredPropertyType != null)
-                query = query.Where(h => h.type == preferences.PreferredPropertyType);
+                query = query.Where(h => h.HousingType == preferences.PreferredPropertyType);
 
-            if (preferences.budgetMin> 0)
-                query = query.Where(h => h.price >= preferences.budgetMin);
+            if (preferences.budgetMin > 0)
+                query = query.Where(h => h.PricePerMeter >= preferences.budgetMin);
 
             if (preferences.budgetMax > 0)
-                query = query.Where(h => h.price <= preferences.budgetMax);
+                query = query.Where(h => h.PricePerMeter <= preferences.budgetMax);
 
             if (preferences.PreferredFurnishing != null)
-                query = query.Where(h => h.furnishingStatus == preferences.PreferredFurnishing);
+                query = query.Where(h => h.FurnishingStatus == preferences.PreferredFurnishing);
 
-            if (preferences.PreferredDuration != null)
-                query = query.Where(h => h.rentalPeriod == preferences.PreferredDuration);
-            if(preferences.PreferredTargetCustomer != null)
-                query = query.Where(h => h.targetCustomers == preferences.PreferredTargetCustomer);
+            /* if (preferences.PreferredDuration != null)
+                 query = query.Where(h => h.RentdurationUnit == preferences.PreferredDuration);*/
+            if (preferences.PreferredTargetCustomer != null)
+                query = query.Where(h => h.TargetTenantType == preferences.PreferredTargetCustomer);
 
-            return   await query.ToListAsync();
+            return await query.ToListAsync();
 
 
         }

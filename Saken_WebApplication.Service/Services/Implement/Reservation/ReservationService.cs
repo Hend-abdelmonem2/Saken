@@ -29,7 +29,7 @@ namespace Saken_WebApplication.Service.Services.Implement.Reservation
                 ReservationDate = r.ReservationDate,
                 Status = r.Status,
                 TenantName = r.Tenant?.FullName,       // اسم المستأجر لو حابه ترجعيه
-                HousingAddress = r.Housing?.address    // عنوان السكن مثلاً
+                HousingAddress = r.Housing?.Address    // عنوان السكن مثلاً
             }).ToList();
         }
         public async Task<ReservationContractDto> GetReservationContractAsync(int  reservationId)
@@ -41,13 +41,13 @@ namespace Saken_WebApplication.Service.Services.Implement.Reservation
 
             return new ReservationContractDto
             {
-                LandlordName = reservation.Housing?.Landlord?.FullName,
-                LandlordPhone = reservation.Housing?.Landlord?.PhoneNumber,
+                LandlordName = reservation.Housing?.Owner?.FullName,
+                LandlordPhone = reservation.Housing?.Owner?.PhoneNumber,
 
                 TenantName = reservation.Tenant?.FullName,
                 TenantPhone = reservation.Tenant?.PhoneNumber,
 
-                HousingAddress = reservation.Housing?.address,
+                HousingAddress = reservation.Housing?.Address,
                 ReservationDate = reservation.ReservationDate,
                 AmountPaid = reservation.AmountPaid,
                 Status = reservation.Status.ToString(),
@@ -69,7 +69,7 @@ namespace Saken_WebApplication.Service.Services.Implement.Reservation
                 ReservationDate = reservation.ReservationDate,
                 Status = reservation.Status,
                 TenantName = reservation.Tenant?.FullName,
-                HousingAddress = reservation.Housing?.address
+                HousingAddress = reservation.Housing?.Address
             };
         }
     }

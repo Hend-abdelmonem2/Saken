@@ -752,7 +752,7 @@
         }
       }
     },
-    "/api/Housing/add": {
+    "/api/Housing": {
       "post": {
         "tags": [
           "Housing"
@@ -767,66 +767,142 @@
                     "type": "integer",
                     "format": "int32"
                   },
-                  "Type": {
+                  "Title": {
                     "type": "string"
-                  },
-                  "Price": {
-                    "type": "number",
-                    "format": "double"
                   },
                   "Address": {
                     "type": "string"
                   },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
+                  "PricePerMeter": {
+                    "type": "number",
+                    "format": "double"
                   },
-                  "Status": {
+                  "AreaInMeters": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Floor": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HousingType": {
                     "type": "string"
                   },
                   "FurnishingStatus": {
                     "type": "string"
                   },
-                  "TargetCustomers": {
-                    "type": "string"
-                  },
-                  "RentalPeriod": {
-                    "type": "string"
-                  },
-                  "Deposit": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Rent": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Insurance": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Commission": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "ParticipationLink": {
-                    "type": "string"
-                  },
                   "RentalType": {
                     "type": "string"
                   },
-                  "PhotoUrl": {
+                  "RentDurationValue": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "RentDurationUnit": {
                     "type": "string"
                   },
-                  "InspectionDate": {
+                  "NumberOfRooms": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HasKitchen": {
+                    "type": "boolean"
+                  },
+                  "HasBathroom": {
+                    "type": "boolean"
+                  },
+                  "HasLivingRoom": {
+                    "type": "boolean"
+                  },
+                  "HasBed": {
+                    "type": "boolean"
+                  },
+                  "HasWardrobe": {
+                    "type": "boolean"
+                  },
+                  "HasChair": {
+                    "type": "boolean"
+                  },
+                  "HasFridge": {
+                    "type": "boolean"
+                  },
+                  "HasStove": {
+                    "type": "boolean"
+                  },
+                  "HasWasher": {
+                    "type": "boolean"
+                  },
+                  "HasFan": {
+                    "type": "boolean"
+                  },
+                  "HasTV": {
+                    "type": "boolean"
+                  },
+                  "HasInternet": {
+                    "type": "boolean"
+                  },
+                  "HasGas": {
+                    "type": "boolean"
+                  },
+                  "HasElectricity": {
+                    "type": "boolean"
+                  },
+                  "HasWater": {
+                    "type": "boolean"
+                  },
+                  "TargetTenantType": {
+                    "type": "string"
+                  },
+                  "TargetTenantDescription": {
+                    "type": "string"
+                  },
+                  "DepositAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "InsuranceAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CommissionAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Photo": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "binary"
                   },
-                  "LandlordId": {
+                  "photoUrl": {
                     "type": "string"
                   },
-                  "LandlordName": {
+                  "ExtraPhotos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "HousingUrl": {
                     "type": "string"
+                  },
+                  "OwnerName": {
+                    "type": "string"
+                  },
+                  "OwnerPhoneNumber": {
+                    "type": "string"
+                  },
+                  "OwnerEmail": {
+                    "type": "string"
+                  },
+                  "ownerId": {
+                    "type": "string"
+                  },
+                  "InspectionDates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               },
@@ -834,58 +910,124 @@
                 "Id": {
                   "style": "form"
                 },
-                "Type": {
-                  "style": "form"
-                },
-                "Price": {
+                "Title": {
                   "style": "form"
                 },
                 "Address": {
                   "style": "form"
                 },
-                "Photo": {
+                "PricePerMeter": {
                   "style": "form"
                 },
-                "Status": {
+                "AreaInMeters": {
+                  "style": "form"
+                },
+                "Floor": {
+                  "style": "form"
+                },
+                "HousingType": {
                   "style": "form"
                 },
                 "FurnishingStatus": {
                   "style": "form"
                 },
-                "TargetCustomers": {
-                  "style": "form"
-                },
-                "RentalPeriod": {
-                  "style": "form"
-                },
-                "Deposit": {
-                  "style": "form"
-                },
-                "Rent": {
-                  "style": "form"
-                },
-                "Insurance": {
-                  "style": "form"
-                },
-                "Commission": {
-                  "style": "form"
-                },
-                "ParticipationLink": {
-                  "style": "form"
-                },
                 "RentalType": {
                   "style": "form"
                 },
-                "PhotoUrl": {
+                "RentDurationValue": {
                   "style": "form"
                 },
-                "InspectionDate": {
+                "RentDurationUnit": {
                   "style": "form"
                 },
-                "LandlordId": {
+                "NumberOfRooms": {
                   "style": "form"
                 },
-                "LandlordName": {
+                "HasKitchen": {
+                  "style": "form"
+                },
+                "HasBathroom": {
+                  "style": "form"
+                },
+                "HasLivingRoom": {
+                  "style": "form"
+                },
+                "HasBed": {
+                  "style": "form"
+                },
+                "HasWardrobe": {
+                  "style": "form"
+                },
+                "HasChair": {
+                  "style": "form"
+                },
+                "HasFridge": {
+                  "style": "form"
+                },
+                "HasStove": {
+                  "style": "form"
+                },
+                "HasWasher": {
+                  "style": "form"
+                },
+                "HasFan": {
+                  "style": "form"
+                },
+                "HasTV": {
+                  "style": "form"
+                },
+                "HasInternet": {
+                  "style": "form"
+                },
+                "HasGas": {
+                  "style": "form"
+                },
+                "HasElectricity": {
+                  "style": "form"
+                },
+                "HasWater": {
+                  "style": "form"
+                },
+                "TargetTenantType": {
+                  "style": "form"
+                },
+                "TargetTenantDescription": {
+                  "style": "form"
+                },
+                "DepositAmount": {
+                  "style": "form"
+                },
+                "InsuranceAmount": {
+                  "style": "form"
+                },
+                "CommissionAmount": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "photoUrl": {
+                  "style": "form"
+                },
+                "ExtraPhotos": {
+                  "style": "form"
+                },
+                "HousingUrl": {
+                  "style": "form"
+                },
+                "OwnerName": {
+                  "style": "form"
+                },
+                "OwnerPhoneNumber": {
+                  "style": "form"
+                },
+                "OwnerEmail": {
+                  "style": "form"
+                },
+                "ownerId": {
+                  "style": "form"
+                },
+                "InspectionDates": {
                   "style": "form"
                 }
               }
@@ -1011,66 +1153,142 @@
                     "type": "integer",
                     "format": "int32"
                   },
-                  "Type": {
+                  "Title": {
                     "type": "string"
-                  },
-                  "Price": {
-                    "type": "number",
-                    "format": "double"
                   },
                   "Address": {
                     "type": "string"
                   },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
+                  "PricePerMeter": {
+                    "type": "number",
+                    "format": "double"
                   },
-                  "Status": {
+                  "AreaInMeters": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Floor": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HousingType": {
                     "type": "string"
                   },
                   "FurnishingStatus": {
                     "type": "string"
                   },
-                  "TargetCustomers": {
-                    "type": "string"
-                  },
-                  "RentalPeriod": {
-                    "type": "string"
-                  },
-                  "Deposit": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Rent": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Insurance": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Commission": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "ParticipationLink": {
-                    "type": "string"
-                  },
                   "RentalType": {
                     "type": "string"
                   },
-                  "PhotoUrl": {
+                  "RentDurationValue": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "RentDurationUnit": {
                     "type": "string"
                   },
-                  "InspectionDate": {
+                  "NumberOfRooms": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HasKitchen": {
+                    "type": "boolean"
+                  },
+                  "HasBathroom": {
+                    "type": "boolean"
+                  },
+                  "HasLivingRoom": {
+                    "type": "boolean"
+                  },
+                  "HasBed": {
+                    "type": "boolean"
+                  },
+                  "HasWardrobe": {
+                    "type": "boolean"
+                  },
+                  "HasChair": {
+                    "type": "boolean"
+                  },
+                  "HasFridge": {
+                    "type": "boolean"
+                  },
+                  "HasStove": {
+                    "type": "boolean"
+                  },
+                  "HasWasher": {
+                    "type": "boolean"
+                  },
+                  "HasFan": {
+                    "type": "boolean"
+                  },
+                  "HasTV": {
+                    "type": "boolean"
+                  },
+                  "HasInternet": {
+                    "type": "boolean"
+                  },
+                  "HasGas": {
+                    "type": "boolean"
+                  },
+                  "HasElectricity": {
+                    "type": "boolean"
+                  },
+                  "HasWater": {
+                    "type": "boolean"
+                  },
+                  "TargetTenantType": {
+                    "type": "string"
+                  },
+                  "TargetTenantDescription": {
+                    "type": "string"
+                  },
+                  "DepositAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "InsuranceAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CommissionAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Photo": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "binary"
                   },
-                  "LandlordId": {
+                  "photoUrl": {
                     "type": "string"
                   },
-                  "LandlordName": {
+                  "ExtraPhotos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "HousingUrl": {
                     "type": "string"
+                  },
+                  "OwnerName": {
+                    "type": "string"
+                  },
+                  "OwnerPhoneNumber": {
+                    "type": "string"
+                  },
+                  "OwnerEmail": {
+                    "type": "string"
+                  },
+                  "ownerId": {
+                    "type": "string"
+                  },
+                  "InspectionDates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               },
@@ -1078,58 +1296,424 @@
                 "Id": {
                   "style": "form"
                 },
-                "Type": {
-                  "style": "form"
-                },
-                "Price": {
+                "Title": {
                   "style": "form"
                 },
                 "Address": {
                   "style": "form"
                 },
-                "Photo": {
+                "PricePerMeter": {
                   "style": "form"
                 },
-                "Status": {
+                "AreaInMeters": {
+                  "style": "form"
+                },
+                "Floor": {
+                  "style": "form"
+                },
+                "HousingType": {
                   "style": "form"
                 },
                 "FurnishingStatus": {
                   "style": "form"
                 },
-                "TargetCustomers": {
+                "RentalType": {
                   "style": "form"
                 },
-                "RentalPeriod": {
+                "RentDurationValue": {
                   "style": "form"
                 },
-                "Deposit": {
+                "RentDurationUnit": {
                   "style": "form"
                 },
-                "Rent": {
+                "NumberOfRooms": {
                   "style": "form"
                 },
-                "Insurance": {
+                "HasKitchen": {
                   "style": "form"
                 },
-                "Commission": {
+                "HasBathroom": {
                   "style": "form"
                 },
-                "ParticipationLink": {
+                "HasLivingRoom": {
+                  "style": "form"
+                },
+                "HasBed": {
+                  "style": "form"
+                },
+                "HasWardrobe": {
+                  "style": "form"
+                },
+                "HasChair": {
+                  "style": "form"
+                },
+                "HasFridge": {
+                  "style": "form"
+                },
+                "HasStove": {
+                  "style": "form"
+                },
+                "HasWasher": {
+                  "style": "form"
+                },
+                "HasFan": {
+                  "style": "form"
+                },
+                "HasTV": {
+                  "style": "form"
+                },
+                "HasInternet": {
+                  "style": "form"
+                },
+                "HasGas": {
+                  "style": "form"
+                },
+                "HasElectricity": {
+                  "style": "form"
+                },
+                "HasWater": {
+                  "style": "form"
+                },
+                "TargetTenantType": {
+                  "style": "form"
+                },
+                "TargetTenantDescription": {
+                  "style": "form"
+                },
+                "DepositAmount": {
+                  "style": "form"
+                },
+                "InsuranceAmount": {
+                  "style": "form"
+                },
+                "CommissionAmount": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "photoUrl": {
+                  "style": "form"
+                },
+                "ExtraPhotos": {
+                  "style": "form"
+                },
+                "HousingUrl": {
+                  "style": "form"
+                },
+                "OwnerName": {
+                  "style": "form"
+                },
+                "OwnerPhoneNumber": {
+                  "style": "form"
+                },
+                "OwnerEmail": {
+                  "style": "form"
+                },
+                "ownerId": {
+                  "style": "form"
+                },
+                "InspectionDates": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/update/{id}": {
+      "put": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "PricePerMeter": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "AreaInMeters": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Floor": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HousingType": {
+                    "type": "string"
+                  },
+                  "FurnishingStatus": {
+                    "type": "string"
+                  },
+                  "RentalType": {
+                    "type": "string"
+                  },
+                  "RentDurationValue": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "RentDurationUnit": {
+                    "type": "string"
+                  },
+                  "NumberOfRooms": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HasKitchen": {
+                    "type": "boolean"
+                  },
+                  "HasBathroom": {
+                    "type": "boolean"
+                  },
+                  "HasLivingRoom": {
+                    "type": "boolean"
+                  },
+                  "HasBed": {
+                    "type": "boolean"
+                  },
+                  "HasWardrobe": {
+                    "type": "boolean"
+                  },
+                  "HasChair": {
+                    "type": "boolean"
+                  },
+                  "HasFridge": {
+                    "type": "boolean"
+                  },
+                  "HasStove": {
+                    "type": "boolean"
+                  },
+                  "HasWasher": {
+                    "type": "boolean"
+                  },
+                  "HasFan": {
+                    "type": "boolean"
+                  },
+                  "HasTV": {
+                    "type": "boolean"
+                  },
+                  "HasInternet": {
+                    "type": "boolean"
+                  },
+                  "HasGas": {
+                    "type": "boolean"
+                  },
+                  "HasElectricity": {
+                    "type": "boolean"
+                  },
+                  "HasWater": {
+                    "type": "boolean"
+                  },
+                  "TargetTenantType": {
+                    "type": "string"
+                  },
+                  "TargetTenantDescription": {
+                    "type": "string"
+                  },
+                  "DepositAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "InsuranceAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CommissionAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "photoUrl": {
+                    "type": "string"
+                  },
+                  "ExtraPhotos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "HousingUrl": {
+                    "type": "string"
+                  },
+                  "OwnerName": {
+                    "type": "string"
+                  },
+                  "OwnerPhoneNumber": {
+                    "type": "string"
+                  },
+                  "OwnerEmail": {
+                    "type": "string"
+                  },
+                  "ownerId": {
+                    "type": "string"
+                  },
+                  "InspectionDates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Title": {
+                  "style": "form"
+                },
+                "Address": {
+                  "style": "form"
+                },
+                "PricePerMeter": {
+                  "style": "form"
+                },
+                "AreaInMeters": {
+                  "style": "form"
+                },
+                "Floor": {
+                  "style": "form"
+                },
+                "HousingType": {
+                  "style": "form"
+                },
+                "FurnishingStatus": {
                   "style": "form"
                 },
                 "RentalType": {
                   "style": "form"
                 },
-                "PhotoUrl": {
+                "RentDurationValue": {
                   "style": "form"
                 },
-                "InspectionDate": {
+                "RentDurationUnit": {
                   "style": "form"
                 },
-                "LandlordId": {
+                "NumberOfRooms": {
                   "style": "form"
                 },
-                "LandlordName": {
+                "HasKitchen": {
+                  "style": "form"
+                },
+                "HasBathroom": {
+                  "style": "form"
+                },
+                "HasLivingRoom": {
+                  "style": "form"
+                },
+                "HasBed": {
+                  "style": "form"
+                },
+                "HasWardrobe": {
+                  "style": "form"
+                },
+                "HasChair": {
+                  "style": "form"
+                },
+                "HasFridge": {
+                  "style": "form"
+                },
+                "HasStove": {
+                  "style": "form"
+                },
+                "HasWasher": {
+                  "style": "form"
+                },
+                "HasFan": {
+                  "style": "form"
+                },
+                "HasTV": {
+                  "style": "form"
+                },
+                "HasInternet": {
+                  "style": "form"
+                },
+                "HasGas": {
+                  "style": "form"
+                },
+                "HasElectricity": {
+                  "style": "form"
+                },
+                "HasWater": {
+                  "style": "form"
+                },
+                "TargetTenantType": {
+                  "style": "form"
+                },
+                "TargetTenantDescription": {
+                  "style": "form"
+                },
+                "DepositAmount": {
+                  "style": "form"
+                },
+                "InsuranceAmount": {
+                  "style": "form"
+                },
+                "CommissionAmount": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "photoUrl": {
+                  "style": "form"
+                },
+                "ExtraPhotos": {
+                  "style": "form"
+                },
+                "HousingUrl": {
+                  "style": "form"
+                },
+                "OwnerName": {
+                  "style": "form"
+                },
+                "OwnerPhoneNumber": {
+                  "style": "form"
+                },
+                "OwnerEmail": {
+                  "style": "form"
+                },
+                "ownerId": {
+                  "style": "form"
+                },
+                "InspectionDates": {
                   "style": "form"
                 }
               }
@@ -1254,14 +1838,31 @@
         }
       }
     },
-    "/api/Housing/my-houses": {
+    "/api/Housing/owner/grouped-housings": {
       "get": {
         "tags": [
           "Housing"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
+                }
+              }
+            }
           }
         }
       }
@@ -1595,30 +2196,6 @@
           }
         }
       }
-    },
-    "/api/Values/setdemodata": {
-      "post": {
-        "tags": [
-          "Values"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Values/resetdemodata": {
-      "post": {
-        "tags": [
-          "Values"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -1658,31 +2235,34 @@
         },
         "additionalProperties": false
       },
-      "HousingDto": {
+      "HouseDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
-          "type": {
+          "title": {
             "type": "string",
             "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double"
           },
           "address": {
             "type": "string",
             "nullable": true
           },
-          "photo": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
+          "pricePerMeter": {
+            "type": "number",
+            "format": "double"
           },
-          "status": {
+          "areaInMeters": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "housingType": {
             "type": "string",
             "nullable": true
           },
@@ -1690,31 +2270,62 @@
             "type": "string",
             "nullable": true
           },
-          "targetCustomers": {
+          "rentalType": {
             "type": "string",
             "nullable": true
           },
-          "rentalPeriod": {
+          "rate": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "photoUrl": {
             "type": "string",
             "nullable": true
           },
-          "deposit": {
+          "ownerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HousingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricePerMeter": {
             "type": "number",
             "format": "double"
           },
-          "rent": {
-            "type": "number",
-            "format": "double"
+          "areaInMeters": {
+            "type": "integer",
+            "format": "int32"
           },
-          "insurance": {
-            "type": "number",
-            "format": "double"
+          "floor": {
+            "type": "integer",
+            "format": "int32"
           },
-          "commission": {
-            "type": "number",
-            "format": "double"
+          "housingType": {
+            "type": "string",
+            "nullable": true
           },
-          "participationLink": {
+          "furnishingStatus": {
             "type": "string",
             "nullable": true
           },
@@ -1722,21 +2333,126 @@
             "type": "string",
             "nullable": true
           },
+          "rentDurationValue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rentDurationUnit": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfRooms": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasKitchen": {
+            "type": "boolean"
+          },
+          "hasBathroom": {
+            "type": "boolean"
+          },
+          "hasLivingRoom": {
+            "type": "boolean"
+          },
+          "hasBed": {
+            "type": "boolean"
+          },
+          "hasWardrobe": {
+            "type": "boolean"
+          },
+          "hasChair": {
+            "type": "boolean"
+          },
+          "hasFridge": {
+            "type": "boolean"
+          },
+          "hasStove": {
+            "type": "boolean"
+          },
+          "hasWasher": {
+            "type": "boolean"
+          },
+          "hasFan": {
+            "type": "boolean"
+          },
+          "hasTV": {
+            "type": "boolean"
+          },
+          "hasInternet": {
+            "type": "boolean"
+          },
+          "hasGas": {
+            "type": "boolean"
+          },
+          "hasElectricity": {
+            "type": "boolean"
+          },
+          "hasWater": {
+            "type": "boolean"
+          },
+          "targetTenantType": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetTenantDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "depositAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "insuranceAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "commissionAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "photo": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
           "photoUrl": {
             "type": "string",
             "nullable": true
           },
-          "inspectionDate": {
-            "type": "string",
-            "format": "date-time",
+          "extraPhotos": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
             "nullable": true
           },
-          "landlordId": {
+          "housingUrl": {
             "type": "string",
             "nullable": true
           },
-          "landlordName": {
+          "ownerName": {
             "type": "string",
+            "nullable": true
+          },
+          "ownerPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "inspectionDates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
             "nullable": true
           }
         },
@@ -1760,6 +2476,26 @@
           "sentAt": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OwnerHousingGroupedDto": {
+        "type": "object",
+        "properties": {
+          "availableHousings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HouseDTO"
+            },
+            "nullable": true
+          },
+          "rentedHousings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HouseDTO"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

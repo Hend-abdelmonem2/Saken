@@ -32,18 +32,18 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
                 .Select(l => l.EntityId)
                 .ToListAsync();
             var likedHouseIdsInt = likedHouseIds
-            .Where(id => int.TryParse(id, out _)) 
+            .Where(id => int.TryParse(id, out _))
              .Select(id => int.Parse(id))
              .ToList();
 
             var houses = await _context.houses
-                .Where(h => likedHouseIdsInt.Contains(h.h_Id))
+                .Where(h => likedHouseIdsInt.Contains(h.Id))
                 .Select(h => new HousingLikeDto
                 {
-                    Id = h.h_Id,
-                    Address = h.address,
-                    Price = h.price,
-                    PhotoUrl = h.Photo
+                    Id = h.Id,
+                    Address = h.Address,
+                    Price = h.PricePerMeter,
+                    PhotoUrl = h.PhotoUrl
                 }).ToListAsync();
 
             return houses;
@@ -63,7 +63,7 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
                     Name = u.FullName,
                     Email = u.Email,
                     ProfilePicture = u.profilePicture,
-                    UserType=u.Role
+                    UserType = u.Role
                 }).ToListAsync();
 
             return users;

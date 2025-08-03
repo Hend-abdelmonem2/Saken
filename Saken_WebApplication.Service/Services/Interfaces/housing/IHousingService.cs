@@ -11,18 +11,28 @@ namespace Saken_WebApplication.Service.Services.Interfaces.housing
 {
     public interface IHousingService
     {
-        Task AddHousingAsync(HousingDto dto , string landlordId);
+        Task AddHousingAsync(HousingDto dto, string landlordId);
+        Task<InspectionRequestResponseDto> SubmitInspectionRequestAsync(InspectionRequestDto dto);
+        Task<bool> SaveHousingAsync(string userId, int housingId);
         Task AddReservationAsync(ReservationDto dto, string userId);
-        Task<IEnumerable<HousingDto>> GetAllHousesAsync();
         Task UpdateHousingAsync(int id, HousingDto dto);
-        Task<IEnumerable<HousingDto>> SearchHousesAsync(string searchKey);
+        Task<(bool success, string message, bool isFrozen)> ToggleFreezeAsync(int id);
+
+
+        Task<List<InspectionSlotDetailsDto>> GetAvailableSlotsAsync(int housingId);
+        Task<List<InspectionRequestResponseDto>> GetInspectionRequestsForOwnerAsync(string ownerId);
+        Task<IEnumerable<HouseDTO>> GetAllHousesAsync();
+
+        Task<IEnumerable<HouseDTO>> SearchHousesAsync(string searchKey);
 
         Task<bool> DeleteHousingAsync(int houseId);
-        Task<IEnumerable<HousingDto>> GetHousingsForLandlordIdAsync(string landlordId);
-        Task<HousingDto?> GetHousingByIdAsync(int id);
+        Task<OwnerHousingGroupedDto> GetGroupedHousingsForLandlordAsync(string landlordId);
+        Task<List<TenantReservationDto>> GetReservationsForTenantAsync(string userId);
 
-
-        Task<(bool success, string message, bool isFrozen)> ToggleFreezeAsync(int id);
+        Task<List<HouseDTO>> GetHousingsByLowestPriceAsync();
+        Task<List<HouseDTO>> GetHousingsByHighestRatingAsync();
+        Task<HousingDetailsDto?> GetHousingByIdAsync(int id);
+        Task<List<HouseDTO>> GetSavedHousingsAsync(string userId);
 
     }
 }

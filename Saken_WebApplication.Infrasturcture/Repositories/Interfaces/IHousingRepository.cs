@@ -1,4 +1,5 @@
-﻿using Saken_WebApplication.Data.Models;
+﻿using Saken_WebApplication.Data.DTO.HousingDTO;
+using Saken_WebApplication.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,26 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Interfaces
     public interface IHousingRepository
     {
         Task AddHousingAsync(Housing housing);
+        Task<InspectionRequestResponseDto> SubmitInspectionRequestAsync(InspectionRequestDto dto);
+        Task<bool> SaveHousingAsync(string userId, int housingId);
+        Task UpdateAsync(Housing housing);
         Task AddReservationAsync(Reservation reservation);
-        Task<IEnumerable<Housing>> GetAllHousesAsync();
 
+        Task<List<InspectionSlot>> GetAvailableSlotsByHousingIdAsync(int housingId);
+        Task<List<InspectionRequestResponseDto>> GetInspectionRequestsByOwnerAsync(string ownerId);
+        Task<IEnumerable<Housing>> GetAllHousesAsync();
         Task<Housing?> GetByIdAsync(int id);
 
-        Task UpdateAsync(Housing housing);
-
-        Task<IEnumerable<Housing>> SearchHousesAsync(string searchKey);
+        Task<List<HouseDTO>> GetSavedHousingsAsync(string userId);
         Task<bool> DeleteHousingAsync(int houseId);
-        Task<Housing> GetHouseWithLandlordAsync(int housingId);
-        Task<IEnumerable<Housing>> GetHousingsForLandlordIdAsync(string landlordId);
+        Task<Housing?> GetByIdWithPhotosAsync(int id);
+        Task<IEnumerable<Housing>> SearchHousesAsync(string searchKey);
+        Task<List<Housing>> GetHousingsForLandlordIdAsync(string landlordId);
+        Task<List<Reservation>> GetReservationsForTenantAsync(string userId);
 
         Task<IEnumerable<Reservation>> GetReservationsByLandlordIdAsync(string landlordId);
+        Task<List<Housing>> GetHousingsOrderedByPriceAsync();
+        Task<List<Housing>> GetHousingsOrderedByRatingAsync();
         Task<Reservation> GetReservationByIdAsync(int reservationId);
         Task SaveChangesAsync();
     }

@@ -480,8 +480,8 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "AddHousing",
-    "RelativePath": "api/Housing/add",
+    "Method": "AddHouse",
+    "RelativePath": "api/Housing",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -492,13 +492,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Type",
+        "Name": "Title",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -507,12 +502,22 @@
         "IsRequired": false
       },
       {
-        "Name": "Photo",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "PricePerMeter",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
-        "Name": "Status",
+        "Name": "AreaInMeters",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Floor",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingType",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -522,63 +527,168 @@
         "IsRequired": false
       },
       {
-        "Name": "TargetCustomers",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RentalPeriod",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Deposit",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Rent",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Insurance",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Commission",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "ParticipationLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "RentalType",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "PhotoUrl",
+        "Name": "RentDurationValue",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "RentDurationUnit",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "InspectionDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "NumberOfRooms",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "LandlordId",
+        "Name": "HasKitchen",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBathroom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasLivingRoom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWardrobe",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasChair",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFridge",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasStove",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWasher",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFan",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasTV",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasInternet",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasGas",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasElectricity",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWater",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "TargetTenantType",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "LandlordName",
+        "Name": "TargetTenantDescription",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepositAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "InsuranceAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "CommissionAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "photoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExtraPhotos",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InspectionDates",
+        "Type": "System.Collections.Generic.List\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
@@ -654,13 +764,23 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetMyHousings",
-    "RelativePath": "api/Housing/my-houses",
+    "Method": "GetHousingsForOwner",
+    "RelativePath": "api/Housing/owner/grouped-housings",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.OwnerHousingGroupedDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
@@ -774,6 +894,227 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "UpdateHousing",
+    "RelativePath": "api/Housing/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PricePerMeter",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "AreaInMeters",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Floor",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FurnishingStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RentalType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RentDurationValue",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "RentDurationUnit",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NumberOfRooms",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasKitchen",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBathroom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasLivingRoom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWardrobe",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasChair",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFridge",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasStove",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWasher",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFan",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasTV",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasInternet",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasGas",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasElectricity",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWater",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "TargetTenantType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TargetTenantDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepositAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "InsuranceAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "CommissionAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "photoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExtraPhotos",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InspectionDates",
+        "Type": "System.Collections.Generic.List\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
     "Method": "UpdateHouse",
     "RelativePath": "api/Housing/updateHouse/{id}",
     "HttpMethod": "PUT",
@@ -791,13 +1132,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Type",
+        "Name": "Title",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -806,12 +1142,22 @@
         "IsRequired": false
       },
       {
-        "Name": "Photo",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "PricePerMeter",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
-        "Name": "Status",
+        "Name": "AreaInMeters",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Floor",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingType",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -821,63 +1167,168 @@
         "IsRequired": false
       },
       {
-        "Name": "TargetCustomers",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RentalPeriod",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Deposit",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Rent",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Insurance",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Commission",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "ParticipationLink",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "RentalType",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "PhotoUrl",
+        "Name": "RentDurationValue",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "RentDurationUnit",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "InspectionDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "NumberOfRooms",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "LandlordId",
+        "Name": "HasKitchen",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBathroom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasLivingRoom",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBed",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWardrobe",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasChair",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFridge",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasStove",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWasher",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasFan",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasTV",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasInternet",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasGas",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasElectricity",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWater",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "TargetTenantType",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "LandlordName",
+        "Name": "TargetTenantDescription",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepositAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "InsuranceAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "CommissionAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "photoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExtraPhotos",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HousingUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InspectionDates",
+        "Type": "System.Collections.Generic.List\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
@@ -1051,26 +1502,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.ValuesController",
-    "Method": "ResetDemoData",
-    "RelativePath": "api/Values/resetdemodata",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.ValuesController",
-    "Method": "SetDemoData",
-    "RelativePath": "api/Values/setdemodata",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   }
 ]

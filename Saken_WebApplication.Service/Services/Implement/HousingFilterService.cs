@@ -19,7 +19,7 @@ namespace Saken_WebApplication.Service.Services.Implement
         {
             _housingRepository = housingRepository; 
         }
-        public async Task<List<HousingDto>> GetRecommendedHousingsAsync(string userId , string? location = null)
+        public async Task<List<HousingDto>> GetRecommendedHousingsAsync(string userId, string? location = null)
         {
             var preferences = await _housingRepository.GetUserPreferencesAsync(userId);
 
@@ -42,26 +42,25 @@ namespace Saken_WebApplication.Service.Services.Implement
             var housingDtos = housings.Select(h => new HousingDto
             {
 
-                Type = h.type.ToString(),
-                Price = h.price,
-                Address = h.address,
-                PhotoUrl = h.Photo,
-                Status = h.status.ToString(),
-                FurnishingStatus = h.furnishingStatus.ToString(),
-                TargetCustomers = h.targetCustomers.ToString(),
-                RentalPeriod = h.rentalPeriod.ToString(),
-                Deposit = h.deposit,
-                Rent = h.rent,
-                Insurance = h.insurance,
-                Commission = h.commission,
-                ParticipationLink = h.participationLink,
+                HousingType = h.HousingType.ToString(),
+                PricePerMeter = h.PricePerMeter,
+                Address = h.Address,
+                // photoUrl = h.PhotoUrl,
+                FurnishingStatus = h.FurnishingStatus.ToString(),
+                TargetTenantType = h.TargetTenantType.ToString(),
+                RentDurationUnit = h.RentdurationUnit.ToString(),
+                DepositAmount = h.DepositAmount,
+                InsuranceAmount = h.InsuranceAmount,
+                CommissionAmount = h.CommissionAmount,
+                HousingUrl = h.HousingUrl,
                 RentalType = h.RentalType.ToString(),
-                LandlordId = h.LandlordId,
+                ownerId = h.OwnerId,
 
             }).ToList();
 
             return housingDtos;
         }
+
     }
     }
     

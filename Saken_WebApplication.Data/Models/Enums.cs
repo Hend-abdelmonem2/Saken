@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Data.Models
@@ -12,11 +13,8 @@ namespace Saken_WebApplication.Data.Models
         {
             Owner,
             Broker,
-            BrokerManager,
             Tenant,
-            TemporaryTenant,
-            Seeker,
-            FutureTenant,
+            Landlord_and_Tenant, 
             User
         }
 
@@ -61,7 +59,7 @@ namespace Saken_WebApplication.Data.Models
             New,
             Old
         }
-
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum ReviewType
         {
             Housing,
@@ -73,6 +71,23 @@ namespace Saken_WebApplication.Data.Models
             Students,
             Employees,
             Any
+        }
+        public enum DayOfWeek
+        {
+            Sunday = 0,
+            Monday = 1,
+            Tuesday = 2,
+            Wednesday = 3,
+            Thursday = 4,
+            Friday = 5,
+            Saturday = 6
+        }
+        public enum RentDurationUnit
+        {
+            Day,
+            Week,
+            Month,
+            Year
         }
     }
 }

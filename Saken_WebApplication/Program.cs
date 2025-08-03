@@ -29,6 +29,12 @@ using Saken_WebApplication.Service.Services.Implement.Recommand;
 using Saken_WebApplication.Service.Services.Interfaces.Reservation;
 using Saken_WebApplication.Service.Services.Implement.Reservation;
 using AutoMapper;
+using Saken_WebApplication.Infrasturcture;
+using Saken_WebApplication.Service;
+using MediatR;
+using Saken_WebApplication.Core.Features.Houses.Command.Handlers;
+using Saken_WebApplication.Core.Features.Houses.Query.Handlers;
+using Saken_WebApplication.Core.Features.Houses.Base;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +66,33 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
         );
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+#region Dependency Injection
+builder.Services.AddInfrastructureDependencies()
+    .AddServiceeDependencies();
+#endregion
+builder.Services.AddMediatR(typeof(AddHousingHandler).Assembly);
+builder.Services.AddMediatR(typeof(UpdateHousingHandler).Assembly);
+builder.Services.AddMediatR(typeof(AddReservationHandler).Assembly);
+builder.Services.AddMediatR(typeof(DeleteHousingHandler).Assembly);
+builder.Services.AddMediatR(typeof(SaveHousingHandler).Assembly);
+builder.Services.AddMediatR(typeof(SubmitInspectionRequestHandler).Assembly);
+builder.Services.AddMediatR(typeof(ToggleFreezeHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetAllHousesHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetAvailableSlotsHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetGroupedHousingsForLandlordHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetHousingByIdHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetHousingsByHighestRatingHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetHousingsByLowestPriceHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetInspectionRequestsForOwnerHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetReservationsForTenantHandler).Assembly);
+builder.Services.AddMediatR(typeof(GetSavedHousingsHandler).Assembly);
+builder.Services.AddMediatR(typeof(SearchHousesHandler).Assembly);
+builder.Services.AddMediatR(typeof(BaseHousingHandler).Assembly);
+
+
+builder.Services.AddHttpContextAccessor();
+
+
 builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
@@ -69,11 +102,6 @@ builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IDummyDataService, Saken_WebApplication.Service.Services.Implement.DummyDataService>();
 builder.Services.AddScoped<IDummyUserService, DummyUserService>();
-
-
-
-builder.Services.AddHttpContextAccessor();
-
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
@@ -89,12 +117,16 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IGoogleService, GoogleService>();
 builder.Services.AddScoped<IAppSettingsService, AppSettingsService>();
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 
 builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
+
+//builder.Services.AddAutoMapper(typeof(Program));
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+
+
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddAuthentication(options =>

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj": {}
+    "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
+    "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj",
         "projectName": "Saken_WebApplication.Data",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\obj\\",
+        "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj",
+        "packagesPath": "C:\\Users\\Hend\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hend\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -115,24 +115,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj": {
+    "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+        "projectUniqueName": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
         "projectName": "Saken_WebApplication.Infrasturcture",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\obj\\",
+        "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj",
+        "packagesPath": "C:\\Users\\Hend\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hend\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -147,8 +147,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
-                "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj"
+              "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
+                "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj"
               }
             }
           }
@@ -163,7 +163,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -171,7 +171,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[10.1.1, )"
+              "version": "[8.1.1, )"
             },
             "Google.Apis.Auth": {
               "target": "Package",
@@ -234,24 +234,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj": {
+    "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
         "projectName": "Saken_WebApplication.Service",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\obj\\",
+        "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\Saken_WebApplication.Service.csproj",
+        "packagesPath": "C:\\Users\\Hend\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hend\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -266,11 +266,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
-                "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj"
+              "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj": {
+                "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Data\\Saken_WebApplication.Data.csproj"
               },
-              "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj": {
-                "projectPath": "C:\\Users\\Lenovo\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj"
+              "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj": {
+                "projectPath": "C:\\Users\\Hend\\Desktop\\Saken_WebApplication\\Saken_WebApplication.Infrasturcture\\Saken_WebApplication.Infrasturcture.csproj"
               }
             }
           }
@@ -285,7 +285,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -293,7 +293,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[10.1.1, )"
+              "version": "[8.1.1, )"
             },
             "CloudinaryDotNet": {
               "target": "Package",
@@ -360,7 +360,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
