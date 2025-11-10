@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Saken_WebApplication.Data.DTO.HousingDTO
+﻿namespace Saken_WebApplication.Data.DTO.HousingDTO
 {
     public class HouseDTO
     {
@@ -22,6 +16,10 @@ namespace Saken_WebApplication.Data.DTO.HousingDTO
         public string photoUrl { get; set; }
         public string? OwnerName { get; set; }
         public string? ownerId { get; set; }
+        public string Status { get; set; }
+        public bool IsAvailable { get; set; }
+        public bool IsSaved { get; set; }
+        public bool IsLiked { get; set; }
     }
 }
 

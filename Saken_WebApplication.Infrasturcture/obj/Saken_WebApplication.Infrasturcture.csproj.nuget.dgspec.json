@@ -58,6 +58,26 @@
               "target": "Package",
               "version": "[1.69.0, )"
             },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[8.0.14, )"
@@ -176,6 +196,26 @@
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.69.0, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.21, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",

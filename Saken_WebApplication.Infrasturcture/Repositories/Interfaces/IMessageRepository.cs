@@ -1,4 +1,5 @@
 ﻿using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Saken_WebApplication.Data.DTO.message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Interfaces
     public  interface IMessageRepository
     {
         Task SendMessageAsync(Saken_WebApplication.Data.Models.Message message);
-        Task<IEnumerable< Saken_WebApplication.Data.Models.Message>> GetMessagesAsync(string userId1, string userId2);
+        Task<IEnumerable<Saken_WebApplication.Data.Models.Message>> GetMessagesAsync(string userId1, string userId2);
+
+        Task<IEnumerable<UserConversationDto>> GetUserConversationsAsync(string userId);
     }
 }

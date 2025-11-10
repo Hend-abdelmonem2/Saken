@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Saken_WebApplication.Data.DTO.HousingDTO;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Core.Features.Houses.Command.Models
 {
- public  record  AddHousingCommand (HousingDto Dto, string LandlordId) :IRequest;
-   
+    public record AddHousingCommand(HousingDto Dto, string LandlordId)
+       : IRequest<BaseResponse<string>>;
+
 }

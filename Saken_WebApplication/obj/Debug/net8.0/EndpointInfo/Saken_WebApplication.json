@@ -5,6 +5,58 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/AdditionalInformation/AddAditionalInformation": {
+      "post": {
+        "tags": [
+          "AdditionalInformation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavePreferencesCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavePreferencesCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavePreferencesCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AdditionalInformation/GetInformation": {
+      "get": {
+        "tags": [
+          "AdditionalInformation"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/AllUsers": {
       "get": {
         "tags": [
@@ -53,6 +105,42 @@
               "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/GetUserCount": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/GetNotificationCount": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/GetReservationCount": {
+      "get": {
+        "tags": [
+          "Admin"
         ],
         "responses": {
           "200": {
@@ -168,40 +256,88 @@
         }
       }
     },
-    "/api/AppSettings": {
-      "get": {
+    "/api/Admin/{id}/approve": {
+      "put": {
         "tags": [
-          "AppSettings"
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Admin/{id}/reject": {
       "put": {
         "tags": [
-          "AppSettings"
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppSettingsDto"
+                "$ref": "#/components/schemas/RejectRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppSettingsDto"
+                "$ref": "#/components/schemas/RejectRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AppSettingsDto"
+                "$ref": "#/components/schemas/RejectRequestDto"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/countHouse": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/GetPendingHouse": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -220,10 +356,8 @@
               "schema": {
                 "required": [
                   "ConfirmPassword",
-                  "Email",
                   "FullName",
-                  "Password",
-                  "PhoneNumber"
+                  "Password"
                 ],
                 "type": "object",
                 "properties": {
@@ -352,6 +486,27 @@
             "name": "email",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/google-login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "name": "idToken",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -522,11 +677,6 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "Email",
-                  "FullName",
-                  "PhoneNumber"
-                ],
                 "type": "object",
                 "properties": {
                   "FullName": {
@@ -537,14 +687,12 @@
                   "Email": {
                     "maxLength": 100,
                     "type": "string",
-                    "format": "email",
-                    "default": "user@example.com"
+                    "format": "email"
                   },
                   "PhoneNumber": {
                     "maxLength": 15,
                     "type": "string",
-                    "format": "tel",
-                    "default": "+201234567891"
+                    "format": "tel"
                   },
                   "NewPassword": {
                     "type": "string"
@@ -652,21 +800,9 @@
         "tags": [
           "Auth"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Auth/google-login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
         "parameters": [
           {
-            "name": "idToken",
+            "name": "Id",
             "in": "query",
             "schema": {
               "type": "string"
@@ -680,10 +816,10 @@
         }
       }
     },
-    "/api/DummyData/set": {
+    "/api/Auth/signout": {
       "post": {
         "tags": [
-          "DummyData"
+          "Auth"
         ],
         "responses": {
           "200": {
@@ -692,11 +828,192 @@
         }
       }
     },
-    "/api/DummyData/reset": {
+    "/api/Commission/agent/{agentId}": {
+      "get": {
+        "tags": [
+          "Commission"
+        ],
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Commission/housing/{housingId}": {
+      "get": {
+        "tags": [
+          "Commission"
+        ],
+        "parameters": [
+          {
+            "name": "housingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Commission/{commissionId}/status": {
+      "put": {
+        "tags": [
+          "Commission"
+        ],
+        "parameters": [
+          {
+            "name": "commissionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommissionStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommissionStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommissionStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Contacts/SaveContact": {
       "post": {
         "tags": [
-          "DummyData"
+          "Contacts"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContactCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContactCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContactCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Contacts/AllowedContact/{ownerUserId}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "parameters": [
+          {
+            "name": "ownerUserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Contacts/BlockedContact/{ownerUserId}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "parameters": [
+          {
+            "name": "ownerUserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Contacts/AddToblock": {
+      "put": {
+        "tags": [
+          "Contacts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockContactCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockContactCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockContactCommand"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -728,10 +1045,10 @@
         }
       }
     },
-    "/api/ExternalAuth/signin-google": {
-      "get": {
+    "/api/DummyData/insert-dummy-houses": {
+      "post": {
         "tags": [
-          "ExternalAuth"
+          "DummyData"
         ],
         "responses": {
           "200": {
@@ -740,10 +1057,10 @@
         }
       }
     },
-    "/api/ExternalAuth/handle-external-login": {
-      "get": {
+    "/api/DummyData/delete-dummy-houses": {
+      "delete": {
         "tags": [
-          "ExternalAuth"
+          "DummyData"
         ],
         "responses": {
           "200": {
@@ -1041,10 +1358,21 @@
         }
       }
     },
-    "/api/Housing/Reservation": {
-      "post": {
+    "/api/Housing/updateHouse/{id}": {
+      "put": {
         "tags": [
           "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -1052,21 +1380,234 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "HousingId": {
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "PricePerMeter": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "AreaInMeters": {
                     "type": "integer",
                     "format": "int32"
                   },
-                  "AmountPaid": {
+                  "Floor": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HousingType": {
+                    "type": "string"
+                  },
+                  "FurnishingStatus": {
+                    "type": "string"
+                  },
+                  "RentalType": {
+                    "type": "string"
+                  },
+                  "RentDurationValue": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "RentDurationUnit": {
+                    "type": "string"
+                  },
+                  "NumberOfRooms": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "HasKitchen": {
+                    "type": "boolean"
+                  },
+                  "HasBathroom": {
+                    "type": "boolean"
+                  },
+                  "HasLivingRoom": {
+                    "type": "boolean"
+                  },
+                  "HasBed": {
+                    "type": "boolean"
+                  },
+                  "HasWardrobe": {
+                    "type": "boolean"
+                  },
+                  "HasChair": {
+                    "type": "boolean"
+                  },
+                  "HasFridge": {
+                    "type": "boolean"
+                  },
+                  "HasStove": {
+                    "type": "boolean"
+                  },
+                  "HasWasher": {
+                    "type": "boolean"
+                  },
+                  "HasFan": {
+                    "type": "boolean"
+                  },
+                  "HasTV": {
+                    "type": "boolean"
+                  },
+                  "HasInternet": {
+                    "type": "boolean"
+                  },
+                  "HasGas": {
+                    "type": "boolean"
+                  },
+                  "HasElectricity": {
+                    "type": "boolean"
+                  },
+                  "HasWater": {
+                    "type": "boolean"
+                  },
+                  "TargetTenantType": {
+                    "type": "string"
+                  },
+                  "TargetTenantDescription": {
+                    "type": "string"
+                  },
+                  "DepositAmount": {
                     "type": "number",
                     "format": "double"
+                  },
+                  "InsuranceAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CommissionAmount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ExtraPhotos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "HousingUrl": {
+                    "type": "string"
+                  },
+                  "InspectionDates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               },
               "encoding": {
-                "HousingId": {
+                "Title": {
                   "style": "form"
                 },
-                "AmountPaid": {
+                "Address": {
+                  "style": "form"
+                },
+                "PricePerMeter": {
+                  "style": "form"
+                },
+                "AreaInMeters": {
+                  "style": "form"
+                },
+                "Floor": {
+                  "style": "form"
+                },
+                "HousingType": {
+                  "style": "form"
+                },
+                "FurnishingStatus": {
+                  "style": "form"
+                },
+                "RentalType": {
+                  "style": "form"
+                },
+                "RentDurationValue": {
+                  "style": "form"
+                },
+                "RentDurationUnit": {
+                  "style": "form"
+                },
+                "NumberOfRooms": {
+                  "style": "form"
+                },
+                "HasKitchen": {
+                  "style": "form"
+                },
+                "HasBathroom": {
+                  "style": "form"
+                },
+                "HasLivingRoom": {
+                  "style": "form"
+                },
+                "HasBed": {
+                  "style": "form"
+                },
+                "HasWardrobe": {
+                  "style": "form"
+                },
+                "HasChair": {
+                  "style": "form"
+                },
+                "HasFridge": {
+                  "style": "form"
+                },
+                "HasStove": {
+                  "style": "form"
+                },
+                "HasWasher": {
+                  "style": "form"
+                },
+                "HasFan": {
+                  "style": "form"
+                },
+                "HasTV": {
+                  "style": "form"
+                },
+                "HasInternet": {
+                  "style": "form"
+                },
+                "HasGas": {
+                  "style": "form"
+                },
+                "HasElectricity": {
+                  "style": "form"
+                },
+                "HasWater": {
+                  "style": "form"
+                },
+                "TargetTenantType": {
+                  "style": "form"
+                },
+                "TargetTenantDescription": {
+                  "style": "form"
+                },
+                "DepositAmount": {
+                  "style": "form"
+                },
+                "InsuranceAmount": {
+                  "style": "form"
+                },
+                "CommissionAmount": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "ExtraPhotos": {
+                  "style": "form"
+                },
+                "HousingUrl": {
+                  "style": "form"
+                },
+                "InspectionDates": {
                   "style": "form"
                 }
               }
@@ -1080,10 +1621,21 @@
         }
       }
     },
-    "/api/Housing/landlordResrvation": {
-      "get": {
+    "/api/Housing/DeleteHouse/{id}": {
+      "delete": {
         "tags": [
           "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1092,8 +1644,8 @@
         }
       }
     },
-    "/api/Housing/reservation/{id}": {
-      "get": {
+    "/api/Housing/freeze/{id}": {
+      "post": {
         "tags": [
           "Housing"
         ],
@@ -1127,782 +1679,72 @@
         }
       }
     },
-    "/api/Housing/updateHouse/{id}": {
-      "put": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Id": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "PricePerMeter": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "AreaInMeters": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "Floor": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "HousingType": {
-                    "type": "string"
-                  },
-                  "FurnishingStatus": {
-                    "type": "string"
-                  },
-                  "RentalType": {
-                    "type": "string"
-                  },
-                  "RentDurationValue": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "RentDurationUnit": {
-                    "type": "string"
-                  },
-                  "NumberOfRooms": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "HasKitchen": {
-                    "type": "boolean"
-                  },
-                  "HasBathroom": {
-                    "type": "boolean"
-                  },
-                  "HasLivingRoom": {
-                    "type": "boolean"
-                  },
-                  "HasBed": {
-                    "type": "boolean"
-                  },
-                  "HasWardrobe": {
-                    "type": "boolean"
-                  },
-                  "HasChair": {
-                    "type": "boolean"
-                  },
-                  "HasFridge": {
-                    "type": "boolean"
-                  },
-                  "HasStove": {
-                    "type": "boolean"
-                  },
-                  "HasWasher": {
-                    "type": "boolean"
-                  },
-                  "HasFan": {
-                    "type": "boolean"
-                  },
-                  "HasTV": {
-                    "type": "boolean"
-                  },
-                  "HasInternet": {
-                    "type": "boolean"
-                  },
-                  "HasGas": {
-                    "type": "boolean"
-                  },
-                  "HasElectricity": {
-                    "type": "boolean"
-                  },
-                  "HasWater": {
-                    "type": "boolean"
-                  },
-                  "TargetTenantType": {
-                    "type": "string"
-                  },
-                  "TargetTenantDescription": {
-                    "type": "string"
-                  },
-                  "DepositAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "InsuranceAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "CommissionAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "photoUrl": {
-                    "type": "string"
-                  },
-                  "ExtraPhotos": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary"
-                    }
-                  },
-                  "HousingUrl": {
-                    "type": "string"
-                  },
-                  "OwnerName": {
-                    "type": "string"
-                  },
-                  "OwnerPhoneNumber": {
-                    "type": "string"
-                  },
-                  "OwnerEmail": {
-                    "type": "string"
-                  },
-                  "ownerId": {
-                    "type": "string"
-                  },
-                  "InspectionDates": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              },
-              "encoding": {
-                "Id": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "Address": {
-                  "style": "form"
-                },
-                "PricePerMeter": {
-                  "style": "form"
-                },
-                "AreaInMeters": {
-                  "style": "form"
-                },
-                "Floor": {
-                  "style": "form"
-                },
-                "HousingType": {
-                  "style": "form"
-                },
-                "FurnishingStatus": {
-                  "style": "form"
-                },
-                "RentalType": {
-                  "style": "form"
-                },
-                "RentDurationValue": {
-                  "style": "form"
-                },
-                "RentDurationUnit": {
-                  "style": "form"
-                },
-                "NumberOfRooms": {
-                  "style": "form"
-                },
-                "HasKitchen": {
-                  "style": "form"
-                },
-                "HasBathroom": {
-                  "style": "form"
-                },
-                "HasLivingRoom": {
-                  "style": "form"
-                },
-                "HasBed": {
-                  "style": "form"
-                },
-                "HasWardrobe": {
-                  "style": "form"
-                },
-                "HasChair": {
-                  "style": "form"
-                },
-                "HasFridge": {
-                  "style": "form"
-                },
-                "HasStove": {
-                  "style": "form"
-                },
-                "HasWasher": {
-                  "style": "form"
-                },
-                "HasFan": {
-                  "style": "form"
-                },
-                "HasTV": {
-                  "style": "form"
-                },
-                "HasInternet": {
-                  "style": "form"
-                },
-                "HasGas": {
-                  "style": "form"
-                },
-                "HasElectricity": {
-                  "style": "form"
-                },
-                "HasWater": {
-                  "style": "form"
-                },
-                "TargetTenantType": {
-                  "style": "form"
-                },
-                "TargetTenantDescription": {
-                  "style": "form"
-                },
-                "DepositAmount": {
-                  "style": "form"
-                },
-                "InsuranceAmount": {
-                  "style": "form"
-                },
-                "CommissionAmount": {
-                  "style": "form"
-                },
-                "Photo": {
-                  "style": "form"
-                },
-                "photoUrl": {
-                  "style": "form"
-                },
-                "ExtraPhotos": {
-                  "style": "form"
-                },
-                "HousingUrl": {
-                  "style": "form"
-                },
-                "OwnerName": {
-                  "style": "form"
-                },
-                "OwnerPhoneNumber": {
-                  "style": "form"
-                },
-                "OwnerEmail": {
-                  "style": "form"
-                },
-                "ownerId": {
-                  "style": "form"
-                },
-                "InspectionDates": {
-                  "style": "form"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/update/{id}": {
-      "put": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Id": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "PricePerMeter": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "AreaInMeters": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "Floor": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "HousingType": {
-                    "type": "string"
-                  },
-                  "FurnishingStatus": {
-                    "type": "string"
-                  },
-                  "RentalType": {
-                    "type": "string"
-                  },
-                  "RentDurationValue": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "RentDurationUnit": {
-                    "type": "string"
-                  },
-                  "NumberOfRooms": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "HasKitchen": {
-                    "type": "boolean"
-                  },
-                  "HasBathroom": {
-                    "type": "boolean"
-                  },
-                  "HasLivingRoom": {
-                    "type": "boolean"
-                  },
-                  "HasBed": {
-                    "type": "boolean"
-                  },
-                  "HasWardrobe": {
-                    "type": "boolean"
-                  },
-                  "HasChair": {
-                    "type": "boolean"
-                  },
-                  "HasFridge": {
-                    "type": "boolean"
-                  },
-                  "HasStove": {
-                    "type": "boolean"
-                  },
-                  "HasWasher": {
-                    "type": "boolean"
-                  },
-                  "HasFan": {
-                    "type": "boolean"
-                  },
-                  "HasTV": {
-                    "type": "boolean"
-                  },
-                  "HasInternet": {
-                    "type": "boolean"
-                  },
-                  "HasGas": {
-                    "type": "boolean"
-                  },
-                  "HasElectricity": {
-                    "type": "boolean"
-                  },
-                  "HasWater": {
-                    "type": "boolean"
-                  },
-                  "TargetTenantType": {
-                    "type": "string"
-                  },
-                  "TargetTenantDescription": {
-                    "type": "string"
-                  },
-                  "DepositAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "InsuranceAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "CommissionAmount": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "photoUrl": {
-                    "type": "string"
-                  },
-                  "ExtraPhotos": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary"
-                    }
-                  },
-                  "HousingUrl": {
-                    "type": "string"
-                  },
-                  "OwnerName": {
-                    "type": "string"
-                  },
-                  "OwnerPhoneNumber": {
-                    "type": "string"
-                  },
-                  "OwnerEmail": {
-                    "type": "string"
-                  },
-                  "ownerId": {
-                    "type": "string"
-                  },
-                  "InspectionDates": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              },
-              "encoding": {
-                "Id": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "Address": {
-                  "style": "form"
-                },
-                "PricePerMeter": {
-                  "style": "form"
-                },
-                "AreaInMeters": {
-                  "style": "form"
-                },
-                "Floor": {
-                  "style": "form"
-                },
-                "HousingType": {
-                  "style": "form"
-                },
-                "FurnishingStatus": {
-                  "style": "form"
-                },
-                "RentalType": {
-                  "style": "form"
-                },
-                "RentDurationValue": {
-                  "style": "form"
-                },
-                "RentDurationUnit": {
-                  "style": "form"
-                },
-                "NumberOfRooms": {
-                  "style": "form"
-                },
-                "HasKitchen": {
-                  "style": "form"
-                },
-                "HasBathroom": {
-                  "style": "form"
-                },
-                "HasLivingRoom": {
-                  "style": "form"
-                },
-                "HasBed": {
-                  "style": "form"
-                },
-                "HasWardrobe": {
-                  "style": "form"
-                },
-                "HasChair": {
-                  "style": "form"
-                },
-                "HasFridge": {
-                  "style": "form"
-                },
-                "HasStove": {
-                  "style": "form"
-                },
-                "HasWasher": {
-                  "style": "form"
-                },
-                "HasFan": {
-                  "style": "form"
-                },
-                "HasTV": {
-                  "style": "form"
-                },
-                "HasInternet": {
-                  "style": "form"
-                },
-                "HasGas": {
-                  "style": "form"
-                },
-                "HasElectricity": {
-                  "style": "form"
-                },
-                "HasWater": {
-                  "style": "form"
-                },
-                "TargetTenantType": {
-                  "style": "form"
-                },
-                "TargetTenantDescription": {
-                  "style": "form"
-                },
-                "DepositAmount": {
-                  "style": "form"
-                },
-                "InsuranceAmount": {
-                  "style": "form"
-                },
-                "CommissionAmount": {
-                  "style": "form"
-                },
-                "Photo": {
-                  "style": "form"
-                },
-                "photoUrl": {
-                  "style": "form"
-                },
-                "ExtraPhotos": {
-                  "style": "form"
-                },
-                "HousingUrl": {
-                  "style": "form"
-                },
-                "OwnerName": {
-                  "style": "form"
-                },
-                "OwnerPhoneNumber": {
-                  "style": "form"
-                },
-                "OwnerEmail": {
-                  "style": "form"
-                },
-                "ownerId": {
-                  "style": "form"
-                },
-                "InspectionDates": {
-                  "style": "form"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/searchHouse": {
-      "get": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/DeleteHouse/{id}": {
-      "delete": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/recommendations/{userId}": {
-      "get": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "location",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HousingDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HousingDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HousingDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Housing/recommend": {
-      "get": {
-        "tags": [
-          "Housing"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/owner/grouped-housings": {
-      "get": {
-        "tags": [
-          "Housing"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OwnerHousingGroupedDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Housing/contract/{id}": {
-      "get": {
-        "tags": [
-          "Housing"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Housing/ToggleFreeze/{id}": {
+    "/api/Housing/request-inspection": {
       "post": {
         "tags": [
           "Housing"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InspectionRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InspectionRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InspectionRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/available-slots/{housingId}": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
         "parameters": [
           {
-            "name": "id",
+            "name": "housingId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/landlord/grouped-housings/{landlordId}": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "landlordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1936,6 +1778,246 @@
         }
       }
     },
+    "/api/Housing/highest-rating": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/lowest-price": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/By-type/{type}": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PropertyType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/owner/inspection-requests": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/SaveHousing": {
+      "post": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "houseId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/savedHousing": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/search": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "searchKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/search-by-address": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "radiusKm",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/filter": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "housingType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "furnishingStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Housing/HouseCost": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "durationInMonth",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Likes/ToggleLike": {
       "post": {
         "tags": [
@@ -1945,17 +2027,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddLikeDTO"
+                "$ref": "#/components/schemas/ToggleLikeCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddLikeDTO"
+                "$ref": "#/components/schemas/ToggleLikeCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddLikeDTO"
+                "$ref": "#/components/schemas/ToggleLikeCommand"
               }
             }
           }
@@ -1967,7 +2049,7 @@
         }
       }
     },
-    "/api/Likes/LikedHouses": {
+    "/api/Likes/Likedhouses": {
       "get": {
         "tags": [
           "Likes"
@@ -1979,7 +2061,7 @@
         }
       }
     },
-    "/api/Likes/liked-users": {
+    "/api/Likes/Likedusers": {
       "get": {
         "tags": [
           "Likes"
@@ -1991,10 +2073,10 @@
         }
       }
     },
-    "/api/Message/sendMessage": {
+    "/api/Messages/sendMessage": {
       "post": {
         "tags": [
-          "Message"
+          "Messages"
         ],
         "requestBody": {
           "content": {
@@ -2022,22 +2104,14 @@
         }
       }
     },
-    "/api/Message/getMessage/{userId1}/{userId2}": {
+    "/api/Messages/chat/{otherUserId}": {
       "get": {
         "tags": [
-          "Message"
+          "Messages"
         ],
         "parameters": [
           {
-            "name": "userId1",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId2",
+            "name": "otherUserId",
             "in": "path",
             "required": true,
             "schema": {
@@ -2052,10 +2126,261 @@
         }
       }
     },
-    "/api/Preference/AddPreferences": {
+    "/api/Messages/conversations": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/sendNotification": {
       "post": {
         "tags": [
-          "Preference"
+          "Notification"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendNotificationCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendNotificationCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendNotificationCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/{userId}/unreadNotification": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/{id}/mark-read": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/count": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Offers/ActiveOffer": {
+      "get": {
+        "tags": [
+          "Offers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Offers/GetOfferForHouse/{housingId}": {
+      "get": {
+        "tags": [
+          "Offers"
+        ],
+        "parameters": [
+          {
+            "name": "housingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Offers/CreateOffer": {
+      "post": {
+        "tags": [
+          "Offers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HousingOfferDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HousingOfferDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HousingOfferDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Profile/UserProfile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Profile/TenantProfile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Profile/UpdateProfile": {
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FullName",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "type": "string",
+              "default": "FullName"
+            }
+          },
+          {
+            "name": "Email",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "type": "string",
+              "format": "email"
+            }
+          },
+          {
+            "name": "PhoneNumber",
+            "in": "query",
+            "schema": {
+              "maxLength": 15,
+              "type": "string",
+              "format": "tel"
+            }
+          },
+          {
+            "name": "NewPassword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -2063,57 +2388,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Location": {
-                    "type": "string"
-                  },
-                  "PreferredPropertyType": {
-                    "type": "string"
-                  },
-                  "BudgetMin": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "BudgetMax": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "PreferredFurnishing": {
-                    "type": "string"
-                  },
-                  "PreferredDuration": {
-                    "type": "string"
-                  },
-                  "PreferredTenantType": {
-                    "type": "string"
-                  },
-                  "PreferredTargetCustomer": {
-                    "type": "string"
+                  "photo": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               },
               "encoding": {
-                "Location": {
-                  "style": "form"
-                },
-                "PreferredPropertyType": {
-                  "style": "form"
-                },
-                "BudgetMin": {
-                  "style": "form"
-                },
-                "BudgetMax": {
-                  "style": "form"
-                },
-                "PreferredFurnishing": {
-                  "style": "form"
-                },
-                "PreferredDuration": {
-                  "style": "form"
-                },
-                "PreferredTenantType": {
-                  "style": "form"
-                },
-                "PreferredTargetCustomer": {
+                "photo": {
                   "style": "form"
                 }
               }
@@ -2127,10 +2409,10 @@
         }
       }
     },
-    "/api/Preference/preferences": {
+    "/api/Recommendation/RecommendedHouse": {
       "get": {
         "tags": [
-          "Preference"
+          "Recommendation"
         ],
         "responses": {
           "200": {
@@ -2139,57 +2421,289 @@
         }
       }
     },
-    "/api/Users/settings": {
+    "/api/Recommendation/RecommendedUser": {
       "get": {
         "tags": [
-          "Users"
+          "Recommendation"
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserSettingsDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserSettingsDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserSettingsDto"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
-      },
-      "put": {
+      }
+    },
+    "/api/Reservation/AddReservation": {
+      "post": {
         "tags": [
-          "Users"
+          "Reservation"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserSettingsDto"
+                "$ref": "#/components/schemas/ReservationDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserSettingsDto"
+                "$ref": "#/components/schemas/ReservationDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserSettingsDto"
+                "$ref": "#/components/schemas/ReservationDto"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/confirmReservation/{reservationId}": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/cancelReservation/{id}": {
+      "delete": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/GetReservationByID/{id}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/ReservationFortenant": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/ReservationForlandlord": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/Reservationcontract/{id}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/AllReservation": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/GetHouseAvailableFrom": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservation/ConfirmReservation": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Review": {
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Review/user/{userId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Review/housing/{housingId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "housingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2200,259 +2714,105 @@
   },
   "components": {
     "schemas": {
-      "AddLikeDTO": {
+      "AddContactCommand": {
         "type": "object",
         "properties": {
-          "entityId": {
+          "ownerUserId": {
             "type": "string",
             "nullable": true
           },
-          "entityType": {
+          "targetUserId": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "AppSettingsDto": {
+      "BlockContactCommand": {
         "type": "object",
         "properties": {
-          "appName": {
-            "type": "string",
-            "nullable": true
+          "contactId": {
+            "type": "integer",
+            "format": "int32"
           },
-          "logoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "supportEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "enableNotifications": {
+          "block": {
             "type": "boolean"
           }
         },
         "additionalProperties": false
       },
-      "HouseDTO": {
+      "CommissionStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "HousingOfferDto": {
         "type": "object",
         "properties": {
-          "id": {
+          "housingId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "offerType": {
+            "$ref": "#/components/schemas/OfferType"
+          },
+          "description": {
             "type": "string",
             "nullable": true
           },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "pricePerMeter": {
-            "type": "number",
-            "format": "double"
-          },
-          "areaInMeters": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "floor": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "housingType": {
-            "type": "string",
-            "nullable": true
-          },
-          "furnishingStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "rentalType": {
-            "type": "string",
-            "nullable": true
-          },
-          "rate": {
+          "discountedPricePerMeter": {
             "type": "number",
             "format": "double",
             "nullable": true
           },
-          "photoUrl": {
-            "type": "string",
+          "discountedInsuranceAmount": {
+            "type": "number",
+            "format": "double",
             "nullable": true
           },
-          "ownerName": {
-            "type": "string",
+          "isCommissionFree": {
+            "type": "boolean",
             "nullable": true
           },
-          "ownerId": {
-            "type": "string",
+          "isFirstMonthFree": {
+            "type": "boolean",
             "nullable": true
+          },
+          "includesFreeInternet": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
       },
-      "HousingDto": {
+      "InspectionRequestDto": {
         "type": "object",
         "properties": {
-          "id": {
+          "slotId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "fullName": {
             "type": "string",
             "nullable": true
           },
-          "address": {
+          "phoneNumber": {
             "type": "string",
-            "nullable": true
-          },
-          "pricePerMeter": {
-            "type": "number",
-            "format": "double"
-          },
-          "areaInMeters": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "floor": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "housingType": {
-            "type": "string",
-            "nullable": true
-          },
-          "furnishingStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "rentalType": {
-            "type": "string",
-            "nullable": true
-          },
-          "rentDurationValue": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rentDurationUnit": {
-            "type": "string",
-            "nullable": true
-          },
-          "numberOfRooms": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "hasKitchen": {
-            "type": "boolean"
-          },
-          "hasBathroom": {
-            "type": "boolean"
-          },
-          "hasLivingRoom": {
-            "type": "boolean"
-          },
-          "hasBed": {
-            "type": "boolean"
-          },
-          "hasWardrobe": {
-            "type": "boolean"
-          },
-          "hasChair": {
-            "type": "boolean"
-          },
-          "hasFridge": {
-            "type": "boolean"
-          },
-          "hasStove": {
-            "type": "boolean"
-          },
-          "hasWasher": {
-            "type": "boolean"
-          },
-          "hasFan": {
-            "type": "boolean"
-          },
-          "hasTV": {
-            "type": "boolean"
-          },
-          "hasInternet": {
-            "type": "boolean"
-          },
-          "hasGas": {
-            "type": "boolean"
-          },
-          "hasElectricity": {
-            "type": "boolean"
-          },
-          "hasWater": {
-            "type": "boolean"
-          },
-          "targetTenantType": {
-            "type": "string",
-            "nullable": true
-          },
-          "targetTenantDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "depositAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "insuranceAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "commissionAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "photo": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          },
-          "photoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "extraPhotos": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            },
-            "nullable": true
-          },
-          "housingUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "ownerName": {
-            "type": "string",
-            "nullable": true
-          },
-          "ownerPhoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "ownerEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "ownerId": {
-            "type": "string",
-            "nullable": true
-          },
-          "inspectionDates": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "date-time"
-            },
             "nullable": true
           }
         },
@@ -2461,10 +2821,6 @@
       "MessageDto": {
         "type": "object",
         "properties": {
-          "senderId": {
-            "type": "string",
-            "nullable": true
-          },
           "receiverId": {
             "type": "string",
             "nullable": true
@@ -2480,21 +2836,32 @@
         },
         "additionalProperties": false
       },
-      "OwnerHousingGroupedDto": {
+      "OfferType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "PropertyType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "RejectRequestDto": {
         "type": "object",
         "properties": {
-          "availableHousings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HouseDTO"
-            },
-            "nullable": true
-          },
-          "rentedHousings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HouseDTO"
-            },
+          "reason": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2502,27 +2869,58 @@
       },
       "RequestLoginDto": {
         "required": [
-          "email",
           "password",
           "role"
         ],
         "type": "object",
         "properties": {
           "email": {
-            "maxLength": 50,
-            "minLength": 1,
             "type": "string",
             "format": "email",
-            "default": "user@example.com"
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "format": "tel",
+            "nullable": true
           },
           "password": {
-            "maxLength": 64,
-            "minLength": 8,
-            "type": "string",
-            "format": "password",
-            "default": "SecurePass123"
+            "minLength": 1,
+            "type": "string"
           },
           "role": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReservationDto": {
+        "required": [
+          "durationInMonths",
+          "startDateTime",
+          "tenantFullName",
+          "tenantPhoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "housingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "durationInMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantFullName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenantPhoneNumber": {
             "minLength": 1,
             "type": "string"
           }
@@ -2560,10 +2958,86 @@
         },
         "additionalProperties": false
       },
+      "ReviewDto": {
+        "type": "object",
+        "properties": {
+          "reviewedUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "housingId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "reviewType": {
+            "$ref": "#/components/schemas/ReviewType"
+          },
+          "rating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewType": {
+        "enum": [
+          "Housing",
+          "User"
+        ],
+        "type": "string"
+      },
       "RevokeTokenDto": {
         "type": "object",
         "properties": {
           "token": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SavePreferencesCommand": {
+        "type": "object",
+        "properties": {
+          "dto": {
+            "$ref": "#/components/schemas/UserPreferencesDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendNotificationCommand": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ToggleLikeCommand": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityType": {
             "type": "string",
             "nullable": true
           }
@@ -2595,32 +3069,25 @@
         "additionalProperties": false
       },
       "UpdateUserDto": {
-        "required": [
-          "email",
-          "fullName",
-          "phoneNumber"
-        ],
         "type": "object",
         "properties": {
           "fullName": {
             "maxLength": 100,
-            "minLength": 1,
             "type": "string",
-            "default": "FullName"
+            "default": "FullName",
+            "nullable": true
           },
           "email": {
             "maxLength": 100,
-            "minLength": 1,
             "type": "string",
             "format": "email",
-            "default": "user@example.com"
+            "nullable": true
           },
           "phoneNumber": {
             "maxLength": 15,
-            "minLength": 1,
             "type": "string",
             "format": "tel",
-            "default": "+201234567891"
+            "nullable": true
           },
           "newPassword": {
             "type": "string",
@@ -2634,13 +3101,38 @@
         },
         "additionalProperties": false
       },
-      "UpdateUserSettingsDto": {
+      "UserPreferencesDto": {
         "type": "object",
         "properties": {
-          "isNotificationsEnabled": {
-            "type": "boolean"
+          "location": {
+            "type": "string",
+            "nullable": true
           },
-          "themeMode": {
+          "preferredPropertyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "budgetMin": {
+            "type": "number",
+            "format": "double"
+          },
+          "budgetMax": {
+            "type": "number",
+            "format": "double"
+          },
+          "preferredFurnishing": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferredDuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferredTenantType": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferredTargetCustomer": {
             "type": "string",
             "nullable": true
           }

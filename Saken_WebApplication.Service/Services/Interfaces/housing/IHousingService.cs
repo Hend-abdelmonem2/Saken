@@ -1,38 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Saken_WebApplication.Data.DTO;
-using Saken_WebApplication.Data.DTO.HousingDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Saken_WebApplication.Data.DTO.HousingDTO;
+using Saken_WebApplication.Data.Response;
+using static Saken_WebApplication.Data.Models.Enums;
 
 namespace Saken_WebApplication.Service.Services.Interfaces.housing
 {
     public interface IHousingService
     {
-        Task AddHousingAsync(HousingDto dto, string landlordId);
-        Task<InspectionRequestResponseDto> SubmitInspectionRequestAsync(InspectionRequestDto dto);
-        Task<bool> SaveHousingAsync(string userId, int housingId);
-        Task AddReservationAsync(ReservationDto dto, string userId);
-        Task UpdateHousingAsync(int id, HousingDto dto);
-        Task<(bool success, string message, bool isFrozen)> ToggleFreezeAsync(int id);
+        Task<BaseResponse<string>> AddHousingAsync(HousingDto dto, string landlordId);
+        Task<BaseResponse<InspectionRequestResponseDto>> SubmitInspectionRequestAsync(InspectionRequestDto dto);
+        Task<BaseResponse<bool>> SaveHousingAsync(string userId, int housingId);
+        Task<BaseResponse> UpdateHousingAsync(int id, UpdateHousingDto dto, string userId);
+        Task<BaseResponse<bool>> ToggleFreezeAsync(int id);
+        Task<BaseResponse<bool>> DeleteHousingAsync(int housingId, string userId, bool isAdmin);
+        Task<BaseResponse<IEnumerable<HouseDTO>>> GetAllHousesAsync(string currentUserId);
 
 
-        Task<List<InspectionSlotDetailsDto>> GetAvailableSlotsAsync(int housingId);
-        Task<List<InspectionRequestResponseDto>> GetInspectionRequestsForOwnerAsync(string ownerId);
-        Task<IEnumerable<HouseDTO>> GetAllHousesAsync();
+        Task<BaseResponse<List<InspectionSlotDetailsDto>>> GetAvailableSlotsAsync(int housingId);
+        Task<BaseResponse<OwnerHousingGroupedDto>> GetGroupedHousingsForLandlordAsync(string landlordId);
 
-        Task<IEnumerable<HouseDTO>> SearchHousesAsync(string searchKey);
+        Task<BaseResponse<HousingDetailsDto?>> GetHousingByIdAsync(int id);
+        Task<BaseResponse<List<HouseDTO>>> GetHousingsByHighestRatingAsync(string currentUserId);
+        Task<BaseResponse<List<HouseDTO>>> GetHousingsByLowestPriceAsync(string currentUserId);
+        Task<BaseResponse<List<HouseDTO>>> GetHousingsByTypeAsync(string currentUserId, PropertyType type);
+        Task<BaseResponse<List<InspectionRequestResponseDto>>> GetInspectionRequestsForOwnerAsync(string ownerId);
 
-        Task<bool> DeleteHousingAsync(int houseId);
-        Task<OwnerHousingGroupedDto> GetGroupedHousingsForLandlordAsync(string landlordId);
-        Task<List<TenantReservationDto>> GetReservationsForTenantAsync(string userId);
+        Task<BaseResponse<List<HouseDTO>>> GetSavedHousingsAsync(string userId);
+        Task<BaseResponse<bool>> ApproveHousingAsync(int housingId);
 
-        Task<List<HouseDTO>> GetHousingsByLowestPriceAsync();
-        Task<List<HouseDTO>> GetHousingsByHighestRatingAsync();
-        Task<HousingDetailsDto?> GetHousingByIdAsync(int id);
-        Task<List<HouseDTO>> GetSavedHousingsAsync(string userId);
+        Task<BaseResponse<string>> RejectHouseAsync(int houseId, string reason);
+
+        Task<BaseResponse<IEnumerable<HouseDTO>>> SearchHousesAsync(string searchKey);
+
+        Task<BaseResponse<IEnumerable<HouseDTO>>> SearchByAddressAsync(string? address, double? lat, double? lng, double radiusKm = 10);
+
+        Task<(double lat, double lng)?> GetCoordinatesAsync(string address);
+
+        Task<BaseResponse<IEnumerable<HousingDto>>> GetFilteredHousesAsync(string? address, string? housingType, string? furnishingStatus, decimal? minPrice, decimal? maxPrice);
+        Task<BaseResponse<int>> GetHousesCountAsync();
+        Task<BaseResponse<IEnumerable<HouseDTO>>> GetPendingHousesAsync();
+
+
+        //     Task<List<TenantReservationDto>> GetReservationsForTenantAsync(string userId);
+
+
+
 
     }
 }

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE7wBeP18m0OWnKrDAHVnZAAAAAACAAAAAAAQZgAAAAEAACAAAAAn99VIFzb4qvBb/WrmNkUMNMMQXkO1IjmEenIpviS3rwAAAAAOgAAAAAIAACAAAACwuXAC+5rjAZVgSJutmZ04VOS3fH1rZq1ITAQACscMsiAAAAArCwNlGGJkpTdpHaL+OEJW7Va78C6LK2Fb0JHeBqS3JUAAAADSzyz4GHjCbnVbSrdp8k8qjN03GN0O/oDX27aa8kCnh+fyVQO7Z6MrLCQBWeR6gRh2kIGSxCeHAjBQEMmhOLEk</EncryptedPassword>
+    <_PublishTargetUrl>ftp://saken.somee.com/www.saken.somee.com</_PublishTargetUrl>
+    <History>False|2025-09-28T19:52:13.7636076Z||;False|2025-09-28T22:32:01.1432417+03:00||;False|2025-09-28T22:23:33.3404716+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>04/20/2025 13:57:35</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>09/28/2025 19:52:23</publishTime>
+    </File>
+    <File Include="Azure.Identity.dll">
+      <publishTime>06/10/2024 19:43:48</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

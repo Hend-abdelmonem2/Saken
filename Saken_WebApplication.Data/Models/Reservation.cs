@@ -19,16 +19,28 @@ namespace Saken_WebApplication.Data.Models
 
         [ForeignKey("Tenant")]
         public string UserId { get; set; }
+
         [ForeignKey("Landlord")]
         public string LandlordId { get; set; }
 
+
         [Required]
-        public DateTime ReservationDate { get; set; }
+        public DateTime StartDateTime { get; set; }
+
+
+        [Required]
+        public DateTime EndDateTime { get; set; }
+
+
+        [Required]
+        public int DurationInMonths { get; set; }
 
         public decimal AmountPaid { get; set; }
 
         [Required]
-        public ReservationStatus Status { get; set; }
+        public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+
+        public DateTime ReservationDate { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
         public virtual Housing Housing { get; set; }

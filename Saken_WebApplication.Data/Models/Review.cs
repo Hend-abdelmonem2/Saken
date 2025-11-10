@@ -19,9 +19,9 @@ namespace Saken_WebApplication.Data.Models
         public string ReviewerId { get; set; }
 
         [ForeignKey("ReviewedUser")]
-        public string? ReviewedUserId { get; set; } // تغيير من int إلى string وجعلها Nullable
+        public string? ReviewedUserId { get; set; } 
 
-        public int? HousingId { get; set; } // يمكن أن يكون فارغًا
+        public int? HousingId { get; set; } 
 
         [Required]
         public ReviewType ReviewType { get; set; }
@@ -35,9 +35,9 @@ namespace Saken_WebApplication.Data.Models
         [Required]
         public DateTime CreatedAt { get; set; }
 
-        // Navigation properties
+    
         public virtual User Reviewer { get; set; }
-        public virtual User? ReviewedUser { get; set; } // Nullable لتجنب المشاكل
+        public virtual User? ReviewedUser { get; set; } 
         public virtual Housing? Housing { get; set; }
     }
 }

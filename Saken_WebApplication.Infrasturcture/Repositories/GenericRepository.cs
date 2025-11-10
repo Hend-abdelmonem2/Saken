@@ -23,7 +23,7 @@ namespace Saken_WebApplication.Infrasturcture.Repositories
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(string id)
         {
             return await _dbSet.FindAsync(id);
         }

@@ -26,6 +26,12 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement.Preferences
         {
             await _context.UserPreferences.AddAsync(preferences);
         }
+
+        public async Task<IEnumerable<UserPreferences>> GetAllAsync()
+        {
+
+            return await _context.UserPreferences.ToListAsync();
+        }
         public async Task UpdateAsync(UserPreferences preferences)
         {
             _context.UserPreferences.Update(preferences);

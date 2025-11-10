@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Data.DTO.message
 {
-    public  class MessageDto
+    
+    public class MessageDto
     {
-        public string SenderId { get; set; }
+
         public string ReceiverId { get; set; }
         public string Content { get; set; }
         public DateTime SentAt { get; set; }

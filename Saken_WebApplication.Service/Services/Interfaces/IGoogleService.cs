@@ -1,4 +1,5 @@
 ﻿using Saken_WebApplication.Data.DTO;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace Saken_WebApplication.Service.Services.Interfaces
 {
     public interface IGoogleService
     {
-        Task<Saken_WebApplication.Service.Response.BaseResponse<TokenDTO>> GoogleSignInAsync(string TokenId);
+        Task<BaseResponse<TokenDTO>> GoogleSignInAsync(string TokenId);
     }
 }

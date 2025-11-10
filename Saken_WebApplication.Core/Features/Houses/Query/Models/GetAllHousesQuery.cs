@@ -1,12 +1,9 @@
 ﻿using MediatR;
 using Saken_WebApplication.Data.DTO.HousingDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Saken_WebApplication.Data.Response;
 
 namespace Saken_WebApplication.Core.Features.Houses.Query.Models
 {
-    public record GetAllHousesQuery() : IRequest<IEnumerable<HouseDTO>>;
+    public record GetAllHousesQuery(string userId) : IRequest<BaseResponse<IEnumerable<HouseDTO>>>;
+
 }

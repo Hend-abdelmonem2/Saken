@@ -1,31 +1,27 @@
 ﻿using Saken_WebApplication.Data.DTO;
 using Saken_WebApplication.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Saken_WebApplication.Data.Models.Enums;
+using Saken_WebApplication.Data.Response;
 
 namespace Saken_WebApplication.Service.Services.Interfaces
 {
-    public  interface IAuthService
+    public interface IAuthService
     {
-        Task<AuthModel> RegisterAsync(RegisterModelDTO model);
-        Task<AuthResponseDto> RefreshTokenAsync(string token);
-        Task<string> ForgetPasswordAsync(string email);
-        Task<AuthModel> LoginAsync(RequestLoginDto request);
-        Task<bool> RevokeTokenAsync(string token);
-        Task<string> ResetPasswordAsync(ResetPasswordDto model);
-        Task<string> Send2FACodeAsync(string email);
-        Task<string> Resend2FACodeAsync(string email);
-        Task<string> Verify2FACodeAsync(Verify2FACodeDto model);
+        Task<BaseResponse<AuthModel>> RegisterAsync(RegisterModelDTO model);
+        Task<BaseResponse<AuthResponseDto>> RefreshTokenAsync(string token);
+        Task<BaseResponse<string>> ForgetPasswordAsync(string email);
+        Task<BaseResponse<AuthModel>> LoginAsync(RequestLoginDto request);
+        Task<BaseResponse> LogoutAsync(string? accessToken, string userId);
+        Task<BaseResponse<bool>> RevokeTokenAsync(string token);
+        Task<BaseResponse<string>> ResetPasswordAsync(ResetPasswordDto model);
+        Task<BaseResponse<string>> Send2FACodeAsync(string email);
+        Task<BaseResponse<string>> Resend2FACodeAsync(string email);
+        Task<BaseResponse<string>> Verify2FACodeAsync(Verify2FACodeDto model);
 
-        Task<(bool IsSuccess, string Message)> UpdateProfileAsync(string userId, UpdateUserDto model);
-        Task<IEnumerable<UserDto>> GetUsersAsync();
-        Task UpdateRoleAsync(UpdateRoleDto model);
+        Task<BaseResponse<string>> UpdateProfileAsync(string userId, UpdateUserDto model);
+        Task<BaseResponse<IEnumerable<UserDto>>> GetUsersAsync(string userId);
+        Task<BaseResponse<string>> UpdateRoleAsync(UpdateRoleDto model);
 
-        Task<IEnumerable<UserDto>> GetUsersByRoleAsync(string role);
-        Task<UserDto> GetUserByIdAsync(string Id);
+        Task<BaseResponse<IEnumerable<UserDto>>> GetUsersByRoleAsync(string userId, string role);
+        Task<BaseResponse<UserDto>> GetUserByIdAsync(string Id);
     }
 }

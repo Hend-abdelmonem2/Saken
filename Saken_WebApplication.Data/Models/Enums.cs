@@ -26,6 +26,16 @@ namespace Saken_WebApplication.Data.Models
             Bed
         }
 
+        public enum CommissionStatus
+        {
+            Step1_Validated,
+            Step2_ReachedOwner,
+            Step3_Agreed,
+            Step4_Listed,
+            Step5_Rented,
+            Step6_CommissionSent
+        }
+
         public enum RentalDuration
         {
             Weekly,
@@ -46,6 +56,12 @@ namespace Saken_WebApplication.Data.Models
             Available,
             Reserved,
             Rented
+        }
+        public enum HouseStatus
+        {
+            Pending,
+            Approved,
+            Rejected
         }
 
         public enum FurnishingStatus
@@ -88,6 +104,14 @@ namespace Saken_WebApplication.Data.Models
             Week,
             Month,
             Year
+        }
+        public enum OfferType
+        {
+            DiscountPrice,
+            NoCommission,
+            DiscountInsurance,
+            FirstMonthFree,
+            FreeUtilities,
         }
     }
 }

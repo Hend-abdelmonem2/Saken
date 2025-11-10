@@ -1,45 +1,69 @@
+using AutoMapper;
+using Hangfire;
+using Hangfire.SqlServer;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Saken_WebApplication.Data.Models;
-using Saken_WebApplication.Infrasturcture.Data;
-using Saken_WebApplication.Infrasturcture.Repositories.Implement;
-using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
-using Saken_WebApplication.Service.Services.Implement;
-using Saken_WebApplication.Service.Services.Interfaces;
-using System.Text.Json.Serialization;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
-using System.Configuration;
-using Saken_WebApplication.Service.Services.Implement.Like;
-using Saken_WebApplication.Service.Services.Interfaces.Like;
-using Saken_WebApplication.Service.Services.Implement.housing;
-using Saken_WebApplication.Service.Services.Interfaces.housing;
-using Saken_WebApplication.Service.Services.Interfaces.message;
-using Saken_WebApplication.Service.Services.Implement.message;
-using Saken_WebApplication.Infrasturcture.Repositories.Interfaces.Preferences;
-using Saken_WebApplication.Infrasturcture.Repositories.Implement.Preferences;
-using Saken_WebApplication.Service.Services.Interfaces.UserPreferences;
-using Saken_WebApplication.Service.Services.Implement.UserPreference;
-using Saken_WebApplication.Service.Services.Interfaces.recommend;
-using Saken_WebApplication.Service.Services.Implement.Recommand;
-using Saken_WebApplication.Service.Services.Interfaces.Reservation;
-using Saken_WebApplication.Service.Services.Implement.Reservation;
-using AutoMapper;
-using Saken_WebApplication.Infrasturcture;
-using Saken_WebApplication.Service;
-using MediatR;
+using Saken_WebApplication.Core;
+using Saken_WebApplication.Core.Extensions;
+using Saken_WebApplication.Core.Features.Houses.Base;
 using Saken_WebApplication.Core.Features.Houses.Command.Handlers;
 using Saken_WebApplication.Core.Features.Houses.Query.Handlers;
-using Saken_WebApplication.Core.Features.Houses.Base;
+using Saken_WebApplication.Core.Features.Reservation.Command.Handlers;
+using Saken_WebApplication.Core.Features.Reservation.Query.Handlers;
+using Saken_WebApplication.Data.Models;
+using Saken_WebApplication.Infrasturcture;
+using Saken_WebApplication.Infrasturcture.Data;
+using Saken_WebApplication.Infrasturcture.Repositories;
+using Saken_WebApplication.Infrasturcture.Repositories.Implement;
+using Saken_WebApplication.Infrasturcture.Repositories.Implement.Preferences;
+using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
+using Saken_WebApplication.Infrasturcture.Repositories.Interfaces.Preferences;
+using Saken_WebApplication.Service;
+using Saken_WebApplication.Service.Services.Implement;
+using Saken_WebApplication.Service.Services.Implement.housing;
+using Saken_WebApplication.Service.Services.Implement.Like;
+using Saken_WebApplication.Service.Services.Implement.message;
+using Saken_WebApplication.Service.Services.Implement.Recommand;
+using Saken_WebApplication.Service.Services.Implement.Reservation;
+using Saken_WebApplication.Service.Services.Implement.UserPreference;
+using Saken_WebApplication.Service.Services.Interfaces;
+using Saken_WebApplication.Service.Services.Interfaces.housing;
+using Saken_WebApplication.Service.Services.Interfaces.Like;
+using Saken_WebApplication.Service.Services.Interfaces.message;
+using Saken_WebApplication.Service.Services.Interfaces.recommend;
+using Saken_WebApplication.Service.Services.Interfaces.Reservation;
+using Saken_WebApplication.Service.Services.Interfaces.UserPreferences;
+using System.Configuration;
+using System.Text;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new SqlServerStorageOptions
+        {
+            SchemaName = "Hangfire", 
+            QueuePollInterval = TimeSpan.FromSeconds(15),
+            JobExpirationCheckInterval = TimeSpan.FromHours(1),
+            CountersAggregateInterval = TimeSpan.FromMinutes(5),
+            PrepareSchemaIfNecessary = true
+        }
+    )
+);
+
+
+builder.Services.AddHangfireServer();
 
 builder.Services.AddControllers();
 
@@ -68,61 +92,23 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 #region Dependency Injection
 builder.Services.AddInfrastructureDependencies()
-    .AddServiceeDependencies();
+    .AddServiceeDependencies()
+    .AddCoreDependencies();
 #endregion
-builder.Services.AddMediatR(typeof(AddHousingHandler).Assembly);
-builder.Services.AddMediatR(typeof(UpdateHousingHandler).Assembly);
-builder.Services.AddMediatR(typeof(AddReservationHandler).Assembly);
-builder.Services.AddMediatR(typeof(DeleteHousingHandler).Assembly);
-builder.Services.AddMediatR(typeof(SaveHousingHandler).Assembly);
-builder.Services.AddMediatR(typeof(SubmitInspectionRequestHandler).Assembly);
-builder.Services.AddMediatR(typeof(ToggleFreezeHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetAllHousesHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetAvailableSlotsHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetGroupedHousingsForLandlordHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetHousingByIdHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetHousingsByHighestRatingHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetHousingsByLowestPriceHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetInspectionRequestsForOwnerHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetReservationsForTenantHandler).Assembly);
-builder.Services.AddMediatR(typeof(GetSavedHousingsHandler).Assembly);
-builder.Services.AddMediatR(typeof(SearchHousesHandler).Assembly);
-builder.Services.AddMediatR(typeof(BaseHousingHandler).Assembly);
-
-
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddApplicationMediatR();
+builder.Services.AddHttpClient<IHousingService, HousingService>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
-builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>();
-builder.Services.AddTransient<IAuthService, AuthService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<ILikeRepository, LikeRepository>();
-builder.Services.AddScoped<ILikeService, LikeService>();
+
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
-builder.Services.AddScoped<IMessageService, MessageService>();
-builder.Services.AddScoped<IDummyDataService, Saken_WebApplication.Service.Services.Implement.DummyDataService>();
-builder.Services.AddScoped<IDummyUserService, DummyUserService>();
 
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IHouses, Saken_WebApplication.Infrasturcture.Repositories.Implement.Housing>();
-builder.Services.AddScoped<IHousingFilterService, HousingFilterService>();
-builder.Services.AddScoped<IHousingService, HousingService>();
-builder.Services.AddScoped<IHousingRepository, HousingRepository>();
-builder.Services.AddScoped<IUserPreferencesService, UserPreferencesService>();
-builder.Services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository>();
-builder.Services.AddScoped<IRecommendationService, RecommendationService>();
-builder.Services.AddScoped<IReservationService, ReservationService>();
+
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-builder.Services.AddScoped<IGoogleService, GoogleService>();
-builder.Services.AddScoped<IAppSettingsService, AppSettingsService>();
-builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 
-builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 
-//builder.Services.AddAutoMapper(typeof(Program));
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 
@@ -174,15 +160,7 @@ builder.Services.AddAuthentication(options =>
                 })
 
   .AddCookie();
-  /*.AddGoogle(options =>
-  {
-      IConfigurationSection googleAuthSection = builder.Configuration.GetSection("Authentication:Google");
-
-      options.ClientId = googleAuthSection["ClientId"];
-      options.ClientSecret = googleAuthSection["ClientSecret"];
-  });*/
-
-builder.Services.AddSwaggerGen(swagger => {
+ builder.Services.AddSwaggerGen(swagger => {
 
     swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
@@ -215,15 +193,21 @@ var app = builder.Build();
 app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
+app.UseSwagger();
 if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
     app.UseSwaggerUI();
-}
+else
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
+
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseHangfireDashboard("/dashboard");
 
 app.MapControllers();
 

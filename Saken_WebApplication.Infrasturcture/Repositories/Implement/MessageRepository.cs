@@ -1,5 +1,6 @@
 ﻿using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
+using Saken_WebApplication.Data.DTO.message;
 using Saken_WebApplication.Infrasturcture.Data;
 using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
 using System;
@@ -26,10 +27,29 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Implement
         public async Task<IEnumerable<Saken_WebApplication.Data.Models.Message>> GetMessagesAsync(string userId1, string userId2)
         {
             return await _context.messages
+                .Include(m => m.Sender)
+                .Include(m => m.Receiver)
                 .Where(m =>
                     (m.SenderId == userId1 && m.ReceiverId == userId2) ||
                     (m.SenderId == userId2 && m.ReceiverId == userId1))
                 .OrderBy(m => m.SentAt)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<UserConversationDto>> GetUserConversationsAsync(string userId)
+        {
+            return await _context.messages
+                .Where(m => m.SenderId == userId || m.ReceiverId == userId)
+                .GroupBy(m => m.SenderId == userId ? m.ReceiverId : m.SenderId)
+                .Select(g => new UserConversationDto
+                {
+                    UserId = g.Key,
+                    FullName = g.Select(x => x.SenderId == g.Key ? x.Sender.FullName : x.Receiver.FullName).FirstOrDefault(),
+                    ProfileImage = g.Select(x => x.SenderId == g.Key ? x.Sender.profilePicture : x.Receiver.profilePicture).FirstOrDefault(),
+                    LastMessage = g.OrderByDescending(x => x.SentAt).Select(x => x.Content).FirstOrDefault(),
+                    LastMessageTime = g.Max(x => x.SentAt)
+                })
+                .OrderByDescending(x => x.LastMessageTime)
                 .ToListAsync();
         }
     }

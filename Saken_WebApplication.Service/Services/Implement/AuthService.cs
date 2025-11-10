@@ -1,37 +1,31 @@
-﻿using AutoMapper;
-using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Saken_WebApplication.Data.DTO;
 using Saken_WebApplication.Data.Models;
+using Saken_WebApplication.Data.Response;
+using Saken_WebApplication.Infrasturcture.Data;
 using Saken_WebApplication.Infrasturcture.Repositories.Interfaces;
 using Saken_WebApplication.Service.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static Saken_WebApplication.Data.Models.Enums;
 
 namespace Saken_WebApplication.Service.Services.Implement
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
         private readonly Microsoft.AspNetCore.Identity.UserManager<User> _userManager;
         private readonly IUserRepository _userRepository;
         private readonly ICloudinaryService _cloudinaryService;
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
-    
+        private readonly ApplicationDBContext _dbContext;
+
         public AuthService(
             IUserRepository userRepository,
             ICloudinaryService cloudinaryService,
             ITokenService tokenService,
             Microsoft.AspNetCore.Identity.UserManager<User> userManager,
-           IEmailService emailService
-            
+           IEmailService emailService,
+            ApplicationDBContext dBContext
 
          )
         {
@@ -40,26 +34,52 @@ namespace Saken_WebApplication.Service.Services.Implement
             _tokenService = tokenService;
             _userManager = userManager;
             _emailService = emailService;
-          
+            _dbContext = dBContext;
+
         }
-        public async Task<AuthModel> RegisterAsync(RegisterModelDTO model)
+        public async Task<BaseResponse<AuthModel>> RegisterAsync(RegisterModelDTO model)
         {
-            var existingUserWithRole = await _userRepository.FindByEmailAndRoleAsync(model.Email, model.Role);
-            if (existingUserWithRole != null)
-                return new AuthModel { Message = "Email is already registered with this role!" };
+            if (string.IsNullOrEmpty(model.Email) && string.IsNullOrEmpty(model.PhoneNumber))
+                return BaseResponse<AuthModel>.Failure("Email or Phone number is required!");
+
+            if (string.IsNullOrEmpty(model.Role))
+                return BaseResponse<AuthModel>.Failure("Role is required!");
+
+
+            if (!string.IsNullOrEmpty(model.Email))
+            {
+                var existingUserWithRole = await _userRepository.FindByEmailAndRoleAsync(model.Email, model.Role);
+                if (existingUserWithRole != null)
+                    return BaseResponse<AuthModel>.Failure("Email is already registered with this role!");
+            }
+
+
+            if (!string.IsNullOrEmpty(model.PhoneNumber))
+            {
+                var normalizedPhone = NormalizePhone(model.PhoneNumber);
+                var existingUserWithPhone = await _userRepository.FindByPhoneAndRoleAsync(normalizedPhone, model.Role);
+                if (existingUserWithPhone != null)
+                    return BaseResponse<AuthModel>.Failure("Phone number is already registered with this role!");
+            }
+            if (string.IsNullOrEmpty(model.Email))
+                model.Email = $"{Guid.NewGuid()}@placeholder.local";
+
 
             var existingUser = await _userRepository.FindByUsernameAsync(model.FullName);
             if (existingUser != null)
             {
                 string newUsername;
+                User checkUsername;
+
                 do
                 {
                     newUsername = $"{model.FullName}{new Random().Next(1000, 9999)}";
-                    existingUser = await _userRepository.FindByUsernameAsync(newUsername);
-                } while (existingUser != null);
+                    checkUsername = await _userRepository.FindByUsernameAsync(newUsername);
+                } while (checkUsername != null);
 
                 model.FullName = newUsername;
             }
+
 
             var user = new User
             {
@@ -69,17 +89,18 @@ namespace Saken_WebApplication.Service.Services.Implement
                 PhoneNumber = model.PhoneNumber,
                 address = model.address,
                 profilePicture = null,
-                Role = model.Role, 
+                Role = model.Role,
+                IsActive = false,
                 createdAt = DateTime.UtcNow,
                 RefreshTokens = new List<RefreshToken>()
             };
 
-          
+
             if (model.Photo != null)
             {
                 var uploadResult = await _cloudinaryService.UploadImageAsync(model.Photo);
                 if (uploadResult.Error != null)
-                    return new AuthModel { Message = uploadResult.Error.Message };
+                    return BaseResponse<AuthModel>.Failure(uploadResult.Error.Message);
 
                 user.profilePicture = uploadResult.SecureUrl.ToString();
             }
@@ -88,54 +109,89 @@ namespace Saken_WebApplication.Service.Services.Implement
                 user.profilePicture = model.PhotoUrl;
             }
 
-            // ✅ إنشاء المستخدم في Identity
-            var result = await _userRepository.CreateUserAsync(user, model.Password);
-            if (!result.Succeeded)
-                return new AuthModel { Message = string.Join(", ", result.Errors.Select(e => e.Description)) };
-
-
-            await _userRepository.AddToRoleAsync(user, model.Role.ToUpper());
-            // ✅ إنشاء التوكن
-            var token = await _tokenService.CreateJwtToken(user);
-
-            var refreshToken = GenerateRefreshToken();
-            user.RefreshTokens?.Add(refreshToken);
-            await _userManager.UpdateAsync(user);
-            return new AuthModel
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
             {
-                Message = "User registered successfully!",
-                Email = user.Email,
-                //ExpiresOn = token.ValidTo,
-                IsAuthenticated = true,
-                Roles = new List<string> { user.Role },
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Username = user.UserName,
-                PhotoUrl = user.profilePicture
-            };
-        }
-        public async Task<AuthModel> LoginAsync(RequestLoginDto request)
-        {
-            var authModel = new AuthModel();
+                var result = await _userRepository.CreateUserAsync(user, model.Password);
+                if (!result.Succeeded)
+                    return BaseResponse<AuthModel>.Failure(string.Join(", ", result.Errors.Select(e => e.Description)));
 
-            var user = await _userRepository.FindByEmailAndRoleAsync(request.Email, request.Role);
-            if (user == null)
-                return new AuthModel { Message = "Invalid email or role." };
 
-            if (user is null || !await _userManager.CheckPasswordAsync(user, request.Password))
-            {
-                authModel.Message = "Email or Password is incorrect!";
-                return authModel;
+                await _userRepository.AddToRoleAsync(user, model.Role.ToUpper());
+
+
+                var token = await _tokenService.CreateJwtToken(user);
+                var refreshToken = GenerateRefreshToken();
+                user.RefreshTokens?.Add(refreshToken);
+                await _userManager.UpdateAsync(user);
+                await transaction.CommitAsync();
+
+                var authModel = new AuthModel
+                {
+                    Message = "User registered successfully!",
+                    Email = user.Email,
+                    phone = user.PhoneNumber,
+                    IsAuthenticated = true,
+                    Roles = new List<string> { user.Role },
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Username = user.UserName,
+                    PhotoUrl = user.profilePicture
+                };
+
+                return BaseResponse<AuthModel>.SuccessResponse(authModel, "User registered successfully!");
             }
+            catch (Exception ex)
+            {
+
+                await transaction.RollbackAsync();
+                return BaseResponse<AuthModel>.Failure($"Registration failed: {ex.Message}");
+            }
+        }
+
+        public async Task<BaseResponse<AuthModel>> LoginAsync(RequestLoginDto request)
+        {
+            if (string.IsNullOrEmpty(request.Email) && string.IsNullOrEmpty(request.PhoneNumber))
+                return BaseResponse<AuthModel>.Failure("Email or Phone number is required!");
+
+            var authModel = new AuthModel();
+            User user = null;
+
+
+            if (!string.IsNullOrEmpty(request.Email))
+            {
+                user = await _userRepository.FindByEmailAndRoleAsync(request.Email, request.Role);
+            }
+            else if (!string.IsNullOrEmpty(request.PhoneNumber))
+            {
+                var normalizedPhone = NormalizePhone(request.PhoneNumber);
+                user = await _userRepository.FindByPhoneAndRoleAsync(request.PhoneNumber, request.Role);
+            }
+
+            if (user == null)
+                return BaseResponse<AuthModel>.Failure("Invalid credentials or role.");
+
+
+            if (!await _userManager.CheckPasswordAsync(user, request.Password))
+                return BaseResponse<AuthModel>.Failure("Invalid credentials!");
+
+
+            user.IsActive = true;
+            await _userManager.UpdateAsync(user);
+
 
             var jwtSecurityToken = await _tokenService.CreateJwtToken(user);
             var rolesList = await _userManager.GetRolesAsync(user);
 
+            authModel.Message = "User Login Successfully";
             authModel.IsAuthenticated = true;
             authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             authModel.Email = user.Email;
+            authModel.phone = user.PhoneNumber;
             authModel.Username = user.UserName;
             authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
+            authModel.PhotoUrl = user.profilePicture;
+
 
             if (user.RefreshTokens.Any(t => t.IsActive))
             {
@@ -152,10 +208,48 @@ namespace Saken_WebApplication.Service.Services.Implement
                 await _userManager.UpdateAsync(user);
             }
 
-            return authModel;
+            return BaseResponse<AuthModel>.SuccessResponse(authModel, "Login Successfully");
+        }
+        private string NormalizePhone(string? phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone))
+                return string.Empty;
+
+            var digits = new string(phone.Where(char.IsDigit).ToArray());
+            if (digits.StartsWith("0"))
+                digits = digits.Substring(1);
+
+            return $"+20{digits}";
         }
 
-        public async Task<AuthResponseDto> RefreshTokenAsync(string token)
+        public async Task<BaseResponse> LogoutAsync(string? accessToken, string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return new BaseResponse(false, "User not found");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return new BaseResponse(false, "User not found");
+
+            // 1️⃣ Revoke all refresh tokens
+            if (user.RefreshTokens != null && user.RefreshTokens.Any(t => t.IsActive))
+            {
+                foreach (var token in user.RefreshTokens.Where(t => t.IsActive))
+                {
+                    token.RevokedOn = DateTime.UtcNow;
+                }
+                user.IsActive = false;
+
+                await _userManager.UpdateAsync(user);
+            }
+
+
+
+            return new BaseResponse(true, "Logout done");
+        }
+
+
+        public async Task<BaseResponse<AuthResponseDto>> RefreshTokenAsync(string token)
         {
             var authModel = new AuthResponseDto();
 
@@ -164,15 +258,15 @@ namespace Saken_WebApplication.Service.Services.Implement
             if (user == null)
             {
                 authModel.Message = "Invalid token";
-                return authModel;
+                return BaseResponse<AuthResponseDto>.Failure("Invalid token");
             }
 
             var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
 
             if (!refreshToken.IsActive)
             {
-                authModel.Message = "Inactive token";
-                return authModel;
+
+                return BaseResponse<AuthResponseDto>.Failure("Inactive token");
             }
 
             refreshToken.RevokedOn = DateTime.Now;
@@ -191,103 +285,119 @@ namespace Saken_WebApplication.Service.Services.Implement
             authModel.RefreshToken = newRefreshToken.Token;
             authModel.RefreshTokenExpiration = newRefreshToken.ExpiresOn;
 
-            return authModel;
+            return BaseResponse<AuthResponseDto>.SuccessResponse(authModel, "Refresh Token");
         }
-        public async Task<bool> RevokeTokenAsync(string token)
+        public async Task<BaseResponse<bool>> RevokeTokenAsync(string token)
         {
             var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
 
             if (user == null)
-                return false;
+                return BaseResponse<bool>.Failure("User Not Found");
 
             var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
 
             if (!refreshToken.IsActive)
-                return false;
+                return BaseResponse<bool>.Failure("Token Not Active");
 
             refreshToken.RevokedOn = DateTime.UtcNow;
 
             await _userManager.UpdateAsync(user);
 
-            return true;
+            return BaseResponse<bool>.SuccessResponse(true, "Revoke Successfully");
         }
-
-        private RefreshToken GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-
-            using var generator = new RNGCryptoServiceProvider();
-
-            generator.GetBytes(randomNumber);
-
-            return new RefreshToken
-            {
-                Token = Convert.ToBase64String(randomNumber),
-                ExpiresOn = DateTime.UtcNow.AddDays(10),
-                CreatedOn = DateTime.UtcNow
-            };
-        }
-        public async Task<IEnumerable<UserDto>> GetUsersAsync()
+        public async Task<BaseResponse<IEnumerable<UserDto>>> GetUsersAsync(string userId)
         {
             var users = _userManager.Users.ToList();
             if (users == null || !users.Any())
             {
-                throw new Exception("No Users Founded!");
+                return BaseResponse<IEnumerable<UserDto>>.Failure("No Users Founded!");
             }
+            var likedIds = await _dbContext.Likes
+              .Where(l => l.UserId == userId && l.EntityType == "User")
+              .Select(l => l.EntityId)
+              .ToListAsync();
+
             var usersDto = users.Select(user => new UserDto
             {
                 Id = user.Id,
-                FullName= user.UserName,
+                FullName = user.UserName,
                 Email = user.Email,
                 profilePicture = user.profilePicture,
                 PhoneNumber = user.PhoneNumber,
                 Role = user.Role,
+                IsActive = user.IsActive,
+                IsFavorite = likedIds.Contains(user.Id)
+
             }).ToList();
 
-            return usersDto;
+            return BaseResponse<IEnumerable<UserDto>>.SuccessResponse(usersDto, "Retrive Users Successfully");
         }
-        public async Task<(bool IsSuccess, string Message)> UpdateProfileAsync(string userId, UpdateUserDto model)
+        public async Task<BaseResponse<string>> UpdateProfileAsync(string userId, UpdateUserDto model)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-                return (false, "المستخدم غير موجود");
+                return BaseResponse<string>.Failure("User Not Found");
 
-            user.FullName = model.FullName;
-            user.Email = model.Email;
-            user.PhoneNumber = model.PhoneNumber;
+
+            if (!string.IsNullOrWhiteSpace(model.FullName))
+                user.FullName = model.FullName;
+
+
+            if (!string.IsNullOrWhiteSpace(model.Email) && model.Email != user.Email)
+            {
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
+                    return BaseResponse<string>.Failure("Email is already in use by another user.");
+
+                user.Email = model.Email;
+
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(model.PhoneNumber) && model.PhoneNumber != user.PhoneNumber)
+            {
+                var existingPhoneUser = _userManager.Users.FirstOrDefault(u => u.PhoneNumber == model.PhoneNumber);
+                if (existingPhoneUser != null)
+                    return BaseResponse<string>.Failure("Phone number is already in use by another user.");
+
+                user.PhoneNumber = model.PhoneNumber;
+            }
+
+
             if (model.photo != null)
             {
                 var uploadResult = await _cloudinaryService.UploadImageAsync(model.photo);
-
                 if (uploadResult.Error != null)
-                    return (false, uploadResult.Error.Message);
+                    return BaseResponse<string>.Failure(uploadResult.Error.Message);
 
                 user.profilePicture = uploadResult.SecureUrl.ToString();
             }
 
-            // ✅ تعديل الباسورد (لو تم إرسال باسورد جديد)
+
             if (!string.IsNullOrWhiteSpace(model.NewPassword))
             {
                 var removeResult = await _userManager.RemovePasswordAsync(user);
                 if (!removeResult.Succeeded)
-                    return (false, "فشل في إزالة كلمة المرور القديمة");
+                    return BaseResponse<string>.Failure("فشل في إزالة كلمة المرور القديمة");
 
                 var addResult = await _userManager.AddPasswordAsync(user, model.NewPassword);
                 if (!addResult.Succeeded)
-                    return (false, "كلمة المرور الجديدة غير صالحة");
+                    return BaseResponse<string>.Failure("كلمة المرور الجديدة غير صالحة");
             }
+
 
             var updateResult = await _userManager.UpdateAsync(user);
             if (!updateResult.Succeeded)
-                return (false, "فشل في تحديث البيانات");
+                return BaseResponse<string>.Failure("فشل في تحديث البيانات");
 
-            return (true, "تم تحديث الملف الشخصي بنجاح");
-        
+            return BaseResponse<string>.SuccessResponse("تم تحديث الملف الشخصي بنجاح");
         }
-        public async Task UpdateRoleAsync(UpdateRoleDto model)
+
+        public async Task<BaseResponse<string>> UpdateRoleAsync(UpdateRoleDto model)
         {
-            var user = await _userManager.FindByIdAsync(model.UserId)
-                ?? throw new Exception("User not found");
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            if (user == null)
+                return BaseResponse<string>.Failure("User Not Found");
             var currentRoles = await _userManager.GetRolesAsync(user);
             // إزالة الأدوار الحالية
             if (currentRoles.Any())
@@ -296,7 +406,7 @@ namespace Saken_WebApplication.Service.Services.Implement
                 if (!removeResult.Succeeded)
                 {
                     var errors = string.Join(", ", removeResult.Errors.Select(e => e.Description));
-                    throw new Exception($"Failed to remove roles: {errors}");
+                    return BaseResponse<string>.Failure($"Failed to remove roles: {errors}");
                 }
             }
             user.Role = model.NewRoleName;
@@ -305,11 +415,19 @@ namespace Saken_WebApplication.Service.Services.Implement
             if (!result.Succeeded)
             {
                 var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-                throw new Exception($"Failed to add roles: {errors}");
+                return BaseResponse<string>.Failure($"Failed to add roles: {errors}");
             }
+            return BaseResponse<string>.SuccessResponse("Update Role Successfully");
         }
-        public async Task<IEnumerable<UserDto>> GetUsersByRoleAsync(string role)
+        public async Task<BaseResponse<IEnumerable<UserDto>>> GetUsersByRoleAsync(string userId, string role)
         {
+
+
+            var likedIds = await _dbContext.Likes
+                .Where(l => l.UserId == userId && l.EntityType == "User")
+                .Select(l => l.EntityId)
+                .ToListAsync();
+
             var users = await _userManager.Users
                 .Where(u => u.Role == role)
                 .Select(u => new UserDto
@@ -318,17 +436,20 @@ namespace Saken_WebApplication.Service.Services.Implement
                     FullName = u.UserName,
                     Email = u.Email,
                     Role = u.Role,
-                    PhoneNumber=u.PhoneNumber,
-                    profilePicture=u.profilePicture
+                    PhoneNumber = u.PhoneNumber,
+                    profilePicture = u.profilePicture,
+                    IsActive = u.IsActive,
+                    IsFavorite = likedIds.Contains(u.Id)
                 })
                 .ToListAsync();
 
-            return users;
+            return BaseResponse<IEnumerable<UserDto>>.SuccessResponse(users, "Retrive Users By Role");
         }
-        public async Task<UserDto> GetUserByIdAsync(string Id)
+        public async Task<BaseResponse<UserDto>> GetUserByIdAsync(string Id)
         {
-            var user = await _userManager.FindByIdAsync(Id)
-                 ?? throw new Exception("User not found");
+            var user = await _userManager.FindByIdAsync(Id);
+            if (user == null)
+                return BaseResponse<UserDto>.Failure("User not found");
 
             var userDto = new UserDto
             {
@@ -337,25 +458,18 @@ namespace Saken_WebApplication.Service.Services.Implement
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 FullName = user.FullName,
-                profilePicture=user.profilePicture
+                profilePicture = user.profilePicture,
+                IsActive = user.IsActive
 
-                // ضيفي أي خصائص إضافية موجودة في UserDto هنا
             };
 
-            return userDto;
+            return BaseResponse<UserDto>.SuccessResponse(userDto, "User Retrive Successfully");
         }
-
-
-        private string GenerateCode()
+        public async Task<BaseResponse<string>> ForgetPasswordAsync(string email)
         {
-            Random random = new Random();
-            return random.Next(10000000, 99999999).ToString();
-        }
-
-        public async Task<string> ForgetPasswordAsync(string email)
-        {
-            var user = await _userManager.FindByEmailAsync(email) ??
-                throw new Exception("User not found");
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return BaseResponse<string>.Failure("User not found");
 
             var resetCode = GenerateCode();
 
@@ -366,22 +480,23 @@ namespace Saken_WebApplication.Service.Services.Implement
             var message = $"Your password reset code is: {resetCode}";
             await _emailService.SendEmailAsync(user.Email, subject, message);
 
-            return $"A password reset code has been sent to your email.";
+            return BaseResponse<string>.SuccessResponse($"A password reset code has been sent to your email.");
         }
 
-        public async Task<string> ResetPasswordAsync(ResetPasswordDto model)
+        public async Task<BaseResponse<string>> ResetPasswordAsync(ResetPasswordDto model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email) ??
-               throw new Exception("User not found");
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return BaseResponse<string>.Failure("User not found");
 
             //  التحقق من الرمز
             if (user.ResetCode != model.ResetCode)
-                throw new Exception("Invalid reset code");
+                return BaseResponse<string>.Failure("Invalid reset code");
 
             // التحقق مما إذا كانت كلمة المرور الجديدة هي نفس القديمة
             var passwordCheck = await _userManager.CheckPasswordAsync(user, model.NewPassword);
             if (passwordCheck)
-                throw new Exception("New password cannot be the same as the current password.");
+                return BaseResponse<string>.Failure("New password cannot be the same as the current password.");
 
             //  إعادة تعيين كلمة المرور
             var resetPassword = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -391,24 +506,25 @@ namespace Saken_WebApplication.Service.Services.Implement
             if (!result.Succeeded)
             {
                 var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-                throw new Exception($"Failed to reset password: {errors}");
+                return BaseResponse<string>.Failure($"Failed to reset password: {errors}");
             }
 
             //  إزالة الرمز بعد الاستخدام
             user.ResetCode = null;
             await _userManager.UpdateAsync(user);
 
-            return "Password has been reset successfully!";
+            return BaseResponse<string>.SuccessResponse("Password has been reset successfully!");
         }
 
-        public async Task<string> Send2FACodeAsync(string email)
+        public async Task<BaseResponse<string>> Send2FACodeAsync(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email) ??
-                throw new Exception("User not found");
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return BaseResponse<string>.Failure("User not found");
 
             // التحقق مما إذا كان هناك كود موجود ولكنه منتهي الصلاحية
             if (user.TwoFactorCodeExpiration != null && user.TwoFactorCodeExpiration > DateTime.Now)
-                return "A valid 2FA code has already been sent. Please check your email.";
+                return BaseResponse<string>.Failure("A valid 2FA code has already been sent. Please check your email.");
 
             var twoFactorCode = GenerateCode();
 
@@ -421,17 +537,18 @@ namespace Saken_WebApplication.Service.Services.Implement
             var message = $"Your Two-Factor Authentication code is : {twoFactorCode}";
             await _emailService.SendEmailAsync(user.Email, subject, message);
 
-            return "A 2FA code has been sent to your email.";
+            return BaseResponse<string>.SuccessResponse("A 2FA code has been sent to your email.");
         }
 
-        public async Task<string> Verify2FACodeAsync(Verify2FACodeDto model)
+        public async Task<BaseResponse<string>> Verify2FACodeAsync(Verify2FACodeDto model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email)
-             ?? throw new Exception("User not found");
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return BaseResponse<string>.Failure("User not found");
 
             // التحقق مما إذا كان الكود قد انتهت صلاحيته
             if (user.TwoFactorCode == null || user.TwoFactorCodeExpiration < DateTime.UtcNow)
-                throw new Exception("The 2FA code has expired. Please request a new one.");
+                return BaseResponse<string>.Failure("The 2FA code has expired. Please request a new one.");
 
             // التحقق من صحة الكود
             if (user.TwoFactorCode != model.Code)
@@ -443,11 +560,11 @@ namespace Saken_WebApplication.Service.Services.Implement
                 {
                     user.LockoutEnd = DateTime.UtcNow.AddMinutes(10); //  قفل الحساب لمدة 10 دقيقة
                     await _userManager.UpdateAsync(user);
-                    throw new Exception("Too many failed attempts. Your account is locked for 10 minutes.");
+                    return BaseResponse<string>.Failure("Too many failed attempts. Your account is locked for 10 minutes.");
                 }
 
                 await _userManager.UpdateAsync(user);
-                throw new Exception("Invalid 2FA code.");
+                return BaseResponse<string>.Failure("Invalid 2FA code.");
             }
 
             // Reset the 2FA code after successful verification
@@ -459,23 +576,24 @@ namespace Saken_WebApplication.Service.Services.Implement
 
             await _userManager.UpdateAsync(user);
 
-            return "2FA verification successful";
+            return BaseResponse<string>.SuccessResponse("2FA verification successful");
         }
 
-        public async Task<string> Resend2FACodeAsync(string email)
+        public async Task<BaseResponse<string>> Resend2FACodeAsync(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email) ??
-                throw new Exception("User not found");
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return BaseResponse<string>.Failure("User not found");
 
             if (user.TwoFactorSentAt != null && (DateTime.UtcNow - user.TwoFactorSentAt.Value).TotalSeconds < 60)
             {
-                throw new Exception("Please wait at least 1 minute before requesting a new code.");
+                return BaseResponse<string>.Failure("Please wait at least 1 minute before requesting a new code.");
             }
 
             // التحقق مما إذا كان الحساب مقفلًا حاليًا
             if (user.LockoutEnd.HasValue && user.LockoutEnd > DateTime.UtcNow)
             {
-                throw new Exception($"Your account is locked. Try again at {user.LockoutEnd.Value.ToLocalTime()}.");
+                return BaseResponse<string>.Failure($"Your account is locked. Try again at {user.LockoutEnd.Value.ToLocalTime()}.");
             }
 
             // إعادة ضبط المحاولات إذا مرت ساعة
@@ -486,7 +604,7 @@ namespace Saken_WebApplication.Service.Services.Implement
 
             if (user.TwoFactorAttempts >= 5)
             {
-                throw new Exception("You have exceeded the maximum number of attempts. Please try again later.");
+                return BaseResponse<string>.Failure("You have exceeded the maximum number of attempts. Please try again later.");
             }
 
             var newCode = GenerateCode();
@@ -502,9 +620,29 @@ namespace Saken_WebApplication.Service.Services.Implement
 
             await _emailService.SendEmailAsync(user.Email, "Your 2FA Code", $"Your new 2FA code is: {newCode}");
 
-            return "A new 2FA code has been sent to your email.";
+            return BaseResponse<string>.SuccessResponse("A new 2FA code has been sent to your email.");
         }
 
+        private string GenerateCode()
+        {
+            Random random = new Random();
+            return random.Next(10000000, 99999999).ToString();
+        }
+        private RefreshToken GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+
+            using var generator = new RNGCryptoServiceProvider();
+
+            generator.GetBytes(randomNumber);
+
+            return new RefreshToken
+            {
+                Token = Convert.ToBase64String(randomNumber),
+                ExpiresOn = DateTime.UtcNow.AddDays(10),
+                CreatedOn = DateTime.UtcNow
+            };
+        }
 
 
 

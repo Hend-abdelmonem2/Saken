@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Saken_WebApplication.Core.Features.Likes.Command.Models;
+using Saken_WebApplication.Core.Features.Likes.Qyery.Models;
 using Saken_WebApplication.Data.DTO.Favorite;
 using Saken_WebApplication.Service.Services.Interfaces.Like;
 using System.Security.Claims;
@@ -11,53 +14,42 @@ namespace Saken_WebApplication.Controllers.Likes
     [ApiController]
     public class LikesController : ControllerBase
     {
-        private readonly ILikeService _likeService;
+        private readonly IMediator _mediator;
 
-        public LikesController(ILikeService likeService)
+        public LikesController(IMediator mediator)
         {
-            _likeService = likeService;
+            _mediator = mediator;
         }
 
         [HttpPost("ToggleLike")]
-        public async Task<IActionResult> ToggleLike([FromBody] AddLikeDTO likeDto)
+        [Authorize]
+        public async Task<IActionResult> ToggleLike([FromBody] ToggleLikeCommand command)
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-            {
-                return BadRequest(new { Message = "User not found" });
-            }
-
-            var result = await _likeService.ToggleLikeAsync(userId, likeDto.EntityId, likeDto.EntityType);
-
-            if (result == "Invalid entity type")
-                return BadRequest(new { Message = result });
-
-            return Ok(new { Message = result });
-
+            var result = await _mediator.Send(command);
+            if(!result.Success) 
+                return NotFound(result);
+            return Ok(result);
         }
-        [HttpGet("LikedHouses")]
+
+        [HttpGet("Likedhouses")]
         [Authorize]
         public async Task<IActionResult> GetLikedHouses()
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(userId))
-                return BadRequest(new { Message = "User not found" });
-
-            var houses = await _likeService.GetLikedHousesAsync(userId);
-            return Ok(houses);
+            var result = await _mediator.Send(new GetLikedHousesQuery());
+            if(!result.Success)
+                return NotFound(result);
+            return Ok(result);
         }
-        [HttpGet("liked-users")]
+
+      
+        [HttpGet("Likedusers")]
+        [Authorize]
         public async Task<IActionResult> GetLikedUsers()
         {
-            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(currentUserId))
-                return Unauthorized();
-
-            var likedUsers = await _likeService.GetLikedUsersAsync(currentUserId);
-            return Ok(likedUsers);
-
+            var result = await _mediator.Send(new GetLikedUsersQuery());
+            if(!result.Success)
+                return NotFound(result);
+            return Ok(result);
         }
 
     }

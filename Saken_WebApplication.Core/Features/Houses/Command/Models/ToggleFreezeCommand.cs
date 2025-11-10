@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,5 +8,6 @@ using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Core.Features.Houses.Command.Models
 {
-    public record ToggleFreezeCommand(int Id) : IRequest<(bool success, string message, bool isFrozen)>;
+    public record ToggleFreezeCommand(int Id) : IRequest<BaseResponse<bool>>;
+
 }

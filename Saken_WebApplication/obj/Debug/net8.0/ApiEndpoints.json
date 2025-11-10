@@ -1,8 +1,87 @@
 [
   {
+    "ContainingType": "Saken_WebApplication.Controllers.AdditionalInformation.AdditionalInformationController",
+    "Method": "AddInformation",
+    "RelativePath": "api/AdditionalInformation/AddAditionalInformation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Saken_WebApplication.Core.Features.AdditionalInformation.Command.Models.SavePreferencesCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdditionalInformation.AdditionalInformationController",
+    "Method": "Get",
+    "RelativePath": "api/AdditionalInformation/GetInformation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "ApproveHousing",
+    "RelativePath": "api/Admin/{id}/approve",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "RejectHousing",
+    "RelativePath": "api/Admin/{id}/reject",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.RejectRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Saken_WebApplication.Controllers.AdminController",
     "Method": "GetAllUsers",
     "RelativePath": "api/Admin/AllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetCountHouse",
+    "RelativePath": "api/Admin/countHouse",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -39,6 +118,46 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetNotification",
+    "RelativePath": "api/Admin/GetNotificationCount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "PendingHouse",
+    "RelativePath": "api/Admin/GetPendingHouse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetReservation",
+    "RelativePath": "api/Admin/GetReservationCount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.AdminController",
+    "Method": "GetCount",
+    "RelativePath": "api/Admin/GetUserCount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -105,32 +224,6 @@
       {
         "Name": "roleName",
         "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.AppSettingsController",
-    "Method": "GetSettings",
-    "RelativePath": "api/AppSettings",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.AppSettingsController",
-    "Method": "UpdateSettings",
-    "RelativePath": "api/AppSettings",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Saken_WebApplication.Data.DTO.AppSettingsDto",
         "IsRequired": true
       }
     ],
@@ -342,6 +435,16 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
+    "Method": "SignOut",
+    "RelativePath": "api/Auth/signout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Authcontroller",
     "Method": "UpdateProfile",
     "RelativePath": "api/Auth/UpdateProfile",
     "HttpMethod": "POST",
@@ -399,7 +502,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -419,6 +528,143 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Saken_WebApplication.Controllers.Agent.CommissionController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/Commission/{commissionId}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commissionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newStatus",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Agent.CommissionController",
+    "Method": "GetCommissionSteps",
+    "RelativePath": "api/Commission/agent/{agentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Agent.CommissionController",
+    "Method": "GetByHousingId",
+    "RelativePath": "api/Commission/housing/{housingId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "housingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.contact.ContactsController",
+    "Method": "BlockContact",
+    "RelativePath": "api/Contacts/AddToblock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Saken_WebApplication.Core.Features.Contacts.Command.Models.BlockContactCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.contact.ContactsController",
+    "Method": "GetAllowedContacts",
+    "RelativePath": "api/Contacts/AllowedContact/{ownerUserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.contact.ContactsController",
+    "Method": "GetBlockedContacts",
+    "RelativePath": "api/Contacts/BlockedContact/{ownerUserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.contact.ContactsController",
+    "Method": "AddContact",
+    "RelativePath": "api/Contacts/SaveContact",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Saken_WebApplication.Core.Features.Contacts.Command.Models.AddContactCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "DeleteDummyHouses",
+    "RelativePath": "api/DummyData/delete-dummy-houses",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
+    "Method": "InsertDummyHouses",
+    "RelativePath": "api/DummyData/insert-dummy-houses",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
     "Method": "InsertUsers",
     "RelativePath": "api/DummyData/insert-users",
@@ -430,49 +676,9 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
-    "Method": "ResetDummyData",
-    "RelativePath": "api/DummyData/reset",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
     "Method": "ResetUsers",
     "RelativePath": "api/DummyData/reset-users",
     "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.DummyDataController",
-    "Method": "SetDummyData",
-    "RelativePath": "api/DummyData/set",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.ExternalAuthController",
-    "Method": "HandleExternalLogin",
-    "RelativePath": "api/ExternalAuth/handle-external-login",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.ExternalAuthController",
-    "Method": "SignInWithGoogle",
-    "RelativePath": "api/ExternalAuth/signin-google",
-    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
@@ -696,7 +902,7 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetAllHouses",
+    "Method": "GetAll",
     "RelativePath": "api/Housing/AllHouses",
     "HttpMethod": "GET",
     "IsController": true,
@@ -706,14 +912,14 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetReservationContract",
-    "RelativePath": "api/Housing/contract/{id}",
+    "Method": "GetAvailableSlots",
+    "RelativePath": "api/Housing/available-slots/{housingId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "housingId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -722,7 +928,23 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "DeleteHouse",
+    "Method": "ByType",
+    "RelativePath": "api/Housing/By-type/{type}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "Delete",
     "RelativePath": "api/Housing/DeleteHouse/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -738,7 +960,59 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetHouseById",
+    "Method": "Filter",
+    "RelativePath": "api/Housing/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "housingType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "furnishingStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "minPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "maxPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "ToggleFreeze",
+    "RelativePath": "api/Housing/freeze/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "GetHousingById",
     "RelativePath": "api/Housing/GetHouseById/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -754,8 +1028,8 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetLandlordReservations",
-    "RelativePath": "api/Housing/landlordResrvation",
+    "Method": "GetHousingsByHighestRating",
+    "RelativePath": "api/Housing/highest-rating",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -764,97 +1038,72 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetHousingsForOwner",
-    "RelativePath": "api/Housing/owner/grouped-housings",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.OwnerHousingGroupedDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "Recommend",
-    "RelativePath": "api/Housing/recommend",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetRecommendations",
-    "RelativePath": "api/Housing/recommendations/{userId}",
+    "Method": "GetCost",
+    "RelativePath": "api/Housing/HouseCost",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
       },
       {
-        "Name": "location",
-        "Type": "System.String",
+        "Name": "durationInMonth",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[Saken_WebApplication.Data.DTO.HousingDTO.HousingDto, Saken_WebApplication.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "AddReservation",
-    "RelativePath": "api/Housing/Reservation",
+    "Method": "GetGroupedHousingsForLandlord",
+    "RelativePath": "api/Housing/landlord/grouped-housings/{landlordId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "landlordId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "LowestPriceAsync",
+    "RelativePath": "api/Housing/lowest-price",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "GetInspectionRequestsForOwner",
+    "RelativePath": "api/Housing/owner/inspection-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "RequestInspection",
+    "RelativePath": "api/Housing/request-inspection",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "HousingId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "AmountPaid",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "GetReservationById",
-    "RelativePath": "api/Housing/reservation/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "dto",
+        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.InspectionRequestDto",
         "IsRequired": true
       }
     ],
@@ -862,252 +1111,41 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "SearchHouses",
-    "RelativePath": "api/Housing/searchHouse",
+    "Method": "Saved",
+    "RelativePath": "api/Housing/savedHousing",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "key",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "ToggleFreeze",
-    "RelativePath": "api/Housing/ToggleFreeze/{id}",
+    "Method": "SaveHousing",
+    "RelativePath": "api/Housing/SaveHousing",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "houseId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "UpdateHousing",
-    "RelativePath": "api/Housing/update/{id}",
-    "HttpMethod": "PUT",
+    "Method": "Search",
+    "RelativePath": "api/Housing/search",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Title",
+        "Name": "searchKey",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Address",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PricePerMeter",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "AreaInMeters",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Floor",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "HousingType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FurnishingStatus",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RentalType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RentDurationValue",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "RentDurationUnit",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberOfRooms",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasKitchen",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasBathroom",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasLivingRoom",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasBed",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasWardrobe",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasChair",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasFridge",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasStove",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasWasher",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasFan",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasTV",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasInternet",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasGas",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasElectricity",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "HasWater",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "TargetTenantType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TargetTenantDescription",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "DepositAmount",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "InsuranceAmount",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "CommissionAmount",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Photo",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "photoUrl",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ExtraPhotos",
-        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "HousingUrl",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OwnerName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OwnerPhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OwnerEmail",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ownerId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InspectionDates",
-        "Type": "System.Collections.Generic.List\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
@@ -1115,7 +1153,38 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
-    "Method": "UpdateHouse",
+    "Method": "SearchByAddress",
+    "RelativePath": "api/Housing/search-by-address",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lat",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "lng",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "radiusKm",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.HousingController",
+    "Method": "Update",
     "RelativePath": "api/Housing/updateHouse/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -1127,11 +1196,6 @@
         "IsRequired": true
       },
       {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "Title",
         "Type": "System.String",
         "IsRequired": false
@@ -1143,17 +1207,17 @@
       },
       {
         "Name": "PricePerMeter",
-        "Type": "System.Decimal",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "AreaInMeters",
-        "Type": "System.Int32",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "Floor",
-        "Type": "System.Int32",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -1173,7 +1237,7 @@
       },
       {
         "Name": "RentDurationValue",
-        "Type": "System.Int32",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -1183,82 +1247,82 @@
       },
       {
         "Name": "NumberOfRooms",
-        "Type": "System.Int32",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasKitchen",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasBathroom",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasLivingRoom",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasBed",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasWardrobe",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasChair",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasFridge",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasStove",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasWasher",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasFan",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasTV",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasInternet",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasGas",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasElectricity",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "HasWater",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -1273,27 +1337,22 @@
       },
       {
         "Name": "DepositAmount",
-        "Type": "System.Decimal",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "InsuranceAmount",
-        "Type": "System.Decimal",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "CommissionAmount",
-        "Type": "System.Decimal",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "Photo",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "photoUrl",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -1307,26 +1366,6 @@
         "IsRequired": false
       },
       {
-        "Name": "OwnerName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OwnerPhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OwnerEmail",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ownerId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "InspectionDates",
         "Type": "System.Collections.Generic.List\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -1336,8 +1375,8 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Likes.LikesController",
-    "Method": "GetLikedUsers",
-    "RelativePath": "api/Likes/liked-users",
+    "Method": "GetLikedHouses",
+    "RelativePath": "api/Likes/Likedhouses",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1346,8 +1385,8 @@
   },
   {
     "ContainingType": "Saken_WebApplication.Controllers.Likes.LikesController",
-    "Method": "GetLikedHouses",
-    "RelativePath": "api/Likes/LikedHouses",
+    "Method": "GetLikedUsers",
+    "RelativePath": "api/Likes/Likedusers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1363,28 +1402,23 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "likeDto",
-        "Type": "Saken_WebApplication.Data.DTO.Favorite.AddLikeDTO",
+        "Name": "command",
+        "Type": "Saken_WebApplication.Core.Features.Likes.Command.Models.ToggleLikeCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.message.MessageController",
-    "Method": "GetMessages",
-    "RelativePath": "api/Message/getMessage/{userId1}/{userId2}",
+    "ContainingType": "Saken_WebApplication.Controllers.message.MessagesController",
+    "Method": "GetChat",
+    "RelativePath": "api/Messages/chat/{otherUserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId1",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "userId2",
+        "Name": "otherUserId",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -1392,9 +1426,19 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.message.MessageController",
+    "ContainingType": "Saken_WebApplication.Controllers.message.MessagesController",
+    "Method": "GetUserConversations",
+    "RelativePath": "api/Messages/conversations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.message.MessagesController",
     "Method": "SendMessage",
-    "RelativePath": "api/Message/sendMessage",
+    "RelativePath": "api/Messages/sendMessage",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1408,50 +1452,115 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.Preference.PreferenceController",
-    "Method": "Save",
-    "RelativePath": "api/Preference/AddPreferences",
+    "ContainingType": "Saken_WebApplication.Controllers.Notification.NotificationController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api/Notification/{id}/mark-read",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Location",
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Notification.NotificationController",
+    "Method": "GetUnread",
+    "RelativePath": "api/Notification/{userId}/unreadNotification",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.String",
-        "IsRequired": false
-      },
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Notification.NotificationController",
+    "Method": "GetCount",
+    "RelativePath": "api/Notification/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Notification.NotificationController",
+    "Method": "SendNotification",
+    "RelativePath": "api/Notification/sendNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "PreferredPropertyType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
+        "Name": "command",
+        "Type": "Saken_WebApplication.Core.Features.Notification.Command.Models.SendNotificationCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.OffersController",
+    "Method": "GetActiveOffers",
+    "RelativePath": "api/Offers/ActiveOffer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.OffersController",
+    "Method": "CreateOffer",
+    "RelativePath": "api/Offers/CreateOffer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "BudgetMin",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
+        "Name": "dto",
+        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.HousingOfferDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Housing.OffersController",
+    "Method": "GetOffersByHousingId",
+    "RelativePath": "api/Offers/GetOfferForHouse/{housingId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "BudgetMax",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
+        "Name": "housingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.profile.ProfileController",
+    "Method": "GetTenant",
+    "RelativePath": "api/Profile/TenantProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "PreferredFurnishing",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PreferredDuration",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PreferredTenantType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PreferredTargetCustomer",
+        "Name": "userId",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -1459,9 +1568,66 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.Preference.PreferenceController",
-    "Method": "GetPreferences",
-    "RelativePath": "api/Preference/preferences",
+    "ContainingType": "Saken_WebApplication.Controllers.profile.ProfileController",
+    "Method": "Update",
+    "RelativePath": "api/Profile/UpdateProfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.profile.ProfileController",
+    "Method": "GetLandlord",
+    "RelativePath": "api/Profile/UserProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Recommend.RecommendationController",
+    "Method": "GetRecommendedHouses",
+    "RelativePath": "api/Recommendation/RecommendedHouse",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1469,36 +1635,200 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.UsersController",
-    "Method": "GetSettings",
-    "RelativePath": "api/Users/settings",
+    "ContainingType": "Saken_WebApplication.Controllers.Recommend.RecommendationController",
+    "Method": "GetRecommendations",
+    "RelativePath": "api/Recommendation/RecommendedUser",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Saken_WebApplication.Data.DTO.UpdateUserSettingsDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Saken_WebApplication.Controllers.UsersController",
-    "Method": "UpdateSettings",
-    "RelativePath": "api/Users/settings",
-    "HttpMethod": "PUT",
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "AddReservation",
+    "RelativePath": "api/Reservation/AddReservation",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Saken_WebApplication.Data.DTO.UpdateUserSettingsDto",
+        "Type": "Saken_WebApplication.Data.DTO.HousingDTO.ReservationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetAllReservation",
+    "RelativePath": "api/Reservation/AllReservation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "Cancel",
+    "RelativePath": "api/Reservation/cancelReservation/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetConfirmReservation",
+    "RelativePath": "api/Reservation/ConfirmReservation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "ConfirmReservation",
+    "RelativePath": "api/Reservation/confirmReservation/{reservationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetAvailableFrom",
+    "RelativePath": "api/Reservation/GetHouseAvailableFrom",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetById",
+    "RelativePath": "api/Reservation/GetReservationByID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetContract",
+    "RelativePath": "api/Reservation/Reservationcontract/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetForLandlord",
+    "RelativePath": "api/Reservation/ReservationForlandlord",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Reservation.ReservationController",
+    "Method": "GetForTenant",
+    "RelativePath": "api/Reservation/ReservationFortenant",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Review.ReviewController",
+    "Method": "AddReview",
+    "RelativePath": "api/Review",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Saken_WebApplication.Data.DTO.Review.ReviewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Review.ReviewController",
+    "Method": "GetHousingReviews",
+    "RelativePath": "api/Review/housing/{housingId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "housingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Saken_WebApplication.Controllers.Review.ReviewController",
+    "Method": "GetUserReviews",
+    "RelativePath": "api/Review/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

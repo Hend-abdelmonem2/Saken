@@ -1,4 +1,5 @@
 ﻿using Saken_WebApplication.Data.DTO;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Saken_WebApplication.Service.Services.Interfaces
 {
     public  interface IUserService
     {
-        Task<UpdateUserSettingsDto> GetSettingsAsync(string userId);
-        Task<bool> UpdateSettingsAsync(string userId, UpdateUserSettingsDto dto);
+        Task<BaseResponse<List<UserDto>>> FilterUsersAsync(string? name, string? roleName);
+        Task<BaseResponse<List<UserDto>>> SearchUsersAsync(string keyword);
     }
 }

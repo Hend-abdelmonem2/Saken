@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Saken_WebApplication.Data.DTO
+﻿namespace Saken_WebApplication.Data.DTO
 {
-   public class UserDto
+    public class UserDto
     {
         public string Id { get; set; }
         public string FullName { get; set; }
@@ -14,5 +8,10 @@ namespace Saken_WebApplication.Data.DTO
         public string PhoneNumber { get; set; }
         public string Role { get; set; }
         public string profilePicture { get; set; }
+
+        public bool IsActive { get; set; }
+        public bool IsFavorite { get; set; }
+
+
     }
 }

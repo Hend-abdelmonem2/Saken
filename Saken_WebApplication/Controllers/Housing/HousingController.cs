@@ -1,16 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Saken_WebApplication.Core.Features.Houses.Command.Models;
+using Saken_WebApplication.Core.Features.Houses.Query.Models;
+using Saken_WebApplication.Core.Features.Reservation.Query.Models;
 using Saken_WebApplication.Data.DTO.HousingDTO;
-using Saken_WebApplication.Service.Services.Interfaces;
+using Saken_WebApplication.Data.Response;
 using Saken_WebApplication.Service.Services.Interfaces.housing;
 using Saken_WebApplication.Service.Services.Interfaces.recommend;
 using Saken_WebApplication.Service.Services.Interfaces.Reservation;
-using System.ComponentModel.Design;
 using System.Security.Claims;
+using static Saken_WebApplication.Data.Models.Enums;
 
 namespace Saken_WebApplication.Controllers.Housing
 {
@@ -18,16 +18,16 @@ namespace Saken_WebApplication.Controllers.Housing
     [ApiController]
     public class HousingController : ControllerBase
     {
-        private readonly IHousingFilterService _housingFilterService;
+
         private readonly IHousingService _housingService;
         private readonly IRecommendationService _recommendationService;
         private readonly IReservationService _reservationService;
         private readonly IMediator _mediator;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HousingController(IHousingFilterService housingFilterService, IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService, IMediator mediator,  IHttpContextAccessor httpContextAccessor)
+        public HousingController(IReservationService reservationService, IHousingService housingService, IRecommendationService recommendationService, IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
-            _housingFilterService = housingFilterService;
+
             _housingService = housingService;
             _recommendationService = recommendationService;
             _reservationService = reservationService;
@@ -37,192 +37,243 @@ namespace Saken_WebApplication.Controllers.Housing
 
         }
 
-
-
-        /*  [HttpPost("add")]
-          public async Task<IActionResult> AddHousing([FromForm] HousingDto dto)
-          {
-              var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-              if (userId == null)
-                  return Unauthorized("User ID not found in token.");
-              if (!ModelState.IsValid)
-              {
-                  var errors = ModelState.Values
-                     .SelectMany(v => v.Errors)
-                     .Select(e => e.ErrorMessage)
-                     .ToList();
-
-
-                  return BadRequest(new { message = "Model validation failed", errors });
-              }
-
-              await _housingService.AddHousingAsync(dto, userId);
-              return Ok(new { message = "Housing added successfully" });
-          }*/
-
         private string GetUserId()
         {
             return _httpContextAccessor.HttpContext.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddHouse([FromForm] HousingDto dto)
         {
             var landlordId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(landlordId))
-                return Unauthorized();
+                return Unauthorized(new BaseResponse<string>(false, " User not authorized"));
 
-            await _mediator.Send(new AddHousingCommand(dto, landlordId));
+            var response = await _mediator.Send(new AddHousingCommand(dto, landlordId));
 
-            return Ok("Housing added successfully");
+            if (!response.Success)
+                return BadRequest(response);
+
+            return Ok(response);
         }
 
-        [Authorize]
-        [HttpPost("Reservation")]
-        public async Task<IActionResult> AddReservation([FromForm] ReservationDto dto)
-        {
-            if(!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            // استخراج الـ UserId من التوكن
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-                return Unauthorized("User ID not found in token.");
-
-            await _housingService.AddReservationAsync(dto, userId);
-            return Ok(new { message = "Reservation created successfully" });
-        }
-        [HttpGet("landlordResrvation")]
-        [Authorize]
-        public async Task<IActionResult> GetLandlordReservations()
-        {
-            var landlordId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (landlordId == null)
-                return Unauthorized();
-
-            var reservations = await _reservationService.GetReservationsForLandlordAsync(landlordId);
-            return Ok(reservations);
-        }
-        [HttpGet("reservation/{id}")]
-        public async Task<IActionResult> GetReservationById(int id)
-        {
-            var reservation = await _reservationService.GetReservationById(id);
-
-            if (reservation == null)
-                return NotFound("Reservation not found.");
-
-            return Ok(reservation);
-        }
-
-
-
-
-        [HttpGet("AllHouses")]
-        public async Task<IActionResult> GetAllHouses()
-        {
-            var result = await _housingService.GetAllHousesAsync();
-            return Ok(result);
-        }
         [HttpPut("updateHouse/{id}")]
-        public async Task<IActionResult> UpdateHouse(int id, [FromForm] HousingDto dto)
+        [Authorize]
+        public async Task<IActionResult> Update(int id, [FromForm] UpdateHousingDto dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-                return Unauthorized("User ID not found in token.");
-            await _housingService.UpdateHousingAsync(id, dto);
-            return Ok(new { message = "Housing updated successfully" });
+            var userId = GetUserId();
 
-        }
+            var result = await _mediator.Send(new UpdateHousingCommand(id, dto, userId));
 
+            if (!result.Success)
+                return BadRequest(result);
 
-        [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateHousing(int id, [FromForm] HousingDto dto)
-        {
-            await _mediator.Send(new UpdateHousingCommand(id, dto));
-            return Ok("Housing updated successfully");
-        }
-
-        [HttpGet("searchHouse")]
-        public async Task<IActionResult> SearchHouses(string key)
-        {
-            var results = await _housingService.SearchHousesAsync(key);
-            return Ok(results);
+            return Ok(result);
         }
 
         [HttpDelete("DeleteHouse/{id}")]
-        public async Task<IActionResult> DeleteHouse(int id)
-        {
-            var result = await _housingService.DeleteHousingAsync(id);
-            if (!result)
-                return NotFound("House not found");
-
-            return Ok("House deleted successfully");
-        }
-
-
-        [HttpGet("recommendations/{userId}")]
-        public async Task<ActionResult<List<HousingDto>>> GetRecommendations(string userId, [FromQuery] string? location)
-        {
-            var recommendations = await _housingFilterService.GetRecommendedHousingsAsync(userId, location);
-
-            if (recommendations == null || !recommendations.Any())
-                return NotFound("لا يوجد عقارات مناسبة لهذا المستخدم.");
-
-            return Ok(recommendations);
-        }
         [Authorize]
-        [HttpGet("recommend")]
-        public async Task<IActionResult> Recommend()
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await _recommendationService.GetRecommendedHousesAsync();
-            return Ok(result);
-        }
-        [HttpGet("owner/grouped-housings")]
-        public async Task<ActionResult<OwnerHousingGroupedDto>> GetHousingsForOwner()
-        {
-            var ownerId = GetUserId();
-            var result = await _housingService.GetGroupedHousingsForLandlordAsync(ownerId);
+            var userId = GetUserId();
+            var isAdmin = User.IsInRole("Admin");
+
+            var result = await _mediator.Send(new DeleteHousingCommand(id, userId, isAdmin));
+
+            if (!result.Success)
+                return BadRequest(result);
+
             return Ok(result);
         }
 
-        [HttpGet("contract/{id}")]
-        public async Task<IActionResult> GetReservationContract(int id)
-        {
-            var contract = await _reservationService.GetReservationContractAsync(id);
-            if (contract == null)
-                return NotFound("Reservation not found.");
 
-            return Ok(contract);
-        }
-        [HttpPost("ToggleFreeze/{id}")]
+        [HttpPost("freeze/{id}")]
+        [Authorize]
         public async Task<IActionResult> ToggleFreeze(int id)
         {
-            var result = await _housingService.ToggleFreezeAsync(id);
+            var response = await _mediator.Send(new ToggleFreezeCommand(id));
 
-            if (!result.success)
-                return NotFound(new { message = result.message });
+            if (!response.Success)
+                return BadRequest(response);
 
-            return Ok(new
-            {
-                message = result.message,
-                isFrozen = result.isFrozen
-            });
+            return Ok(response);
         }
-        
 
-    [HttpGet("GetHouseById/{id}")]
-        public async Task<IActionResult> GetHouseById(int id)
+
+        [HttpGet("AllHouses")]
+        public async Task<IActionResult> GetAll()
         {
-            var house = await _housingService.GetHousingByIdAsync(id);
-            if (house == null)
-                return NotFound("السكن غير موجود");
+            var userId = GetUserId();
+            var result = await _mediator.Send(new GetAllHousesQuery(userId));
 
-            return Ok(house);
+            if (!result.Success)
+                return NotFound(result);
+
+            return Ok(result);
         }
+        [Authorize]
+        [HttpPost("request-inspection")]
+        public async Task<IActionResult> RequestInspection([FromBody] InspectionRequestDto dto)
+        {
+
+            var response = await _mediator.Send(new SubmitInspectionRequestCommand(dto));
+            if (!response.Success)
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("available-slots/{housingId}")]
+        public async Task<IActionResult> GetAvailableSlots(int housingId)
+        {
+            var result = await _mediator.Send(new GetAvailableSlotsQuery(housingId));
+
+            if (!result.Success)
+                return NotFound(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("landlord/grouped-housings/{landlordId}")]
+        public async Task<IActionResult> GetGroupedHousingsForLandlord(string landlordId)
+        {
+            var response = await _mediator.Send(new GetGroupedHousingsForLandlordQuery(landlordId));
+
+            if (!response.Success)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
+        [HttpGet("GetHouseById/{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetHousingById(int id)
+        {
+            var response = await _mediator.Send(new GetHousingByIdQuery(id));
+
+            if (!response.Success)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
+        [HttpGet("highest-rating")]
+        public async Task<IActionResult> GetHousingsByHighestRating()
+        {
+            var userId = GetUserId();
+            var response = await _mediator.Send(new GetHousingsByHighestRatingQuery(userId));
+
+            if (!response.Success)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+        [HttpGet("lowest-price")]
+        public async Task<IActionResult> LowestPriceAsync()
+        {
+            var userId = GetUserId();
+            var response = await _mediator.Send(new GetHousingsByLowestPriceQuery(userId));
+            if (!response.Success)
+                return NotFound(response);
+            return Ok(response);
+
+        }
+
+        [HttpGet("By-type/{type}")]
+        [Authorize]
+        public async Task<IActionResult> ByType(PropertyType type)
+        {
+            var userId = GetUserId();
+            var response = await _mediator.Send(new GetHousingsByTypeQuery(userId, type));
+            if (!response.Success)
+                return NotFound(response);
+            return Ok(response);
+        }
+
+        [HttpGet("owner/inspection-requests")]
+        [Authorize]
+        public async Task<IActionResult> GetInspectionRequestsForOwner()
+        {
+            var ownerId = GetUserId();
+            var response = await _mediator.Send(new GetInspectionRequestsForOwnerQuery(ownerId));
+
+            if (!response.Success)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
+        [HttpPost("SaveHousing")]
+        [Authorize]
+        public async Task<IActionResult> SaveHousing(int houseId)
+        {
+            var userId = GetUserId();
+            var result = await _mediator.Send(new SaveHousingCommand(userId, houseId));
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("savedHousing")]
+        [Authorize]
+        public async Task<IActionResult> Saved()
+        {
+            var userId = GetUserId();
+
+            var result = await _mediator.Send(new GetSavedHousingsQuery(userId));
+            if (!result.Success)
+                return NotFound(result);
+            return Ok(result);
+        }
+
+        [HttpGet("search")]
+        [Authorize]
+        public async Task<IActionResult> Search([FromQuery] string searchKey)
+        {
+            var result = await _mediator.Send(new SearchHousesQuery(searchKey));
+            if (!result.Success)
+                return NotFound(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("search-by-address")]
+        [Authorize]
+        public async Task<IActionResult> SearchByAddress([FromQuery] string? address, [FromQuery] double? lat, [FromQuery] double? lng, [FromQuery] double radiusKm = 10)
+        {
+            var result = await _mediator.Send(new SearchByAddressQuery(address, lat, lng, radiusKm));
+            if (!result.Success)
+                return NotFound(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("filter")]
+        [Authorize]
+        public async Task<IActionResult> Filter([FromQuery] string? address, [FromQuery] string? housingType, [FromQuery] string? furnishingStatus, [FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice)
+        {
+            var result = await _mediator.Send(new GetFilteredHousesQuery(address, housingType, furnishingStatus, minPrice, maxPrice));
+            if (!result.Success)
+                return NotFound(result);
+
+            return Ok(result);
+        }
+
+
+
+        [HttpGet("HouseCost")]
+        [Authorize]
+        public async Task<IActionResult> GetCost(int id, int durationInMonth)
+        {
+            var result = await _mediator.Send(new GetHousingCostsQuery(id, durationInMonth));
+            if (!result.Success)
+                return NotFound(result);
+            return Ok(result);
+        }
+
+
     }
 }

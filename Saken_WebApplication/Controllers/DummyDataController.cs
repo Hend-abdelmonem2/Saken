@@ -10,38 +10,20 @@ namespace Saken_WebApplication.Controllers
     [ApiController]
     public class DummyDataController : ControllerBase
     {
-        private readonly IDummyDataService _service;
+        
         private readonly IDummyUserService _dummyUserService;
+        private readonly IDummyHouseService _dummyHouseService;
      
 
 
-        public DummyDataController(IDummyDataService service , IDummyUserService dummyUserService)
+        public DummyDataController( IDummyUserService dummyUserService, IDummyHouseService dummyHouseService)
         {
-            _service = service;
+           
             _dummyUserService = dummyUserService;
+            _dummyHouseService = dummyHouseService;
         }
 
-        [HttpPost("set")]
-        public async Task<IActionResult> SetDummyData()
-        {
-            try
-            {
-                await _service.RunSqlScriptAsync("dummy_data.sql");
-                return Ok("Dummy data set successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
-        [HttpPost("reset")]
-        public async Task<IActionResult> ResetDummyData()
-        {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Scripts", "dummy_data.sql");
-            await _service.RunSqlScriptAsync(path);
-           
-            return Ok("Dummy data reset successfully.");
-        }
+       
        
 
        
@@ -56,6 +38,20 @@ namespace Saken_WebApplication.Controllers
         public async Task<IActionResult> ResetUsers()
         {
             var result = await _dummyUserService.DeleteDummyUsersAsync();
+            return Ok(result);
+        }
+
+        [HttpPost("insert-dummy-houses")]
+        public async Task<IActionResult> InsertDummyHouses()
+        {
+            var result = await _dummyHouseService.InsertDummyHousesAsync();
+            return Ok(result);
+        }
+
+        [HttpDelete("delete-dummy-houses")]
+        public async Task<IActionResult> DeleteDummyHouses()
+        {
+            var result = await _dummyHouseService.DeleteDummyHousesAsync();
             return Ok(result);
         }
 

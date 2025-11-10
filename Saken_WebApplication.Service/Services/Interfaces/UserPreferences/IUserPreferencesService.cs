@@ -1,4 +1,5 @@
 ﻿using Saken_WebApplication.Data.DTO.UserPreferences;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Saken_WebApplication.Service.Services.Interfaces.UserPreferences
 {
     public interface IUserPreferencesService
     {
-        Task SavePreferencesAsync( UserPreferencesDto model);
-        Task<UserPreferencesDto> GetPreferencesAsync(string userId);
+        Task <BaseResponse<string>>SavePreferencesAsync( UserPreferencesDto model);
+        Task<BaseResponse<UserPreferencesDto>> GetPreferencesAsync(string userId);
     }
 }

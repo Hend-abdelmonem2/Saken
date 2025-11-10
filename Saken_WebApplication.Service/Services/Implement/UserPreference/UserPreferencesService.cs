@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Saken_WebApplication.Data.DTO.UserPreferences;
 using Saken_WebApplication.Data.Models;
+using Saken_WebApplication.Data.Response;
 using Saken_WebApplication.Infrasturcture.Repositories.Interfaces.Preferences;
 using Saken_WebApplication.Service.Services.Interfaces.UserPreferences;
 using System;
@@ -16,21 +17,21 @@ using UserPreferences = Saken_WebApplication.Data.Models.UserPreferences; // Add
 
 namespace Saken_WebApplication.Service.Services.Implement.UserPreference
 {
-    public class UserPreferencesService: IUserPreferencesService
+    public class UserPreferencesService : IUserPreferencesService
     {
         private readonly IUserPreferencesRepository _repo;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserPreferencesService(IUserPreferencesRepository repo , IHttpContextAccessor httpContextAccessor)
+        public UserPreferencesService(IUserPreferencesRepository repo, IHttpContextAccessor httpContextAccessor)
         {
             _repo = repo;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task SavePreferencesAsync( UserPreferencesDto model)
+        public async Task<BaseResponse<string>>SavePreferencesAsync(UserPreferencesDto model)
 
         {
             var user = _httpContextAccessor.HttpContext?.User;
-          var userId = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userId = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
                 throw new UnauthorizedAccessException("User ID not found in token.");
 
@@ -68,10 +69,11 @@ namespace Saken_WebApplication.Service.Services.Implement.UserPreference
             }
 
             await _repo.SaveChangesAsync();
+            return new BaseResponse<string>(true, "AddSuccessfully");
 
 
         }
-        public async Task<UserPreferencesDto> GetPreferencesAsync(string userId)
+        public async Task<BaseResponse<UserPreferencesDto>> GetPreferencesAsync(string userId)
         {
             var UserId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
             if (UserId == null)
@@ -80,7 +82,7 @@ namespace Saken_WebApplication.Service.Services.Implement.UserPreference
             var pref = await _repo.GetByUserIdAsync(userId);
             if (pref == null) return null;
 
-            return new UserPreferencesDto
+            var Preferences= new UserPreferencesDto
             {
                 Location = pref.location,
                 PreferredPropertyType = pref.PreferredPropertyType.ToString(),
@@ -91,7 +93,10 @@ namespace Saken_WebApplication.Service.Services.Implement.UserPreference
                 PreferredTenantType = pref.PreferredTenantType.ToString(),
                 PreferredTargetCustomer = pref.PreferredTargetCustomer.ToString()
             };
+            return  BaseResponse<UserPreferencesDto>.SuccessResponse(Preferences, "Retrive Preferences");
         }
+
+
 
 
 

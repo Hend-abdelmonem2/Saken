@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Saken_WebApplication.Data.Models.Guid;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Saken_WebApplication.Data.Models
         public FurnishingStatus FurnishingStatus { get; set; } // Furnished, Empty
         public RentalType RentalType { get; set; } // New, Old
 
-        public bool IsAvailable { get; set; }
+        public bool IsAvailable { get; set; } = true;
 
         // مدة الإيجار
         public int RentDurationValue { get; set; }
@@ -97,6 +98,12 @@ namespace Saken_WebApplication.Data.Models
         public int? HousingRatingCount { get; set; } = 0;
         public bool IsFrozen { get; set; } = false;
         public string? PhotoUrl { get; set; }
+
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
+        public HouseStatus Status { get; set; } = HouseStatus.Pending;
+        public string? RejectionReason { get; set; }
         // العلاقات
         public ICollection<HousingPhoto> Photos { get; set; } = new List<HousingPhoto>();
         public ICollection<InspectionSlot> InspectionSlots { get; set; } = new List<InspectionSlot>();
@@ -108,5 +115,6 @@ namespace Saken_WebApplication.Data.Models
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
         public ICollection<SavedHousing> SavedByUsers { get; set; }
+        public ICollection<CommissionTracking> CommissionTrackings { get; set; }
     }
 }

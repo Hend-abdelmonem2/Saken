@@ -13,6 +13,7 @@ namespace Saken_WebApplication.Infrasturcture.Repositories.Interfaces.Preference
         Task<UserPreferences> GetByUserIdAsync(string userId);
         Task AddAsync(UserPreferences preferences);
         Task UpdateAsync(UserPreferences preferences);
+        Task<IEnumerable<UserPreferences>> GetAllAsync();
         Task SaveChangesAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Saken_WebApplication.Data.DTO.message;
+using Saken_WebApplication.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace Saken_WebApplication.Service.Services.Interfaces.message
 {
    public  interface IMessageService
     {
-        Task SendMessageAsync(MessageDto dto);
-        Task<IEnumerable<MessageDto>> GetMessagesAsync(string userId1, string userId2);
+        Task<BaseResponse> SendMessageAsync(string senderId, MessageDto dto);
+        Task<BaseResponse<GetMessageDto>> GetChatAsync(string loginUserId, string otherUserId);
+        Task<BaseResponse<IEnumerable<UserConversationDto>>> GetUserConversationsAsync(string userId);
     }
 }

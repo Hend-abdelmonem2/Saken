@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Saken_WebApplication.Data.DTO;
 using Saken_WebApplication.Data.Models;
-using Saken_WebApplication.Service.Response;
+using Saken_WebApplication.Data.Response;
 using Saken_WebApplication.Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;

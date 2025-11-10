@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Saken_WebApplication.Core.Features.Houses.Base;
 using Saken_WebApplication.Core.Features.Houses.Command.Models;
+using Saken_WebApplication.Data.Response;
 using Saken_WebApplication.Service.Services.Interfaces.housing;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,17 @@ using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Core.Features.Houses.Command.Handlers
 {
-   public class DeleteHousingHandler : BaseHousingHandler, IRequestHandler<DeleteHousingCommand, bool>
+    public class DeleteHousingHandler
+    : BaseHousingHandler, IRequestHandler<DeleteHousingCommand, BaseResponse<bool>>
     {
+        public DeleteHousingHandler(IHousingService service) : base(service) { }
 
-        public DeleteHousingHandler(IHousingService service) :base(service) { }
-
-        public async Task<bool> Handle(DeleteHousingCommand request, CancellationToken ct)
-            => await _service.DeleteHousingAsync(request.Id);
+        public async Task<BaseResponse<bool>> Handle(DeleteHousingCommand request, CancellationToken cancellationToken)
+        {
+          
+            return await _service.DeleteHousingAsync(request.HousingId, request.UserId, request.IsAdmin);
+        }
     }
+
 
 }

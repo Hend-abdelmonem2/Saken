@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Saken_WebApplication.Core.Features.Houses.Base;
 using Saken_WebApplication.Core.Features.Houses.Command.Models;
+using Saken_WebApplication.Data.Response;
 using Saken_WebApplication.Service.Services.Interfaces.housing;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,15 @@ using System.Threading.Tasks;
 
 namespace Saken_WebApplication.Core.Features.Houses.Command.Handlers
 {
-    public class AddHousingHandler : BaseHousingHandler, IRequestHandler<AddHousingCommand>
+    public class AddHousingHandler
+        : BaseHousingHandler, IRequestHandler<AddHousingCommand, BaseResponse<string>>
     {
-        public AddHousingHandler(IHousingService service) : base(service)
-        {
-        }
+        public AddHousingHandler(IHousingService service) : base(service) { }
 
-        #region methods
-        public async Task<Unit> Handle(AddHousingCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<string>> Handle(AddHousingCommand request, CancellationToken cancellationToken)
         {
-            await _service.AddHousingAsync(request.Dto, request.LandlordId);
-            return Unit.Value;
+            var result = await _service.AddHousingAsync(request.Dto, request.LandlordId);
+            return result; 
         }
-        #endregion
-
     }
 }
